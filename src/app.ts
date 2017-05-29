@@ -10,10 +10,12 @@ class SimpleGame extends Phaser.Game {
     {
         super(
             1000,
-            800,
+            500,
             Phaser.CANVAS,
             "content",
-            null
+            null,
+            false,
+            false
         );
 
         this.state.add('Boot', Boot);
