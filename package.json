@@ -1,0 +1,26 @@
+{
+  "name": "pierallard-akeneo-game-jam-4",
+  "version": "1.0.0",
+  "description": "Akeneo Game Jam 4",
+  "main": "index.html",
+  "scripts": {
+    "dev": "webpack-dev-server --watch --content-base . -d --progress --host=0.0.0.0",
+    "build": "tsc && webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pierallard/akeneo-game-jam-4"
+  },
+  "author": "Pierre Allard <pierre.allard@akeneo.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/pierallard/akeneo-game-jam-4",
+  "devDependencies": {
+    "webpack": "^2.4.1",
+    "webpack-dev-server": "^2.4.2",
+    "typescript": "2.2.2"
+  },
+  "dependencies": {
+    "ts-loader": "^2.0.3",
+    "easystarjs": "0.4.1"
+  }
+}
