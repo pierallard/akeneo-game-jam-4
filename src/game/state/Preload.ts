@@ -11,6 +11,11 @@ export default class Preload extends Phaser.State {
         this.game.load.image('background', 'assets/background.png');
         this.game.load.image('cursor', 'assets/cursor.png');
 
+        // Scene
+        this.game.load.image('fridgeClose', 'assets/fridgeClose.png');
+        this.game.load.image('fridgeOpen', 'assets/fridgeOpen.png');
+        this.game.load.image('microOndes', 'assets/microondes.png');
+
         // Inventory
         this.game.load.image('cannabis', 'assets/cannabis.png');
         this.game.load.image('engrais', 'assets/engrais.png');

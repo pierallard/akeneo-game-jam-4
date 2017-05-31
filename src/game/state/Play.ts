@@ -2,18 +2,24 @@
 import {Baby} from "../Baby";
 import {Inventory} from "../Inventory";
 import {Action} from "../actions/Action";
-import {Pickable} from "../Pickable";
+import {Pickable} from "../scene_objects/Pickable";
 import {VerbRepository} from "../verbs/VerbRepository";
 import {MoveAction} from "../actions/MoveAction";
 import {Verb} from "../verbs/Verb";
+import {Fridge} from "../scene_objects/Fridge";
+import {InventoryObject} from "../inventory_objects/InventoryObject";
+import {Microondes} from "../scene_objects/Microondes";
+import {Steak} from "../inventory_objects/Steak";
 
 export default class Play extends Phaser.State
 {
+    private inventoryObject: InventoryObject;
     private baby: Baby;
     private inventory: Inventory;
     private actions: Array<Action>;
     private verbRepository: VerbRepository;
     public mainGroup: Phaser.Group;
+    public inventoryGroup: Phaser.Group;
     private cursor: Phaser.Sprite;
 
     public constructor()
@@ -22,34 +28,29 @@ export default class Play extends Phaser.State
 
         this.inventory = new Inventory(this);
         this.actions = [];
+        this.inventoryObject = null;
     }
 
     public create()
     {
         this.mainGroup = this.game.add.group();
-        let sprite = this.game.add.sprite(0, 0, 'background', null, this.mainGroup);
+        this.mainGroup.x = MoveAction.getLimitsCenter();
 
-        sprite.scale.setTo(4);
-        sprite.inputEnabled = true;
-        sprite.events.onInputDown.add(this.move, this);
+        this.inventoryGroup = this.game.add.group();
+        this.inventory.render();
+
+        this.verbRepository = new VerbRepository(this);
+        this.verbRepository.render();
+
+        this.addBackground();
+
+        this.createScene();
+        this.createInventoryObjects();
 
         this.baby = new Baby(this, 1200, 66*4, 'baby');
         this.mainGroup.add(this.baby);
 
-        this.inventory.render();
-        this.verbRepository = new VerbRepository(this.game);
-        this.verbRepository.render();
-
-        this.mainGroup.add(new Pickable(this, 1000, 200, 'cannabis', 'cannabis'));
-        this.mainGroup.add(new Pickable(this, 1500, 200, 'zippo', 'zippo'));
-        this.mainGroup.add(new Pickable(this, 1300, 200, 'piles', 'piles'));
-        this.mainGroup.add(new Pickable(this, 1200, 200, 'knife', 'knife'));
-
-        this.mainGroup.x = MoveAction.getLimitsCenter();
-
-        this.cursor = this.game.add.sprite(0, 0, 'cursor');
-        this.cursor.anchor.setTo(0.5);
-        this.cursor.scale.setTo(4);
+        this.createCursor();
     }
 
     public update()
@@ -58,17 +59,21 @@ export default class Play extends Phaser.State
             if (this.actions[0].execute() === true) {
                 this.actions.shift();
             }
+            if (!this.actions.length) {
+                this.verbRepository.setCurrentVerbName(Verb.WALK_TO);
+            }
         }
 
         this.cursor.position.set(
             Math.round(this.game.input.mousePointer.worldX / 4) * 4 + 2,
             Math.round(this.game.input.mousePointer.worldY / 4) * 4 + 2
         );
-    }
-
-    public render() {
-        this.game.debug.text('mainGroup.x = ' + this.mainGroup.x, 0, 15);
-        this.game.debug.text('action : ' + this.actions.map(function (action) { return action.debugText(); }).join(', '), 0, 30);
+        if (this.inventoryObject) {
+            this.inventoryObject.position.set(
+                Math.round(this.game.input.mousePointer.worldX / 4) * 4 + 2,
+                Math.round(this.game.input.mousePointer.worldY / 4) * 4 + 2
+            );
+        }
     }
 
     getBaby() {
@@ -91,15 +96,80 @@ export default class Play extends Phaser.State
         return this.verbRepository.getCurrentVerb().getName();
     }
 
-    setVerb(verb: string) {
-        this.verbRepository.setCurrentVerbName(verb);
-    }
-
     move(backgroundSprite: Phaser.Sprite, pointer: Phaser.Pointer) {
         if (this.getCurrentVerb() === Verb.WALK_TO) {
             this.addActions([
                 new MoveAction(this, pointer.position.x)
             ]);
         }
+    }
+
+    appearObject(objectIdentifier: string) {
+        for (let i = 0; i < this.mainGroup.children.length; i++) {
+            if (typeof this.mainGroup.children[i]['getIdentifier'] == 'function') {
+                let object = <Pickable> this.mainGroup.children[i];
+                if (object.getIdentifier() === objectIdentifier) {
+                    object.display();
+
+                    return;
+                }
+            }
+        }
+    }
+
+    private addBackground() {
+        let sprite = this.game.add.sprite(0, 0, 'background', null, this.mainGroup);
+        sprite.scale.setTo(4);
+        sprite.inputEnabled = true;
+        sprite.events.onInputDown.add(this.move, this);
+    }
+
+    private createScene() {
+        this.mainGroup.add(new Fridge(this));
+        this.mainGroup.add(new Microondes(this));
+        this.mainGroup.add(new Pickable(this, 'lexomil', 400*4, 60*4, 'lexomil', 'lexomil'));
+        this.mainGroup.add(new Pickable(this, 'coldMeat', 275*4, 45*4, 'icesteak', 'icesteak', false));
+    }
+
+    private createInventoryObjects() {
+        this.inventoryGroup.add(new InventoryObject(this, 'icesteak', 'Un steak surgele'));
+        this.inventoryGroup.add(new Steak(this));
+        this.inventoryGroup.add(new InventoryObject(this, 'lexomil', 'Une boite de Lexomil'));
+        this.inventoryGroup.add(new InventoryObject(this, 'steakLexomil', 'Voila qui pourrait endormir un cheval'));
+    }
+
+    private createCursor() {
+        this.cursor = this.game.add.sprite(0, 0, 'cursor');
+        this.cursor.anchor.setTo(0.5);
+        this.cursor.scale.setTo(4);
+    }
+
+    public render() {
+        this.game.debug.text('mainGroup.x = ' + this.mainGroup.x, 0, 15);
+        this.game.debug.text('action : ' + this.actions.map(function (action) { return action.debugText(); }).join(', '), 0, 30);
+        this.game.debug.text('Inventory : ' + ((null !== this.inventoryObject) ? this.inventoryObject.getIdentifier() : 'null'), 0, 45);
+    }
+
+    hasAction() {
+        return this.actions.length > 0;
+    }
+
+    attachInventoryObject(inventoryObject: InventoryObject) {
+        if (null !== this.inventoryObject) {
+            this.detachInventoryObject();
+        }
+        this.verbRepository.setCurrentVerbName(Verb.USE);
+        this.inventoryObject = inventoryObject;
+    }
+
+    detachInventoryObject() {
+        if (null !== this.inventoryObject) {
+            this.inventoryObject.detach();
+            this.inventoryObject = null;
+        }
+    }
+
+    getInventoryObject() {
+        return this.inventoryObject;
     }
 }

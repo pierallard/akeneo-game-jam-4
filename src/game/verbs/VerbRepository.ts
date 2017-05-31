@@ -1,6 +1,7 @@
 
 import {Verb} from "./Verb";
 import {SimpleGame} from "../../app";
+import Play from "../state/Play";
 
 const PANEL_WIDTH = 400;
 const PANEL_HEIGHT= 128;
@@ -8,28 +9,29 @@ const PANEL_HEIGHT= 128;
 export class VerbRepository {
     private items: Array<Verb>;
     private currentItem: Verb;
-    private game: Phaser.Game;
+    private play: Play;
 
-    constructor(game: Phaser.Game)
+    constructor(play: Play)
     {
         let style = {
             font: "40px 3dventuremedium",
             align: "center",
         };
+
         this.items = [
-            new Verb(this, game, PANEL_WIDTH / 4, SimpleGame.HEIGHT - PANEL_HEIGHT / 4 * 3, Verb.WALK_TO, style),
-            new Verb(this, game, PANEL_WIDTH / 4 * 3, SimpleGame.HEIGHT - PANEL_HEIGHT / 4 * 3, Verb.LOOK_AT, style),
-            new Verb(this, game, PANEL_WIDTH / 4, SimpleGame.HEIGHT - PANEL_HEIGHT / 4, Verb.PICK_UP, style),
-            new Verb(this, game, PANEL_WIDTH / 4 * 3, SimpleGame.HEIGHT - PANEL_HEIGHT / 4, Verb.USE, style)
+            new Verb(this, play.game, PANEL_WIDTH / 4, SimpleGame.HEIGHT - PANEL_HEIGHT / 4 * 3, Verb.WALK_TO, style),
+            new Verb(this, play.game, PANEL_WIDTH / 4 * 3, SimpleGame.HEIGHT - PANEL_HEIGHT / 4 * 3, Verb.LOOK_AT, style),
+            new Verb(this, play.game, PANEL_WIDTH / 4, SimpleGame.HEIGHT - PANEL_HEIGHT / 4, Verb.PICK_UP, style),
+            new Verb(this, play.game, PANEL_WIDTH / 4 * 3, SimpleGame.HEIGHT - PANEL_HEIGHT / 4, Verb.USE, style)
         ];
 
-        this.game = game;
+        this.play = play;
         this.setCurrentVerb(this.items[0]);
     }
 
     public render () {
         this.items.forEach(function (verb) {
-            this.game.add.existing(verb);
+            this.play.add.existing(verb);
         }.bind(this));
 
         this.update();
@@ -44,9 +46,11 @@ export class VerbRepository {
     }
 
     public setCurrentVerb(verb: Verb) {
-        this.currentItem = verb;
+        if (false === this.play.hasAction()) {
+            this.currentItem = verb;
 
-        this.update();
+            this.update();
+        }
     }
 
     getCurrentVerb(): Verb {
