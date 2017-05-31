@@ -3,13 +3,14 @@ import {Baby} from "../Baby";
 import {Inventory} from "../Inventory";
 import {Action} from "../Action";
 import {Pickable} from "../Pickable";
+import {VerbRepository} from "../VerbRepository";
 
 export default class Play extends Phaser.State
 {
-    private debug: boolean = false;
     private baby: Baby;
     private inventory: Inventory;
     private actions: Array<Action>;
+    private verbRepository: VerbRepository;
 
     public constructor()
     {
@@ -23,10 +24,9 @@ export default class Play extends Phaser.State
     {
         this.baby = new Baby(this.game, 50, 300, 'baby');
         this.game.add.existing(this.baby);
-        this.inventory.create();
-
-        let style = { font: "32px 3dventuremedium", fill: "#ff0044", wordWrap: true, wordWrapWidth: 100, align: "center", backgroundColor: "#ffff00" };
-        let text = this.game.add.text(0, 0, 'ALLER', style);
+        this.inventory.render();
+        this.verbRepository = new VerbRepository(this.game);
+        this.verbRepository.render();
 
         let minimoi = new Pickable(this, 500, 250, 'baby', 'baby');
         this.game.add.existing(minimoi);

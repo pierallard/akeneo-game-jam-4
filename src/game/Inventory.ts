@@ -1,5 +1,6 @@
 
 import Play from "./state/Play";
+import {SimpleGame} from "../app";
 
 const INVENTORY_SIZE: number = (16+8)*4;
 const COLUMNS: number = 4;
@@ -18,7 +19,7 @@ export class Inventory {
         this.table = 0;
     }
 
-    create() {
+    render() {
         for (let i = 0; i < COLUMNS * LINES; i++) {
             let position = this.getPosition(i);
             let sprite = new Phaser.Sprite(this.play.game, position.x, position.y, 'inventory');
@@ -44,8 +45,8 @@ export class Inventory {
         let y = Math.floor(i % (COLUMNS * LINES) / COLUMNS);
 
         return new Phaser.Point(
-            1000 - COLUMNS * INVENTORY_SIZE + (x + 0.5) * INVENTORY_SIZE,
-            500 - LINES * INVENTORY_SIZE + (y + 0.5) * INVENTORY_SIZE
+            SimpleGame.WIDTH - COLUMNS * INVENTORY_SIZE + (x + 0.5) * INVENTORY_SIZE,
+            SimpleGame.HEIGHT - LINES * INVENTORY_SIZE + (y + 0.5) * INVENTORY_SIZE
         );
     }
 }

@@ -4,15 +4,18 @@ import Boot from "./game/state/Boot";
 import Preload from "./game/state/Preload";
 import Play from "./game/state/Play";
 
-class SimpleGame extends Phaser.Game {
+export class SimpleGame extends Phaser.Game {
+
+    static WIDTH = 800;
+    static HEIGHT = 550;
 
     constructor()
     {
         super(
-            1000,
-            500,
+            SimpleGame.WIDTH,
+            SimpleGame.HEIGHT,
             Phaser.CANVAS,
-            "content",
+            'content',
             null,
             false,
             false
