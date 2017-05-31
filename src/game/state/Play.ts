@@ -15,6 +15,7 @@ import {PorteGarage} from "../scene_objects/PorteGarage";
 import {SceneObject} from "../scene_objects/SceneObject";
 import {Dog} from "../scene_objects/Dog";
 import {Lexomil} from "../inventory_objects/Lexomil";
+import {Placard} from "../scene_objects/Placard";
 
 export default class Play extends Phaser.State
 {
@@ -138,12 +139,14 @@ export default class Play extends Phaser.State
 
     private createScene() {
         this.mainGroup.add(new Fridge(this));
+        this.mainGroup.add(new Placard(this));
         this.mainGroup.add(new Microondes(this));
         this.mainGroup.add(new Gamelle(this));
         this.mainGroup.add(new PorteGarage(this));
         this.mainGroup.add(new Dog(this));
         this.mainGroup.add(new Pickable(this, 'lexomil', 400*4, 60*4, 'lexomil', 'lexomil'));
         this.mainGroup.add(new Pickable(this, 'coldMeat', 275*4, 45*4, 'icesteak', 'icesteak', false));
+        this.mainGroup.add(new Pickable(this, 'engrais', 255*4, 45*4, 'engrais', 'engrais', false));
     }
 
     private createInventoryObjects() {
@@ -151,6 +154,7 @@ export default class Play extends Phaser.State
         this.inventoryGroup.add(new Steak(this));
         this.inventoryGroup.add(new Lexomil(this));
         this.inventoryGroup.add(new InventoryObject(this, 'steakLexomil', 'Voila qui pourrait endormir un cheval'));
+        this.inventoryGroup.add(new InventoryObject(this, 'engrais', '"Garder a portee des enfants". Perdu!'));
     }
 
     private createCursor() {
