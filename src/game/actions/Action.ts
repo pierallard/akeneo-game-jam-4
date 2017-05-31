@@ -1,5 +1,5 @@
 
-import Play from "./state/Play";
+import Play from "../state/Play";
 
 export abstract class Action {
 

@@ -1,7 +1,7 @@
 
 import {Action} from "./Action";
-import Play from "./state/Play";
-import {Pickable} from "./Pickable";
+import Play from "../state/Play";
+import {Pickable} from "../Pickable";
 
 export class TakeAction extends Action
 {

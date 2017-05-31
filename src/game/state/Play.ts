@@ -1,9 +1,9 @@
 
 import {Baby} from "../Baby";
 import {Inventory} from "../Inventory";
-import {Action} from "../Action";
+import {Action} from "../actions/Action";
 import {Pickable} from "../Pickable";
-import {VerbRepository} from "../VerbRepository";
+import {VerbRepository} from "../verbs/VerbRepository";
 
 export default class Play extends Phaser.State
 {

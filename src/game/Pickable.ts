@@ -1,7 +1,7 @@
 
 
-import {MoveAction} from "./MoveAction";
-import {TakeAction} from "./TakeAction";
+import {MoveAction} from "./actions/MoveAction";
+import {TakeAction} from "./actions/TakeAction";
 import Play from "./state/Play";
 
 export class Pickable extends Phaser.Sprite

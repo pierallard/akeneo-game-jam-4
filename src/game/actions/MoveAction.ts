@@ -1,6 +1,6 @@
 
 import {Action} from './Action';
-import Play from "./state/Play";
+import Play from "../state/Play";
 
 export class MoveAction extends Action {
 

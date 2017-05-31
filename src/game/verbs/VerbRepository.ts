@@ -1,6 +1,6 @@
 
 import {Verb} from "./Verb";
-import {SimpleGame} from "../app";
+import {SimpleGame} from "../../app";
 
 const PANEL_WIDTH = 400;
 const PANEL_HEIGHT= 192;
