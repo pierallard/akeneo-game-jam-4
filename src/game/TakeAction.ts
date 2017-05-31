@@ -1,12 +1,13 @@
 
 import {Action} from "./Action";
 import Play from "./state/Play";
+import {Pickable} from "./Pickable";
 
 export class TakeAction extends Action
 {
-    private object: Phaser.Sprite;
+    private object: Pickable;
 
-    constructor(play: Play, object: Phaser.Sprite)
+    constructor(play: Play, object: Pickable)
     {
         super(play);
 
@@ -15,7 +16,7 @@ export class TakeAction extends Action
 
     execute(): boolean {
         this.play.removeObject(this.object);
-        this.play.getInventory().addItem(this.object);
+        this.play.getInventory().addItem(this.object.getInventoryImage());
 
         return true;
     }

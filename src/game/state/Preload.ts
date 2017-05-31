@@ -4,6 +4,7 @@ export default class Preload extends Phaser.State {
     public preload ()
     {
         this.game.load.image('baby', 'assets/baby.png');
+        this.game.load.image('inventory', 'assets/inventory.png');
     }
 
     public create ()

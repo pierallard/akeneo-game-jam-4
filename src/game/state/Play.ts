@@ -2,8 +2,7 @@
 import {Baby} from "../Baby";
 import {Inventory} from "../Inventory";
 import {Action} from "../Action";
-import {MoveAction} from "../MoveAction";
-import {TakeAction} from "../TakeAction";
+import {Pickable} from "../Pickable";
 
 export default class Play extends Phaser.State
 {
@@ -24,15 +23,13 @@ export default class Play extends Phaser.State
     {
         this.baby = new Baby(this.game, 50, 300, 'baby');
         this.game.add.existing(this.baby);
+        this.inventory.create();
 
-        let style = { font: "32px Arial", fill: "#ff0044", wordWrap: true, wordWrapWidth: 100, align: "center", backgroundColor: "#ffff00" };
+        let style = { font: "32px 3dventuremedium", fill: "#ff0044", wordWrap: true, wordWrapWidth: 100, align: "center", backgroundColor: "#ffff00" };
         let text = this.game.add.text(0, 0, 'ALLER', style);
-        text.inputEnabled = true;
-        text.events.onInputDown.add(this.listener, this);
 
-        let yolo = this.game.add.sprite(500, 250, 'baby');
-        yolo.inputEnabled = true;
-        yolo.events.onInputDown.add(this.listener2, this);
+        let minimoi = new Pickable(this, 500, 250, 'baby', 'baby');
+        this.game.add.existing(minimoi);
     }
 
     public update()
@@ -42,25 +39,6 @@ export default class Play extends Phaser.State
                 this.actions.shift();
             }
         }
-    }
-
-    public listener ()
-    {
-        console.log('YOLO');
-    }
-
-    public listener2 (origin: Phaser.Sprite)
-    {
-        if (this.actions.length > 0) {
-            return;
-        }
-
-        this.actions.push(
-            new MoveAction(this, origin.x)
-        );
-        this.actions.push(
-            new TakeAction(this, origin)
-        );
     }
 
     getBaby() {
@@ -73,5 +51,13 @@ export default class Play extends Phaser.State
 
     getInventory(): Inventory {
         return this.inventory;
+    }
+
+    addActions(actions: Array<Action>) {
+        if (this.actions.length) {
+            return;
+        }
+
+        this.actions = this.actions.concat(actions);
     }
 }
