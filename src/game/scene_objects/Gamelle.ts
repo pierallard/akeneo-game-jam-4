@@ -6,6 +6,7 @@ import {MoveAction} from "../actions/MoveAction";
 import {UpdateAction} from "../actions/UpdateAction";
 import {Say} from "../actions/Say";
 import {RemoveInventoryAction} from "../actions/RemoveInventoryAction";
+import {PorteGarage} from "./PorteGarage";
 
 export class Gamelle extends SceneObject {
     private full: boolean = false;
@@ -19,25 +20,20 @@ export class Gamelle extends SceneObject {
         if (null !== inventoryObject) {
             if (inventoryObject.getIdentifier() === 'steakLexomil') {
                 this.full = true;
+                let porteGarage = <PorteGarage> this.play_.mainGroupObject('porteGarage');
+                porteGarage.doOpen();
 
                 return [
                     new Say(this.play_, this.play_.mainGroupObject('dog'), 'Ouaf!'),
-                    new MoveAction(this.play_, pointer.position.x),
+                    new MoveAction(this.play_, origin.position.x - 612),
                     new RemoveInventoryAction(this.play_, inventoryObject),
                     new UpdateAction(this.play_, this, 'gamellePleine'),
-                    new MoveAction(this.play_, pointer.position.x),
+                    new MoveAction(this.play_, origin.position.x - 300),
+                    new MoveAction(this.play_, origin.position.x - 320),
                     new Say(this.play_, this.play_.mainGroupObject('dog'), 'Ouaf!'),
-                    new MoveAction(this.play_, pointer.position.x + 50),
-                    new MoveAction(this.play_, pointer.position.x + 49),
                     new Say(this.play_, this.play_.mainGroupObject('dog'), 'ouaf ...'),
-                    new MoveAction(this.play_, pointer.position.x + 100),
-                    new MoveAction(this.play_, pointer.position.x + 99),
                     new Say(this.play_, this.play_.mainGroupObject('dog'), '...'),
-                    new MoveAction(this.play_, pointer.position.x + 150),
-                    new MoveAction(this.play_, pointer.position.x + 149),
                     new Say(this.play_, this.play_.mainGroupObject('dog'), 'zzzzzzz'),
-                    new MoveAction(this.play_, pointer.position.x + 200),
-                    new MoveAction(this.play_, pointer.position.x + 199),
                     new Say(this.play_, this.play_.mainGroupObject('dog'), 'zzzzzzzzzzz'),
                     new Say(this.play_, this.play_.getBaby(), 'Hahahaha!')
                 ];

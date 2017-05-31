@@ -13,9 +13,17 @@ export class PorteGarage extends SceneObject {
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        return [
-            new MoveAction(this.play_, pointer.position.x),
-            new Say(this.play_, this.play_.mainGroupObject('dog'), 'Ouaf!')
-        ];
+        if (!open) {
+            return [
+                new MoveAction(this.play_, pointer.position.x),
+                new Say(this.play_, this.play_.mainGroupObject('dog'), 'Ouaf!')
+            ];
+        }
+        return super.use(origin, pointer);
+    }
+
+    public doOpen() {
+        this.open = true;
+        MoveAction.setLeftBorder(0);
     }
 }

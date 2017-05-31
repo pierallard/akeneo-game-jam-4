@@ -32,4 +32,8 @@ export class Baby extends Phaser.Sprite
 
         return false;
     }
+
+    static get BABY_SPEED():number {
+        return BABY_SPEED;
+    }
 }
