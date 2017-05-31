@@ -33,7 +33,7 @@ export class Inventory {
     addItem(image: string) {
         let position = this.getPosition(this.items.length);
         let sprite = new Phaser.Sprite(this.play.game, position.x, position.y, image);
-        sprite.scale.setTo(2);
+        sprite.scale.setTo(4);
         sprite.anchor.setTo(0.5);
 
         this.play.add.existing(sprite);

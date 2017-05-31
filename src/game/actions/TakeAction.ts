@@ -20,4 +20,8 @@ export class TakeAction extends Action
 
         return true;
     }
+
+    debugText(): string {
+        return 'Take ' + this.object;
+    }
 }

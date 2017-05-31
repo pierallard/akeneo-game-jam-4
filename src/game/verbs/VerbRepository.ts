@@ -3,7 +3,7 @@ import {Verb} from "./Verb";
 import {SimpleGame} from "../../app";
 
 const PANEL_WIDTH = 400;
-const PANEL_HEIGHT= 192;
+const PANEL_HEIGHT= 128;
 
 export class VerbRepository {
     private items: Array<Verb>;
@@ -17,10 +17,10 @@ export class VerbRepository {
             align: "center",
         };
         this.items = [
-            new Verb(this, game, PANEL_WIDTH / 4, SimpleGame.HEIGHT - PANEL_HEIGHT / 4 * 3, 'walk to', style),
-            new Verb(this, game, PANEL_WIDTH / 4 * 3, SimpleGame.HEIGHT - PANEL_HEIGHT / 4 * 3, 'look at', style),
-            new Verb(this, game, PANEL_WIDTH / 4, SimpleGame.HEIGHT - PANEL_HEIGHT / 4, 'pick up', style),
-            new Verb(this, game, PANEL_WIDTH / 4 * 3, SimpleGame.HEIGHT - PANEL_HEIGHT / 4, 'use', style)
+            new Verb(this, game, PANEL_WIDTH / 4, SimpleGame.HEIGHT - PANEL_HEIGHT / 4 * 3, Verb.WALK_TO, style),
+            new Verb(this, game, PANEL_WIDTH / 4 * 3, SimpleGame.HEIGHT - PANEL_HEIGHT / 4 * 3, Verb.LOOK_AT, style),
+            new Verb(this, game, PANEL_WIDTH / 4, SimpleGame.HEIGHT - PANEL_HEIGHT / 4, Verb.PICK_UP, style),
+            new Verb(this, game, PANEL_WIDTH / 4 * 3, SimpleGame.HEIGHT - PANEL_HEIGHT / 4, Verb.USE, style)
         ];
 
         this.game = game;
@@ -49,4 +49,13 @@ export class VerbRepository {
         this.update();
     }
 
+    getCurrentVerb(): Verb {
+        return this.currentItem;
+    }
+
+    setCurrentVerbName(verbName: string) {
+        this.setCurrentVerb(this.items.find(function (verb) {
+            return verb.getName() === verbName;
+        }));
+    }
 }

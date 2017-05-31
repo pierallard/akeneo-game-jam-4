@@ -3,7 +3,6 @@ import {Action} from './Action';
 import Play from "../state/Play";
 
 export class MoveAction extends Action {
-
     private goalX: number;
 
     constructor (play: Play, goalX: number)
@@ -14,6 +13,10 @@ export class MoveAction extends Action {
     }
 
     execute(): boolean {
-        return this.play.getBaby().updatePosition(this.goalX);
+        return this.play.getBaby().updatePosition(this.goalX - this.play.mainGroup.x);
+    }
+
+    debugText(): string {
+        return 'Move to ' + this.goalX;
     }
 }

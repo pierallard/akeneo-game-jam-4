@@ -7,7 +7,7 @@ import Play from "./game/state/Play";
 export class SimpleGame extends Phaser.Game {
 
     static WIDTH = 800;
-    static HEIGHT = 550;
+    static HEIGHT = 456;
 
     constructor()
     {
