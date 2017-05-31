@@ -22,21 +22,21 @@ export class MoveAction extends Action {
         let babyPosition = this.play.getBaby().worldPosition.x;
         if (babyPosition <= LIMIT_CAMERA) {
             let diff = LIMIT_CAMERA - babyPosition;
-            if (this.play.mainGroup.x + diff > MoveAction.leftBorder) {
-                diff = Math.min(- this.play.mainGroup.x + MoveAction.leftBorder, Baby.BABY_SPEED);
+            if (this.play.getMainGroup().x + diff > MoveAction.leftBorder) {
+                diff = Math.min(- this.play.getMainGroup().x + MoveAction.leftBorder, Baby.BABY_SPEED);
             }
-            this.play.mainGroup.x += diff;
+            this.play.getMainGroup().x += diff;
             this.goalX += diff;
         } else if (babyPosition >= SimpleGame.WIDTH - LIMIT_CAMERA) {
             let diff = (SimpleGame.WIDTH - LIMIT_CAMERA) - babyPosition;
-            if (this.play.mainGroup.x + diff < MoveAction.rightBorder) {
-                diff = Math.min(- this.play.mainGroup.x + MoveAction.rightBorder, Baby.BABY_SPEED);
+            if (this.play.getMainGroup().x + diff < MoveAction.rightBorder) {
+                diff = Math.min(- this.play.getMainGroup().x + MoveAction.rightBorder, Baby.BABY_SPEED);
             }
-            this.play.mainGroup.x += diff;
+            this.play.getMainGroup().x += diff;
             this.goalX += diff;
         }
 
-        return this.play.getBaby().updatePosition(this.goalX - this.play.mainGroup.x);
+        return this.play.getBaby().updatePosition(this.goalX - this.play.getMainGroup().x);
     }
 
     debugText(): string {

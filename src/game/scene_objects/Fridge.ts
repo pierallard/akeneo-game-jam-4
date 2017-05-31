@@ -2,7 +2,7 @@
 import {SceneObject} from "./SceneObject";
 import Play from "../state/Play";
 import {UpdateAction} from "../actions/UpdateAction";
-import {Say} from "../actions/Say";
+import {TalkAction} from "../actions/TalkAction";
 import {MoveAction} from "../actions/MoveAction";
 import {Action} from "../actions/Action";
 import {AppearAction} from "../actions/AppearAction";
@@ -11,7 +11,7 @@ export class Fridge extends SceneObject {
     private open: boolean = false;
 
     constructor(play: Play) {
-        super(play, 'fridgeClose', 1092, 164, 'fridgeClose');
+        super(play, Fridge.IDENTIFIER, 1092, 164, 'fridgeClose');
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
@@ -36,11 +36,15 @@ export class Fridge extends SceneObject {
     protected lookAt(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
         if (this.open) {
             return [
-                new Say(this.play_, this.play_.getBaby(), "Il fait froid la d'dans"),
+                new TalkAction(this.play_, this.play_.getBaby(), "Il fait froid la d'dans"),
             ];
         } else {
             return super.lookAt(origin, pointer);
         }
+    }
+
+    static get IDENTIFIER() {
+        return 'fridge';
     }
 }
 

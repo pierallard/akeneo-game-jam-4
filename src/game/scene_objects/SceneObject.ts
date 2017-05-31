@@ -2,7 +2,7 @@
 import {MoveAction} from "../actions/MoveAction";
 import Play from "../state/Play";
 import {Verb} from "../verbs/Verb";
-import {Say} from "../actions/Say";
+import {TalkAction} from "../actions/TalkAction";
 import {Action} from "../actions/Action";
 
 export class SceneObject extends Phaser.Sprite
@@ -75,7 +75,7 @@ export class SceneObject extends Phaser.Sprite
         ];
 
         return [
-            new Say(
+            new TalkAction(
                 this.play_,
                 this.play_.getBaby(),
                 noPickUpMessages[Math.floor(Math.random() * noPickUpMessages.length)]
@@ -93,7 +93,7 @@ export class SceneObject extends Phaser.Sprite
         ];
 
         return [
-            new Say(
+            new TalkAction(
                 this.play_,
                 this.play_.getBaby(),
                 noUseMessages[Math.floor(Math.random() * noUseMessages.length)]
@@ -112,7 +112,7 @@ export class SceneObject extends Phaser.Sprite
         ];
 
         return [
-            new Say(
+            new TalkAction(
                 this.play_,
                 this.play_.getBaby(),
                 lookAtMessages[Math.floor(Math.random() * lookAtMessages.length)]

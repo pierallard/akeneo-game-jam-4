@@ -2,20 +2,13 @@
 import {Baby} from "../Baby";
 import {Inventory} from "../Inventory";
 import {Action} from "../actions/Action";
-import {Pickable} from "../scene_objects/Pickable";
 import {VerbRepository} from "../verbs/VerbRepository";
 import {MoveAction} from "../actions/MoveAction";
 import {Verb} from "../verbs/Verb";
-import {Fridge} from "../scene_objects/Fridge";
 import {InventoryObject} from "../inventory_objects/InventoryObject";
-import {Microondes} from "../scene_objects/Microondes";
 import {Steak} from "../inventory_objects/Steak";
-import {Gamelle} from "../scene_objects/Gamelle";
-import {PorteGarage} from "../scene_objects/PorteGarage";
-import {SceneObject} from "../scene_objects/SceneObject";
-import {Dog} from "../scene_objects/Dog";
 import {Lexomil} from "../inventory_objects/Lexomil";
-import {Placard} from "../scene_objects/Placard";
+import {MainGroup} from "../groups/MainGroup";
 
 export default class Play extends Phaser.State
 {
@@ -24,7 +17,7 @@ export default class Play extends Phaser.State
     private inventory: Inventory;
     private actions: Array<Action>;
     private verbRepository: VerbRepository;
-    public mainGroup: Phaser.Group;
+    private mainGroup: MainGroup;
     public inventoryGroup: Phaser.Group;
     private cursor: Phaser.Sprite;
 
@@ -39,8 +32,8 @@ export default class Play extends Phaser.State
 
     public create()
     {
-        this.mainGroup = this.game.add.group();
-        this.mainGroup.x = MoveAction.getLimitsCenter();
+        this.mainGroup = new MainGroup(this);
+        this.game.add.existing(this.mainGroup);
 
         this.inventoryGroup = this.game.add.group();
         this.inventory.render();
@@ -50,7 +43,7 @@ export default class Play extends Phaser.State
 
         this.addBackground();
 
-        this.createScene();
+        this.mainGroup.createObjects();
         this.createInventoryObjects();
 
         this.baby = new Baby(this, 1200, 66*4, 'baby');
@@ -110,43 +103,11 @@ export default class Play extends Phaser.State
         }
     }
 
-    appearObject(objectIdentifier: string) {
-        let object = this.mainGroupObject(objectIdentifier);
-        if (null !== object) {
-            object.display();
-        }
-    }
-
-    public mainGroupObject(objectIdentifier: string): SceneObject
-    {
-        for (let i = 0; i < this.mainGroup.children.length; i++) {
-            if (typeof this.mainGroup.children[i]['getIdentifier'] == 'function') {
-                let object = <SceneObject> this.mainGroup.children[i];
-                if (object.getIdentifier() === objectIdentifier) {
-                    return object;
-                }
-            }
-        }
-        return null;
-    }
-
     private addBackground() {
         let sprite = this.game.add.sprite(0, 0, 'background', null, this.mainGroup);
         sprite.scale.setTo(4);
         sprite.inputEnabled = true;
         sprite.events.onInputDown.add(this.move, this);
-    }
-
-    private createScene() {
-        this.mainGroup.add(new Fridge(this));
-        this.mainGroup.add(new Placard(this));
-        this.mainGroup.add(new Microondes(this));
-        this.mainGroup.add(new Gamelle(this));
-        this.mainGroup.add(new PorteGarage(this));
-        this.mainGroup.add(new Dog(this));
-        this.mainGroup.add(new Pickable(this, 'lexomil', 400*4, 60*4, 'lexomil', 'lexomil'));
-        this.mainGroup.add(new Pickable(this, 'coldMeat', 275*4, 45*4, 'icesteak', 'icesteak', false));
-        this.mainGroup.add(new Pickable(this, 'engrais', 255*4, 45*4, 'engrais', 'engrais', false));
     }
 
     private createInventoryObjects() {
@@ -191,5 +152,9 @@ export default class Play extends Phaser.State
 
     getInventoryObject() {
         return this.inventoryObject;
+    }
+
+    getMainGroup(): MainGroup {
+        return this.mainGroup;
     }
 }

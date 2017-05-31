@@ -2,16 +2,16 @@
 import {SceneObject} from "./SceneObject";
 import Play from "../state/Play";
 import {UpdateAction} from "../actions/UpdateAction";
-import {Say} from "../actions/Say";
+import {TalkAction} from "../actions/TalkAction";
 import {MoveAction} from "../actions/MoveAction";
 import {Action} from "../actions/Action";
 import {AppearAction} from "../actions/AppearAction";
 
-export class Placard extends SceneObject {
+export class Cupboard extends SceneObject {
     private open: boolean = false;
 
     constructor(play: Play) {
-        super(play, 'placardClose', 250*4, 43*4, 'placardClose');
+        super(play, Cupboard.IDENTIFIER, 250*4, 43*4, 'placardClose');
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
@@ -32,6 +32,10 @@ export class Placard extends SceneObject {
         this.open = !this.open;
 
         return actions;
+    }
+
+    static get IDENTIFIER() {
+        return 'cupboard';
     }
 }
 

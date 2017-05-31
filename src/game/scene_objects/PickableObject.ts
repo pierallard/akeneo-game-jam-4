@@ -6,7 +6,7 @@ import Play from "../state/Play";
 import {SceneObject} from "./SceneObject";
 import {Action} from "../actions/Action";
 
-export class Pickable extends SceneObject
+export class PickableObject extends SceneObject
 {
     private generatedObjectIdentifier: string;
 
@@ -28,7 +28,7 @@ export class Pickable extends SceneObject
     protected pickUp(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
         return [
             new MoveAction(this.play_, pointer.position.x),
-            new TakeAction(this.play_, <Pickable> origin),
+            new TakeAction(this.play_, <PickableObject> origin),
         ];
     }
 }

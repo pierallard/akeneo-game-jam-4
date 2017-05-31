@@ -6,7 +6,7 @@ import {SimpleGame} from "../../app";
 
 const DIALOG_WIDTH:number = 400;
 
-export class Say extends Action {
+export class TalkAction extends Action {
     private source: Phaser.Sprite;
     private text: string;
     private timing: number;
@@ -68,7 +68,7 @@ export class Say extends Action {
     }
 
     debugText(): string {
-        return "Say " + this.timing + ' "' + this.text + '"';
+        return "TalkAction " + this.timing + ' "' + this.text + '"';
     }
 
 

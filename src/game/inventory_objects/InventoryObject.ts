@@ -1,6 +1,6 @@
 
 import Play from "../state/Play";
-import {Say} from "../actions/Say";
+import {TalkAction} from "../actions/TalkAction";
 import {SceneObject} from "../scene_objects/SceneObject";
 import {Action} from "../actions/Action";
 
@@ -26,7 +26,7 @@ export class InventoryObject extends SceneObject
     }
 
     protected pickUp(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        return [new Say(this.play_, this.play_.getBaby(), "MAIS JE L'AI DEJA, BANANE")];
+        return [new TalkAction(this.play_, this.play_.getBaby(), "MAIS JE L'AI DEJA, BANANE")];
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
@@ -42,7 +42,7 @@ export class InventoryObject extends SceneObject
 
     protected lookAt(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
         if (null !== this.text) {
-            return [new Say(this.play_, this.play_.getBaby(), this.text)];
+            return [new TalkAction(this.play_, this.play_.getBaby(), this.text)];
         }
 
         return super.lookAt(origin, pointer);
