@@ -11,4 +11,6 @@ export abstract class Action {
     }
 
     abstract execute(): boolean;
+
+    abstract debugText(): string;
 }

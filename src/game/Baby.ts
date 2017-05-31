@@ -1,11 +1,13 @@
 
+import Play from "./state/Play";
+
 const BABY_SPEED = 3;
 
 export class Baby extends Phaser.Sprite
 {
-    public constructor(game: Phaser.Game, x: number, y: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | PIXI.Texture, frame?: string | number)
+    public constructor(play: Play, x: number, y: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | PIXI.Texture, frame?: string | number)
     {
-        super(game, x, y, key, frame);
+        super(play.game, x, y, key, frame);
 
         this.scale.setTo(4);
         this.anchor.x = 0.5;
@@ -15,6 +17,8 @@ export class Baby extends Phaser.Sprite
     updatePosition(goalX: number) {
         let diff = goalX - this.position.x;
 
+        this.scale.x = (diff > 0) ? 4 : -4;
+
         if (Math.abs(diff) <= BABY_SPEED) {
             this.position.setTo(goalX, this.position.y);
 
@@ -22,7 +26,9 @@ export class Baby extends Phaser.Sprite
         }
 
         let vector = (diff > 0) ? BABY_SPEED : -BABY_SPEED;
-        this.position.setTo(this.position.x + vector, this.position.y);
+        let newPos = this.position.x + vector;
+
+        this.position.setTo(newPos, this.position.y);
 
         return false;
     }

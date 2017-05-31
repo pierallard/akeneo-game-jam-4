@@ -1,7 +1,7 @@
 
 import {Action} from "./Action";
 import Play from "../state/Play";
-import {Pickable} from "../Pickable";
+import {Pickable} from "../scene_objects/Pickable";
 
 export class TakeAction extends Action
 {
@@ -15,9 +15,13 @@ export class TakeAction extends Action
     }
 
     execute(): boolean {
-        this.play.removeObject(this.object);
-        this.play.getInventory().addItem(this.object.getInventoryImage());
+        this.object.destroy();
+        this.play.getInventory().addItem(this.object.getGeneratedObjectIdentifier());
 
         return true;
+    }
+
+    debugText(): string {
+        return 'Take ' + this.object;
     }
 }
