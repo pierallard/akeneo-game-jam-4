@@ -10,7 +10,7 @@ import {RemoveInventoryAction} from "../actions/RemoveInventoryAction";
 export class Microondes extends SceneObject
 {
     constructor(play: Play) {
-        super(play, 233*4, 44*4, 'microOndes');
+        super(play, 'microOndes', 233*4, 44*4, 'microOndes');
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {

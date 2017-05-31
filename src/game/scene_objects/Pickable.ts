@@ -8,14 +8,12 @@ import {Action} from "../actions/Action";
 
 export class Pickable extends SceneObject
 {
-    private identifier: string;
     private generatedObjectIdentifier: string;
 
     constructor(play: Play, identifier, x: number, y: number, key: string, generatedObjectIdentifier: string, display: boolean = true)
     {
-        super(play, x, y, key);
+        super(play, identifier, x, y, key);
 
-        this.identifier = identifier;
         this.scale.setTo(4);
         this.inputEnabled = true;
         this.events.onInputDown.add(this.executeVerb, this);
@@ -32,13 +30,5 @@ export class Pickable extends SceneObject
             new MoveAction(this.play_, pointer.position.x),
             new TakeAction(this.play_, <Pickable> origin),
         ];
-    }
-
-    getIdentifier() {
-        return this.identifier;
-    }
-
-    display() {
-        this.visible = true;
     }
 }

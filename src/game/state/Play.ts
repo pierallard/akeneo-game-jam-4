@@ -11,6 +11,10 @@ import {InventoryObject} from "../inventory_objects/InventoryObject";
 import {Microondes} from "../scene_objects/Microondes";
 import {Steak} from "../inventory_objects/Steak";
 import {Gamelle} from "../scene_objects/Gamelle";
+import {PorteGarage} from "../scene_objects/PorteGarage";
+import {SceneObject} from "../scene_objects/SceneObject";
+import {Dog} from "../scene_objects/Dog";
+import {Lexomil} from "../inventory_objects/Lexomil";
 
 export default class Play extends Phaser.State
 {
@@ -106,16 +110,23 @@ export default class Play extends Phaser.State
     }
 
     appearObject(objectIdentifier: string) {
+        let object = this.mainGroupObject(objectIdentifier);
+        if (null !== object) {
+            object.display();
+        }
+    }
+
+    public mainGroupObject(objectIdentifier: string): SceneObject
+    {
         for (let i = 0; i < this.mainGroup.children.length; i++) {
             if (typeof this.mainGroup.children[i]['getIdentifier'] == 'function') {
-                let object = <Pickable> this.mainGroup.children[i];
+                let object = <SceneObject> this.mainGroup.children[i];
                 if (object.getIdentifier() === objectIdentifier) {
-                    object.display();
-
-                    return;
+                    return object;
                 }
             }
         }
+        return null;
     }
 
     private addBackground() {
@@ -129,6 +140,8 @@ export default class Play extends Phaser.State
         this.mainGroup.add(new Fridge(this));
         this.mainGroup.add(new Microondes(this));
         this.mainGroup.add(new Gamelle(this));
+        this.mainGroup.add(new PorteGarage(this));
+        this.mainGroup.add(new Dog(this));
         this.mainGroup.add(new Pickable(this, 'lexomil', 400*4, 60*4, 'lexomil', 'lexomil'));
         this.mainGroup.add(new Pickable(this, 'coldMeat', 275*4, 45*4, 'icesteak', 'icesteak', false));
     }
@@ -136,7 +149,7 @@ export default class Play extends Phaser.State
     private createInventoryObjects() {
         this.inventoryGroup.add(new InventoryObject(this, 'icesteak', 'Un steak surgele'));
         this.inventoryGroup.add(new Steak(this));
-        this.inventoryGroup.add(new InventoryObject(this, 'lexomil', 'Une boite de Lexomil'));
+        this.inventoryGroup.add(new Lexomil(this));
         this.inventoryGroup.add(new InventoryObject(this, 'steakLexomil', 'Voila qui pourrait endormir un cheval'));
     }
 

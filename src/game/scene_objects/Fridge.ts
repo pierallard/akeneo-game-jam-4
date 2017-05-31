@@ -11,7 +11,7 @@ export class Fridge extends SceneObject {
     private open: boolean = false;
 
     constructor(play: Play) {
-        super(play, 1092, 164, 'fridgeClose');
+        super(play, 'fridgeClose', 1092, 164, 'fridgeClose');
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {

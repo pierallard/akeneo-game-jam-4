@@ -11,7 +11,7 @@ export class Gamelle extends SceneObject {
     private full: boolean = false;
 
     constructor(play: Play) {
-        super(play, 192*4, 50*4, 'gamelleVide');
+        super(play, 'gamelleVide', 192*4, 50*4, 'gamelleVide');
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
@@ -21,9 +21,25 @@ export class Gamelle extends SceneObject {
                 this.full = true;
 
                 return [
+                    new Say(this.play_, this.play_.mainGroupObject('dog'), 'Ouaf!'),
                     new MoveAction(this.play_, pointer.position.x),
                     new RemoveInventoryAction(this.play_, inventoryObject),
-                    new UpdateAction(this.play_, this, 'gamellePleine')
+                    new UpdateAction(this.play_, this, 'gamellePleine'),
+                    new MoveAction(this.play_, pointer.position.x),
+                    new Say(this.play_, this.play_.mainGroupObject('dog'), 'Ouaf!'),
+                    new MoveAction(this.play_, pointer.position.x + 50),
+                    new MoveAction(this.play_, pointer.position.x + 49),
+                    new Say(this.play_, this.play_.mainGroupObject('dog'), 'ouaf ...'),
+                    new MoveAction(this.play_, pointer.position.x + 100),
+                    new MoveAction(this.play_, pointer.position.x + 99),
+                    new Say(this.play_, this.play_.mainGroupObject('dog'), '...'),
+                    new MoveAction(this.play_, pointer.position.x + 150),
+                    new MoveAction(this.play_, pointer.position.x + 149),
+                    new Say(this.play_, this.play_.mainGroupObject('dog'), 'zzzzzzz'),
+                    new MoveAction(this.play_, pointer.position.x + 200),
+                    new MoveAction(this.play_, pointer.position.x + 199),
+                    new Say(this.play_, this.play_.mainGroupObject('dog'), 'zzzzzzzzzzz'),
+                    new Say(this.play_, this.play_.getBaby(), 'Hahahaha!')
                 ];
             }
             if (inventoryObject.getIdentifier() === 'icesteak') {

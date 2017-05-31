@@ -6,23 +6,17 @@ import {Action} from "../actions/Action";
 
 export class InventoryObject extends SceneObject
 {
-    private identifier: string;
     private oldPosition: Phaser.Point;
     private text: string = null;
 
     constructor(play: Play, texture: string, text:string = null) {
-        super(play, 0, 0, texture);
+        super(play, texture, 0, 0, texture);
 
-        this.identifier = texture;
         this.text = text;
         this.play_ = play;
         this.anchor.setTo(0.5);
         this.visible = false;
         this.shouldDetach = false;
-    }
-
-    getIdentifier():string {
-        return this.identifier;
     }
 
     protected walkTo(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {

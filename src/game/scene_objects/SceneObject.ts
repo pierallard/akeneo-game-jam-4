@@ -9,16 +9,26 @@ export class SceneObject extends Phaser.Sprite
 {
     protected play_: Play;
     protected shouldDetach: boolean;
+    private identifier: string;
 
-    constructor(play: Play, x: number, y: number, key: string)
+    constructor(play: Play, identifier: string, x: number, y: number, key: string)
     {
         super(play.game, x, y, key);
 
+        this.identifier = identifier;
         this.scale.setTo(4);
         this.inputEnabled = true;
         this.events.onInputDown.add(this.executeVerb, this);
         this.play_ = play;
         this.shouldDetach = true;
+    }
+
+    getIdentifier() {
+        return this.identifier;
+    }
+
+    display() {
+        this.visible = true;
     }
 
     public executeVerb(origin: SceneObject, pointer: Phaser.Pointer)
