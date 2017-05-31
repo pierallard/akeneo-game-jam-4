@@ -3,7 +3,7 @@
 import {Action} from "./Action";
 import Play from "../state/Play";
 
-export class ChangeVerb extends Action {
+export class ChangeVerbAction extends Action {
     private verb: string;
 
     constructor (play: Play, verb: string)

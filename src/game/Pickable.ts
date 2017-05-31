@@ -4,7 +4,8 @@ import {MoveAction} from "./actions/MoveAction";
 import {TakeAction} from "./actions/TakeAction";
 import Play from "./state/Play";
 import {Verb} from "./verbs/Verb";
-import {ChangeVerb} from "./actions/ChangeVerb";
+import {ChangeVerbAction} from "./actions/ChangeVerbAction";
+import {Say} from "./actions/Say";
 
 export class Pickable extends Phaser.Sprite
 {
@@ -50,7 +51,7 @@ export class Pickable extends Phaser.Sprite
     private walkTo(origin: Pickable, pointer: Phaser.Pointer) {
         this.play_.addActions([
             new MoveAction(this.play_, pointer.position.x),
-            new ChangeVerb(this.play_, Verb.WALK_TO)
+            new ChangeVerbAction(this.play_, Verb.WALK_TO)
         ]);
     }
 
@@ -58,19 +59,20 @@ export class Pickable extends Phaser.Sprite
         this.play_.addActions([
             new MoveAction(this.play_, pointer.position.x),
             new TakeAction(this.play_, origin),
-            new ChangeVerb(this.play_, Verb.WALK_TO)
+            new ChangeVerbAction(this.play_, Verb.WALK_TO)
         ]);
     }
 
     private use(origin: Pickable, pointer: Phaser.Pointer) {
         this.play_.addActions([
-            new ChangeVerb(this.play_, Verb.WALK_TO)
+            new ChangeVerbAction(this.play_, Verb.WALK_TO)
         ]);
     }
 
     private lookAt(origin: Pickable, pointer: Phaser.Pointer) {
         this.play_.addActions([
-            new ChangeVerb(this.play_, Verb.WALK_TO)
+            new Say(this.play_, this.play_.getBaby(), "C'est un couteau"),
+            new ChangeVerbAction(this.play_, Verb.WALK_TO)
         ]);
     }
 }

@@ -14,6 +14,7 @@ export default class Play extends Phaser.State
     private actions: Array<Action>;
     private verbRepository: VerbRepository;
     public mainGroup: Phaser.Group;
+    private cursor: Phaser.Sprite;
 
     public constructor()
     {
@@ -26,14 +27,13 @@ export default class Play extends Phaser.State
     public create()
     {
         this.mainGroup = this.game.add.group();
-        let limitLeft = 612;
         let sprite = this.game.add.sprite(0, 0, 'background', null, this.mainGroup);
 
         sprite.scale.setTo(4);
         sprite.inputEnabled = true;
         sprite.events.onInputDown.add(this.move, this);
 
-        this.baby = new Baby(this, 1000, 66*4, 'baby');
+        this.baby = new Baby(this, 1200, 66*4, 'baby');
         this.mainGroup.add(this.baby);
 
         this.inventory.render();
@@ -45,7 +45,11 @@ export default class Play extends Phaser.State
         this.mainGroup.add(new Pickable(this, 1300, 200, 'piles', 'piles'));
         this.mainGroup.add(new Pickable(this, 1200, 200, 'knife', 'knife'));
 
-        this.mainGroup.x = -limitLeft;
+        this.mainGroup.x = MoveAction.getLimitsCenter();
+
+        this.cursor = this.game.add.sprite(0, 0, 'cursor');
+        this.cursor.anchor.setTo(0.5);
+        this.cursor.scale.setTo(4);
     }
 
     public update()
@@ -55,6 +59,11 @@ export default class Play extends Phaser.State
                 this.actions.shift();
             }
         }
+
+        this.cursor.position.set(
+            Math.round(this.game.input.mousePointer.worldX / 4) * 4 + 2,
+            Math.round(this.game.input.mousePointer.worldY / 4) * 4 + 2
+        );
     }
 
     public render() {
@@ -64,10 +73,6 @@ export default class Play extends Phaser.State
 
     getBaby() {
         return this.baby;
-    }
-
-    removeObject(object: Phaser.Sprite) {
-        object.destroy();
     }
 
     getInventory(): Inventory {

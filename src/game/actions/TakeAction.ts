@@ -15,7 +15,7 @@ export class TakeAction extends Action
     }
 
     execute(): boolean {
-        this.play.removeObject(this.object);
+        this.object.destroy();
         this.play.getInventory().addItem(this.object.getInventoryImage());
 
         return true;

@@ -8,8 +8,6 @@ const USE = 'use';
 
 export class Verb extends Phaser.Text
 {
-
-
     private verbRepository: VerbRepository;
 
     constructor(verbRepository: VerbRepository, game: Phaser.Game, x: number, y: number, text: string, style?: Phaser.PhaserTextStyle)
