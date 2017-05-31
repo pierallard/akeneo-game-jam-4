@@ -3,6 +3,9 @@ import {SceneObject} from "./SceneObject";
 import {Action} from "../actions/Action";
 import {Say} from "../actions/Say";
 import Play from "../state/Play";
+import {MoveAction} from "../actions/MoveAction";
+import {AddInventoryAction} from "../actions/AddInventoryAction";
+import {RemoveInventoryAction} from "../actions/RemoveInventoryAction";
 
 export class Microondes extends SceneObject
 {
@@ -15,10 +18,12 @@ export class Microondes extends SceneObject
 
         if (null !== inventoryObject) {
             if (inventoryObject.getIdentifier() === 'icesteak') {
-                this.play_.getInventory().addItem('steak');
-                this.play_.getInventory().removeItem(inventoryObject);
-
-                return [new Say(this.play_, this.play_.getBaby(), "Mmmh, on va se regaler...")];
+                return [
+                    new MoveAction(this.play_, pointer.position.x),
+                    new RemoveInventoryAction(this.play_, inventoryObject),
+                    new AddInventoryAction(this.play_, 'steak'),
+                    new Say(this.play_, this.play_.getBaby(), "Mmmh, on va se regaler...")
+                ];
             }
 
             return super.use(origin, pointer);

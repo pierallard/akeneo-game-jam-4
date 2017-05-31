@@ -43,7 +43,9 @@ export class Inventory {
     }
 
     removeItem(item: InventoryObject) {
-        this.play.detachInventoryObject();
+        if (this.play.getInventoryObject() === item) {
+            this.play.detachInventoryObject();
+        }
         this.items = this.items.filter(function(obj) {
             return item !== obj
         });

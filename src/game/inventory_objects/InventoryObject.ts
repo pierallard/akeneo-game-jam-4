@@ -42,7 +42,6 @@ export class InventoryObject extends SceneObject
             return [];
         }
         else {
-            this.play_.detachInventoryObject();
             return this.mixObjects(origin, pointer);
         }
     }
@@ -68,6 +67,7 @@ export class InventoryObject extends SceneObject
     }
 
     protected mixObjects(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
+        this.play_.detachInventoryObject();
         return super.use(origin, pointer);
     }
 }

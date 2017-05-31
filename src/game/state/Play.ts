@@ -10,6 +10,7 @@ import {Fridge} from "../scene_objects/Fridge";
 import {InventoryObject} from "../inventory_objects/InventoryObject";
 import {Microondes} from "../scene_objects/Microondes";
 import {Steak} from "../inventory_objects/Steak";
+import {Gamelle} from "../scene_objects/Gamelle";
 
 export default class Play extends Phaser.State
 {
@@ -127,6 +128,7 @@ export default class Play extends Phaser.State
     private createScene() {
         this.mainGroup.add(new Fridge(this));
         this.mainGroup.add(new Microondes(this));
+        this.mainGroup.add(new Gamelle(this));
         this.mainGroup.add(new Pickable(this, 'lexomil', 400*4, 60*4, 'lexomil', 'lexomil'));
         this.mainGroup.add(new Pickable(this, 'coldMeat', 275*4, 45*4, 'icesteak', 'icesteak', false));
     }
@@ -166,6 +168,7 @@ export default class Play extends Phaser.State
         if (null !== this.inventoryObject) {
             this.inventoryObject.detach();
             this.inventoryObject = null;
+            this.verbRepository.setCurrentVerbName(Verb.WALK_TO);
         }
     }
 

@@ -16,6 +16,7 @@ export class Steak extends InventoryObject
         this.play_.getInventory().addItem('steakLexomil');
         this.play_.getInventory().removeItem(this);
         this.play_.getInventory().removeItem(this.play_.getInventoryObject());
+        this.play_.detachInventoryObject();
 
         return [];
     }
