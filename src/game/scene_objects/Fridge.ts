@@ -46,5 +46,9 @@ export class Fridge extends SceneObject {
     static get IDENTIFIER() {
         return 'fridge';
     }
+
+    toFrench(): string {
+        return 'le freezer';
+    }
 }
 

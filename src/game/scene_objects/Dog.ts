@@ -10,4 +10,8 @@ export class Dog extends SceneObject {
     static get IDENTIFIER() {
         return 'dog';
     }
+
+    toFrench(): string {
+        return 'Saucisse';
+    }
 }

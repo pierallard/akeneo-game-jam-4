@@ -30,4 +30,8 @@ export class Lexomil extends InventoryObject
     {
         return 'lexomil';
     }
+
+    toFrench(): string {
+        return 'du Lexomil';
+    }
 }

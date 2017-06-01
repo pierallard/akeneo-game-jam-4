@@ -19,6 +19,8 @@ export class SceneObject extends Phaser.Sprite
         this.scale.setTo(4);
         this.inputEnabled = true;
         this.events.onInputDown.add(this.executeVerb, this);
+        this.events.onInputOver.add(this.mouseOver, this);
+        this.events.onInputOut.add(this.mouseOut, this);
         this.play_ = play;
         this.shouldDetach = true;
     }
@@ -31,7 +33,22 @@ export class SceneObject extends Phaser.Sprite
         this.visible = true;
     }
 
-    public executeVerb(origin: SceneObject, pointer: Phaser.Pointer)
+    private mouseOver() {
+        if (null !== this.play_.getInventoryObject()) {
+            this.play_.getSentence().setSecondaryObject(this);
+        } else {
+            this.play_.getSentence().setObject(this);
+        }
+    }
+
+    private mouseOut() {
+        if (!this.play_.getInventoryObject()) {
+            this.play_.getSentence().setObject(null);
+        }
+        this.play_.getSentence().setSecondaryObject(null);
+    }
+
+    private executeVerb(origin: SceneObject, pointer: Phaser.Pointer)
     {
         if (!this.play_.hasAction()) {
             switch (this.play_.getCurrentVerb()) {
@@ -118,5 +135,9 @@ export class SceneObject extends Phaser.Sprite
                 lookAtMessages[Math.floor(Math.random() * lookAtMessages.length)]
             ),
         ];
+    }
+
+    toFrench(): string {
+        return 'un truc';
     }
 }

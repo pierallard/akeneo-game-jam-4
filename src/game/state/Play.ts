@@ -9,6 +9,7 @@ import {InventoryObject} from "../inventory_objects/InventoryObject";
 import {Steak} from "../inventory_objects/Steak";
 import {Lexomil} from "../inventory_objects/Lexomil";
 import {MainGroup} from "../groups/MainGroup";
+import {Sentence} from "../Sentence";
 
 export default class Play extends Phaser.State
 {
@@ -20,6 +21,7 @@ export default class Play extends Phaser.State
     private mainGroup: MainGroup;
     public inventoryGroup: Phaser.Group;
     private cursor: Phaser.Sprite;
+    private sentence: Sentence;
 
     public constructor()
     {
@@ -37,6 +39,8 @@ export default class Play extends Phaser.State
 
         this.inventoryGroup = this.game.add.group();
         this.inventory.render();
+
+        this.sentence = new Sentence(this.game);
 
         this.verbRepository = new VerbRepository(this);
         this.verbRepository.render();
@@ -111,11 +115,19 @@ export default class Play extends Phaser.State
     }
 
     private createInventoryObjects() {
-        this.inventoryGroup.add(new InventoryObject(this, 'icesteak', 'Un steak surgele'));
+        this.inventoryGroup.add(new InventoryObject(this, 'icesteak', 'le steak surgele', 'Un steak surgele'));
         this.inventoryGroup.add(new Steak(this));
         this.inventoryGroup.add(new Lexomil(this));
-        this.inventoryGroup.add(new InventoryObject(this, 'steakLexomil', 'Voila qui pourrait endormir un cheval'));
-        this.inventoryGroup.add(new InventoryObject(this, 'engrais', '"Garder a portee des enfants". Perdu!'));
+        this.inventoryGroup.add(new InventoryObject(this, 'steakLexomil', 'le steaknifere', 'Voila qui pourrait endormir un cheval'));
+        this.inventoryGroup.add(new InventoryObject(this, 'engrais', "de l'engrais", '"Garder a portee des enfants". Perdu!'));
+        this.inventoryGroup.add(new InventoryObject(this, 'feuilles', "la feuille a rouler", "J'ai les doigts qui collent"));
+        this.inventoryGroup.add(new InventoryObject(this, 'knife', 'le couteau', "Bien affute, comme je les aime"));
+        this.inventoryGroup.add(new InventoryObject(this, 'neon', 'le neon', "4000 Watts?!"));
+        this.inventoryGroup.add(new InventoryObject(this, 'gode', 'le jouet', "C'est comme une bite, mais en plus gros"));
+        this.inventoryGroup.add(new InventoryObject(this, 'rallonge', 'la rallonge', "Beehh c'est une rallonge."));
+        this.inventoryGroup.add(new InventoryObject(this, 'tabac', 'du tabac', "Je ne fume plus je joue de la trompette"));
+        this.inventoryGroup.add(new InventoryObject(this, 'escabeauInventory', "l'escabeau", "Je suis le roi du monde!"));
+        this.inventoryGroup.add(new InventoryObject(this, 'perceuse', 'la perceuse', "Des p'tits trous, des p'tits trous!"));
     }
 
     private createCursor() {
@@ -140,6 +152,7 @@ export default class Play extends Phaser.State
         }
         this.verbRepository.setCurrentVerbName(Verb.USE);
         this.inventoryObject = inventoryObject;
+        this.sentence.setObject(inventoryObject);
     }
 
     detachInventoryObject() {
@@ -156,5 +169,9 @@ export default class Play extends Phaser.State
 
     getMainGroup(): MainGroup {
         return this.mainGroup;
+    }
+
+    getSentence(): Sentence {
+        return this.sentence;
     }
 }

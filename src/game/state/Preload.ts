@@ -20,7 +20,10 @@ export default class Preload extends Phaser.State {
         this.game.load.image('gamelleVide', 'assets/gamelleVide.png');
         this.game.load.image('gamellePleine', 'assets/gamellePleine.png');
         this.game.load.image('porteGarage', 'assets/porteGarage.png');
+        this.game.load.image('porteChambre', 'assets/porteChambre.png');
         this.game.load.image('chien', 'assets/chien.png');
+        this.game.load.image('chaineClose', 'assets/chaineClose.png');
+        this.game.load.image('chaineOpen', 'assets/chaineOpen.png');
 
         // Inventory
         this.game.load.image('cannabis', 'assets/cannabis.png');
@@ -28,6 +31,7 @@ export default class Preload extends Phaser.State {
         this.game.load.image('feuilles', 'assets/feuilles.png');
         this.game.load.image('gode', 'assets/gode.png');
         this.game.load.image('icesteak', 'assets/icesteak.png');
+        this.game.load.image('escabeau', 'assets/escabeau.png');
         this.game.load.image('knife', 'assets/knife.png');
         this.game.load.image('lexomil', 'assets/lexomil.png');
         this.game.load.image('neon', 'assets/neon.png');

@@ -23,7 +23,7 @@ export class Bowl extends SceneObject {
         if (null !== inventoryObject) {
             if (inventoryObject.getIdentifier() === 'steakLexomil') {
                 this.full = true;
-                let porteGarage = <GarageDoor> this.play_.getMainGroup().getObject('porteGarage');
+                let porteGarage = <GarageDoor> this.play_.getMainGroup().getObject(GarageDoor.IDENTIFIER);
                 porteGarage.doOpen();
 
                 return [
@@ -67,5 +67,9 @@ export class Bowl extends SceneObject {
     static get IDENTIFIER()
     {
         return 'bowl';
+    }
+
+    toFrench(): string {
+        return 'la gamelle';
     }
 }

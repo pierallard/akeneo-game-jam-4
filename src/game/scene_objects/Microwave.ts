@@ -36,4 +36,8 @@ export class Microwave extends SceneObject
     static get IDENTIFIER() {
         return 'microOndes';
     }
+
+    toFrench(): string {
+        return 'le micro-ondes';
+    }
 }

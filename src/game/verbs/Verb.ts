@@ -9,11 +9,13 @@ const USE = 'use';
 export class Verb extends Phaser.Text
 {
     private verbRepository: VerbRepository;
+    private name_: string;
 
-    constructor(verbRepository: VerbRepository, game: Phaser.Game, x: number, y: number, text: string, style?: Phaser.PhaserTextStyle)
+    constructor(verbRepository: VerbRepository, game: Phaser.Game, x: number, y: number, name: string, text: string, style?: Phaser.PhaserTextStyle)
     {
         super(game, x, y, text, style);
 
+        this.name_ = name;
         this.verbRepository = verbRepository;
         this.inputEnabled = true;
         this.events.onInputDown.add(this.setCurrentVerb, this);
@@ -27,7 +29,7 @@ export class Verb extends Phaser.Text
 
     public getName(): string
     {
-        return this.text;
+        return this.name_;
     }
 
     static get WALK_TO(): string {
@@ -44,5 +46,9 @@ export class Verb extends Phaser.Text
 
     static get USE(): string {
         return USE;
+    }
+
+    public toFrench(): string {
+        return this.text;
     }
 }

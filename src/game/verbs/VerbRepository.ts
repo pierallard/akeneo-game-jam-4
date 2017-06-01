@@ -4,7 +4,7 @@ import {SimpleGame} from "../../app";
 import Play from "../state/Play";
 
 const PANEL_WIDTH = 400;
-const PANEL_HEIGHT= 128;
+const PANEL_HEIGHT= 100;
 
 export class VerbRepository {
     private items: Array<Verb>;
@@ -14,15 +14,15 @@ export class VerbRepository {
     constructor(play: Play)
     {
         let style = {
-            font: "40px 3dventuremedium",
+            font: "32px 3dventuremedium",
             align: "center",
         };
 
         this.items = [
-            new Verb(this, play.game, PANEL_WIDTH / 4, SimpleGame.HEIGHT - PANEL_HEIGHT / 4 * 3, Verb.WALK_TO, style),
-            new Verb(this, play.game, PANEL_WIDTH / 4 * 3, SimpleGame.HEIGHT - PANEL_HEIGHT / 4 * 3, Verb.LOOK_AT, style),
-            new Verb(this, play.game, PANEL_WIDTH / 4, SimpleGame.HEIGHT - PANEL_HEIGHT / 4, Verb.PICK_UP, style),
-            new Verb(this, play.game, PANEL_WIDTH / 4 * 3, SimpleGame.HEIGHT - PANEL_HEIGHT / 4, Verb.USE, style)
+            new Verb(this, play.game, PANEL_WIDTH / 4, SimpleGame.HEIGHT - PANEL_HEIGHT / 4 * 3, Verb.WALK_TO, 'Aller vers', style),
+            new Verb(this, play.game, PANEL_WIDTH / 4 * 3, SimpleGame.HEIGHT - PANEL_HEIGHT / 4 * 3, Verb.LOOK_AT, 'Regarder', style),
+            new Verb(this, play.game, PANEL_WIDTH / 4, SimpleGame.HEIGHT - PANEL_HEIGHT / 4, Verb.PICK_UP, 'Prendre', style),
+            new Verb(this, play.game, PANEL_WIDTH / 4 * 3, SimpleGame.HEIGHT - PANEL_HEIGHT / 4, Verb.USE, 'Utiliser', style)
         ];
 
         this.play = play;
@@ -48,6 +48,7 @@ export class VerbRepository {
     public setCurrentVerb(verb: Verb) {
         if (false === this.play.hasAction()) {
             this.currentItem = verb;
+            this.play.getSentence().setVerb(this.currentItem);
 
             this.update();
         }

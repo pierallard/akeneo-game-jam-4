@@ -9,14 +9,15 @@ import {Action} from "../actions/Action";
 export class PickableObject extends SceneObject
 {
     private generatedObjectIdentifier: string;
+    private french: string;
 
-    constructor(play: Play, identifier, x: number, y: number, key: string, generatedObjectIdentifier: string, display: boolean = true)
+    constructor(play: Play, identifier, french: string, x: number, y: number, key: string, generatedObjectIdentifier: string, display: boolean = true)
     {
         super(play, identifier, x, y, key);
 
+        this.french = french;
         this.scale.setTo(4);
         this.inputEnabled = true;
-        this.events.onInputDown.add(this.executeVerb, this);
         this.generatedObjectIdentifier = generatedObjectIdentifier;
         this.visible = display;
     }
@@ -30,5 +31,9 @@ export class PickableObject extends SceneObject
             new MoveAction(this.play_, pointer.position.x),
             new TakeAction(this.play_, <PickableObject> origin),
         ];
+    }
+
+    toFrench(): string {
+        return this.french;
     }
 }

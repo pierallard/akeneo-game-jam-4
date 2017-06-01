@@ -37,5 +37,9 @@ export class Cupboard extends SceneObject {
     static get IDENTIFIER() {
         return 'cupboard';
     }
+
+    toFrench(): string {
+        return 'le placard';
+    }
 }
 

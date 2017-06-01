@@ -8,10 +8,12 @@ export class InventoryObject extends SceneObject
 {
     private oldPosition: Phaser.Point;
     private text: string = null;
+    private french: string = null;
 
-    constructor(play: Play, texture: string, text:string = null) {
+    constructor(play: Play, texture: string, french: string = null, text:string = null) {
         super(play, texture, 0, 0, texture);
 
+        this.french = french;
         this.text = text;
         this.play_ = play;
         this.anchor.setTo(0.5);
@@ -63,5 +65,13 @@ export class InventoryObject extends SceneObject
     protected mixObjects(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
         this.play_.detachInventoryObject();
         return super.use(origin, pointer);
+    }
+
+    toFrench(): string {
+        if (null !== this.french) {
+            return this.french;
+        }
+
+        return super.toFrench();
     }
 }

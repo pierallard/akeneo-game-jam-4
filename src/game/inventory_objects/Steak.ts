@@ -27,6 +27,10 @@ export class Steak extends InventoryObject
         return super.mixObjects(origin, pointer);
     }
 
+    toFrench(): string {
+        return 'un steak';
+    }
+
     static get IDENTIFIER()
     {
         return 'steak';
