@@ -11,6 +11,7 @@ import {DisappearAction} from "../actions/DisappearAction";
 
 const STATE_EMPTY = 1;
 const STATE_GRAINES = 2;
+const STATE_POUSSE = 2;
 
 export class Pot extends SceneObject
 {
@@ -35,6 +36,15 @@ export class Pot extends SceneObject
                 ];
             }
             if (this.state === STATE_GRAINES && object.getIdentifier() === 'lampePiles') {
+                this.state = STATE_POUSSE;
+
+                return [
+                    new MoveAction(this.play_, pointer.position.x),
+                    new RemoveInventoryAction(this.play_, object),
+                    new UpdateAction(this.play_, this, 'potpousse'),
+                ];
+            }
+            if (this.state === STATE_POUSSE && object.getIdentifier() === 'lampePiles') {
                 return [
                     new MoveAction(this.play_, pointer.position.x),
                     new RemoveInventoryAction(this.play_, object),
@@ -51,6 +61,7 @@ export class Pot extends SceneObject
         switch(this.state) {
             case STATE_EMPTY: return 'le pot';
             case STATE_GRAINES: return 'le pot plein';
+            case STATE_POUSSE: return 'le pot eclaire';
         }
 
         return super.toFrench();
