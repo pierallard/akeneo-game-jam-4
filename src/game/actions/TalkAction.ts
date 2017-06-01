@@ -58,7 +58,7 @@ export class TalkAction extends Action {
                 x = SimpleGame.WIDTH - DIALOG_WIDTH / 2;
             }
             this.textSprite = this.play.game.add.text(
-                x, this.source.worldPosition.y - this.source.height + 20, '', style
+                x, this.source.worldPosition.y - this.source.height, '', style
             );
             this.textSprite.anchor.setTo(0.5, 1);
             this.textSprite.lineSpacing = -20;

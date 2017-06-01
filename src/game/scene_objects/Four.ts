@@ -5,6 +5,7 @@ import {MoveAction} from "../actions/MoveAction";
 import {RemoveInventoryAction} from "../actions/RemoveInventoryAction";
 import {AddInventoryAction} from "../actions/AddInventoryAction";
 import {Action} from "../actions/Action";
+import {TalkAction} from "../actions/TalkAction";
 
 export class Four extends SceneObject
 {
@@ -20,6 +21,7 @@ export class Four extends SceneObject
                     new MoveAction(this.play_, pointer.position.x),
                     new RemoveInventoryAction(this.play_, object),
                     new AddInventoryAction(this.play_, 'piles'),
+                    new TalkAction(this.play_, this.play_.getBaby(), 'Ca sent le crame maintenant, bravo'),
                 ];
             }
         }

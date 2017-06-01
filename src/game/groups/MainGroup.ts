@@ -15,6 +15,8 @@ import {BedroomDoor} from "../scene_objects/BedroomDoor";
 import {Pot} from "../scene_objects/Pot";
 import {Four} from "../scene_objects/Four";
 import {Bouteille} from "../scene_objects/Bouteille";
+import {DVDPlayer} from "../scene_objects/DVDPlayer";
+import {Father} from "../scene_objects/Father";
 
 export class MainGroup extends Phaser.Group
 {
@@ -38,8 +40,9 @@ export class MainGroup extends Phaser.Group
         this.add(new Chain(this.play));
         this.add(new Pot(this.play));
         this.add(new Four(this.play));
-        // this.add(new SceneObject(this.play, 'prisepetee', 175*4, 55*4, 'prisepetee'));
         this.add(new Bouteille(this.play));
+        this.add(new DVDPlayer(this.play));
+        this.add(new Father(this.play));
         this.add(new PickableObject(this.play, 'lexomil', 'un medicament', 400*4, 55*4, 'lexomil', 'lexomil'));
         this.add(new PickableObject(this.play, 'coldMeat', 'le steak surgele', 295*4, 45*4, 'icesteak', 'icesteak', false));
         this.add(new PickableObject(this.play, 'engrais', 'la bouteille', 270*4, 45*4, 'engrais', 'engrais', false));

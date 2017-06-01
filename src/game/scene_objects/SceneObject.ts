@@ -25,7 +25,7 @@ export class SceneObject extends Phaser.Sprite
         this.shouldDetach = true;
     }
 
-    getIdentifier() {
+    getIdentifier():string {
         return this.identifier;
     }
 

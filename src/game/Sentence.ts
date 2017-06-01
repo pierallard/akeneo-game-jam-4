@@ -1,7 +1,7 @@
 
-
 import {SceneObject} from "./scene_objects/SceneObject";
 import {Verb} from "./verbs/Verb";
+
 export class Sentence extends Phaser.Text {
     private object: SceneObject;
     private secondaryObject: SceneObject;
@@ -21,6 +21,7 @@ export class Sentence extends Phaser.Text {
         this.object = null;
         this.verb = null;
         this.secondaryObject = null;
+        this.lineSpacing = -15;
 
         this.game.add.existing(this);
         this.anchor.setTo(0.5, 0.5);

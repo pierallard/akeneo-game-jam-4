@@ -4,6 +4,8 @@ import Play from "../state/Play";
 import {Action} from "../actions/Action";
 import {TalkAction} from "../actions/TalkAction";
 import {MoveAction} from "../actions/MoveAction";
+import {Father} from "./Father";
+import {AddInventoryAction} from "../actions/AddInventoryAction";
 
 export class Bouteille extends SceneObject {
     constructor(play: Play) {
@@ -15,12 +17,21 @@ export class Bouteille extends SceneObject {
     }
 
     protected pickUp(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        // TODO
-        return [
-            new MoveAction(this.play_, pointer.position.x),
-            new TalkAction(this.play_, this.play_.getBaby(), "Touche pas a ca fils de pute!"),
-            new TalkAction(this.play_, this.play_.getBaby(), "Faudrait que je detourne son attention...")
-        ];
+        let father = <Father> this.play_.getMainGroup().getObject(Father.IDENTIFIER);
+        if (!father.isBusy()) {
+            return [
+                new MoveAction(this.play_, pointer.position.x),
+                new TalkAction(this.play_, father, "Touche pas a ca fils de pute!"),
+                new TalkAction(this.play_, this.play_.getBaby(), "Faudrait que je detourne son attention...")
+            ];
+        }
+        else {
+            return [
+                new MoveAction(this.play_, pointer.position.x),
+                new AddInventoryAction(this.play_, Bouteille.IDENTIFIER),
+                new TalkAction(this.play_, this.play_.getBaby(), "Fais moi penser a gouter!")
+            ];
+        }
     }
 
     static get IDENTIFIER()

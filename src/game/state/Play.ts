@@ -141,6 +141,8 @@ export default class Play extends Phaser.State
         this.inventoryGroup.add(new InventoryObject(this, 'lampePiles', 'la lampe UV', "J'ai perdu mes deux yeux"));
         this.inventoryGroup.add(new InventoryObject(this, 'zipposec', 'le zippo', "Il est tout sec!"));
         this.inventoryGroup.add(new InventoryObject(this, 'dvdporno', 'le DVD', '"Hairy mature gays"'));
+        this.inventoryGroup.add(new InventoryObject(this, 'bouteille', 'la bouteille', "Une bouteille d'alcool"));
+        this.inventoryGroup.add(new InventoryObject(this, 'cannabis', 'la weed', "Ca sent bien ce truc la"));
     }
 
     private createCursor() {
