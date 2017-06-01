@@ -20,17 +20,17 @@ export class Chain extends SceneObject {
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        // let object = this.play_.getInventoryObject();
-        // if (null !== object && object.getIdentifier() === 'escabeauInventory') {
+        let object = this.play_.getInventoryObject();
+        if (null !== object && object.getIdentifier() === 'escabeauInventory') {
             let porteChambre = <BedroomDoor> this.play_.getMainGroup().getObject(BedroomDoor.IDENTIFIER);
             porteChambre.doOpen();
 
             return [
                 new MoveAction(this.play_, origin.position.x - 1100),
-                // new RemoveInventoryAction(this.play_, object)
+                new RemoveInventoryAction(this.play_, object)
             ];
-        // }
+        }
 
-        // return super.use(origin, pointer);
+        return super.use(origin, pointer);
     }
 }

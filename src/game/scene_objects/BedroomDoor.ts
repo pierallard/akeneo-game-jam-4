@@ -17,12 +17,13 @@ export class BedroomDoor extends SceneObject {
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        if (!open) {
+        if (!this.open) {
             return [
                 new MoveAction(this.play_, pointer.position.x),
-                new TalkAction(this.play_, this.play_.getBaby(), "C'est bloqué")
+                new TalkAction(this.play_, this.play_.getBaby(), "C'est bloque")
             ];
         }
+
         return super.use(origin, pointer);
     }
 
