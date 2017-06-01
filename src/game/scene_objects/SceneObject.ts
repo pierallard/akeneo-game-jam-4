@@ -33,6 +33,10 @@ export class SceneObject extends Phaser.Sprite
         this.visible = true;
     }
 
+    hide() {
+        this.visible = false;
+    }
+
     private mouseOver() {
         if (null !== this.play_.getInventoryObject()) {
             this.play_.getSentence().setSecondaryObject(this);

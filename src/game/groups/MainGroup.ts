@@ -35,7 +35,7 @@ export class MainGroup extends Phaser.Group
         this.add(new Chain(this.play));
         this.add(new PickableObject(this.play, 'lexomil', 'un medicament', 400*4, 55*4, 'lexomil', 'lexomil'));
         this.add(new PickableObject(this.play, 'coldMeat', 'un steak surgele', 275*4, 45*4, 'icesteak', 'icesteak', false));
-        this.add(new PickableObject(this.play, 'engrais', 'une bouteille', 255*4, 45*4, 'engrais', 'engrais', false));
+        this.add(new PickableObject(this.play, 'engrais', 'une bouteille', 250*4, 45*4, 'engrais', 'engrais', false));
         this.add(new PickableObject(this.play, 'feuilles', 'une feuille', 49*4, 53*4, 'feuilles', 'feuilles'));
         this.add(new PickableObject(this.play, 'knife', 'le couteau', 214*4, 26*4, 'knife', 'knife'));
         this.add(new PickableObject(this.play, 'neon', 'une lampe', 50*4, 27*4, 'neon', 'neon'));

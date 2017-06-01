@@ -6,12 +6,13 @@ import {TalkAction} from "../actions/TalkAction";
 import {MoveAction} from "../actions/MoveAction";
 import {Action} from "../actions/Action";
 import {AppearAction} from "../actions/AppearAction";
+import {DisappearAction} from "../actions/DisappearAction";
 
 export class Fridge extends SceneObject {
     private open: boolean = false;
 
     constructor(play: Play) {
-        super(play, Fridge.IDENTIFIER, 1092, 164, 'fridgeClose');
+        super(play, Fridge.IDENTIFIER, 1096, 168, 'fridgeClose');
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
@@ -24,6 +25,7 @@ export class Fridge extends SceneObject {
         ];
         if (this.open) {
             actions.push(new UpdateAction(this.play_, this, 'fridgeClose'));
+            actions.push(new DisappearAction(this.play_, 'coldMeat'));
         } else {
             actions.push(new UpdateAction(this.play_, this, 'fridgeOpen'));
             actions.push(new AppearAction(this.play_, 'coldMeat'));
