@@ -20,10 +20,16 @@ export default class Preload extends Phaser.State {
         this.game.load.image('gamelleVide', 'assets/gamelleVide.png');
         this.game.load.image('gamellePleine', 'assets/gamellePleine.png');
         this.game.load.image('porteGarage', 'assets/porteGarage.png');
+        this.game.load.image('porteGarageOpen', 'assets/porteGarageOpen.png');
         this.game.load.image('porteChambre', 'assets/porteChambre.png');
+        this.game.load.image('porteChambreOpen', 'assets/porteChambreOpen.png');
         this.game.load.image('chien', 'assets/chien.png');
         this.game.load.image('chaineClose', 'assets/chaineClose.png');
         this.game.load.image('chaineOpen', 'assets/chaineOpen.png');
+        this.game.load.image('prisepetee', 'assets/prisepetee.png');
+        this.game.load.image('bouteille', 'assets/bouteille.png');
+        this.game.load.image('potvide', 'assets/potvide.png');
+        this.game.load.image('four', 'assets/four.png');
 
         // Inventory
         this.game.load.image('cannabis', 'assets/cannabis.png');

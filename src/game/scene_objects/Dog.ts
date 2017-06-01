@@ -4,7 +4,7 @@ import Play from "../state/Play";
 
 export class Dog extends SceneObject {
     constructor(play: Play) {
-        super(play, Dog.IDENTIFIER, 171*4, 47*4, 'chien');
+        super(play, Dog.IDENTIFIER, 184*4, 47*4, 'chien');
     }
 
     static get IDENTIFIER() {

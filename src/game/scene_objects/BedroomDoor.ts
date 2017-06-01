@@ -9,7 +9,7 @@ export class BedroomDoor extends SceneObject {
     private open: boolean = false;
 
     constructor(play: Play) {
-        super(play, BedroomDoor.IDENTIFIER, 441*4, 17*4, 'porteChambre');
+        super(play, BedroomDoor.IDENTIFIER, 441*4, 11*4, 'porteChambre');
     }
 
     toFrench(): string {
@@ -29,6 +29,7 @@ export class BedroomDoor extends SceneObject {
 
     public doOpen() {
         this.open = true;
+        this.loadTexture('porteChambreOpen');
         MoveAction.setRightBorder(-1556);
     }
 

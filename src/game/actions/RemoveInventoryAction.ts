@@ -7,10 +7,10 @@ export class RemoveInventoryAction extends Action {
 
     private objectIdentifier: InventoryObject;
 
-    constructor(play: Play, objectIndentifier: InventoryObject) {
+    constructor(play: Play, object: InventoryObject) {
         super(play);
 
-        this.objectIdentifier = objectIndentifier;
+        this.objectIdentifier = object;
     }
 
     execute(): boolean {

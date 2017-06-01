@@ -15,7 +15,7 @@ export class Bowl extends SceneObject {
     private full: boolean = false;
 
     constructor(play: Play) {
-        super(play, Bowl.IDENTIFIER, 192*4, 50*4, 'gamelleVide');
+        super(play, Bowl.IDENTIFIER, 203*4, 50*4, 'gamelleVide');
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {

@@ -5,10 +5,11 @@ import {MoveAction} from "../actions/MoveAction";
 import {Action} from "../actions/Action";
 import {BedroomDoor} from "./BedroomDoor";
 import {RemoveInventoryAction} from "../actions/RemoveInventoryAction";
+import {TalkAction} from "../actions/TalkAction";
 
 export class Chain extends SceneObject {
     constructor(play: Play) {
-        super(play, Chain.IDENTIFIER, 448*4, 19*4, 'chaineClose');
+        super(play, Chain.IDENTIFIER, 450*4, 17*4, 'chaineClose');
     }
 
     toFrench(): string {
@@ -22,8 +23,10 @@ export class Chain extends SceneObject {
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
         let object = this.play_.getInventoryObject();
         if (null !== object && object.getIdentifier() === 'escabeauInventory') {
+            this.loadTexture('chaineOpen');
             let porteChambre = <BedroomDoor> this.play_.getMainGroup().getObject(BedroomDoor.IDENTIFIER);
             porteChambre.doOpen();
+
 
             return [
                 new MoveAction(this.play_, origin.position.x - 1100),
@@ -31,6 +34,6 @@ export class Chain extends SceneObject {
             ];
         }
 
-        return super.use(origin, pointer);
+        return [new TalkAction(this.play_, this.play_.getBaby(), "C'est beaucoup trop haut !")];
     }
 }

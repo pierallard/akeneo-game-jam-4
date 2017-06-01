@@ -11,7 +11,7 @@ export class Cupboard extends SceneObject {
     private open: boolean = false;
 
     constructor(play: Play) {
-        super(play, Cupboard.IDENTIFIER, 250*4, 43*4, 'placardClose');
+        super(play, Cupboard.IDENTIFIER, 270*4, 43*4, 'placardClose');
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
