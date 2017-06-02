@@ -9,14 +9,14 @@ export class Sentence extends Phaser.Text {
     
     constructor(game: Phaser.Game) {
         let style = {
-            font: "32px 3dventuremedium",
+            font: "28px 3dventuremedium",
             align: "center",
             fill: '#639bff',
-            wordWrapWidth: 400,
+            wordWrapWidth: 400 - 12*4,
             wordWrap: true,
         };
 
-        super(game, 200, 310, '', style);
+        super(game, (400 - 12*4)/2, 310, '', style);
 
         this.object = null;
         this.verb = null;

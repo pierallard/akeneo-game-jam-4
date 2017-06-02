@@ -11,12 +11,14 @@ export class Inventory {
     private items: Array<Phaser.Sprite>;
     private play: Play;
     private table: number;
+    private page: number;
 
     constructor(play: Play)
     {
         this.items = [];
         this.play = play;
         this.table = 0;
+        this.page = 0;
     }
 
     render() {
@@ -29,6 +31,34 @@ export class Inventory {
             this.play.add.existing(sprite);
             this.play.inventoryGroup.add(sprite);
         }
+        let top = new Phaser.Sprite(this.play.game, SimpleGame.WIDTH - COLUMNS*INVENTORY_SIZE, SimpleGame.HEIGHT - INVENTORY_SIZE, 'arrow_up');
+        top.scale.setTo(4);
+        top.anchor.setTo(1,1);
+        top.inputEnabled = true;
+        top.events.onInputDown.add(this.pageUp, this);
+
+        let bottom = new Phaser.Sprite(this.play.game, SimpleGame.WIDTH - COLUMNS*INVENTORY_SIZE, SimpleGame.HEIGHT - INVENTORY_SIZE, 'arrow_down');
+        bottom.scale.setTo(4);
+        bottom.anchor.setTo(1,0);
+        bottom.inputEnabled = true;
+        bottom.events.onInputDown.add(this.pageDown, this);
+
+        this.play.add.existing(top);
+        this.play.add.existing(bottom);
+    }
+
+    pageUp() {
+        if (this.page <= 2) {
+            this.page++;
+            this.update();
+        }
+    }
+
+    pageDown() {
+        if (this.page > 0) {
+            this.page--;
+            this.update();
+        }
     }
 
     addItem(identifier: string) {
@@ -40,6 +70,8 @@ export class Inventory {
         sprite.visible = true;
         sprite.position.setTo(position.x, position.y);
         this.items.push(sprite);
+        this.page = Math.floor((this.items.length - 1) / (COLUMNS * LINES));
+        this.update();
     }
 
     removeItem(item: InventoryObject) {
@@ -56,8 +88,14 @@ export class Inventory {
 
     update () {
         this.items.forEach(function (item, i) {
-            let position = this.getPosition(i);
-            item.position.setTo(position.x, position.y);
+            if (Math.floor(i / (COLUMNS * LINES)) === this.page) {
+                let position = this.getPosition(i);
+                item.position.setTo(position.x, position.y);
+                item.visible = true;
+            }
+            else {
+                item.visible = false;
+            }
         }.bind(this))
     }
 

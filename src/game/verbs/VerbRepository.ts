@@ -3,7 +3,7 @@ import {Verb} from "./Verb";
 import {SimpleGame} from "../../app";
 import Play from "../state/Play";
 
-const PANEL_WIDTH = 400;
+const PANEL_WIDTH = 400 - 12*4;
 const PANEL_HEIGHT= 100;
 
 export class VerbRepository {
@@ -14,7 +14,7 @@ export class VerbRepository {
     constructor(play: Play)
     {
         let style = {
-            font: "32px 3dventuremedium",
+            font: "28px 3dventuremedium",
             align: "center",
         };
 
