@@ -11,7 +11,7 @@ import {DisappearAction} from "../actions/DisappearAction";
 
 const STATE_EMPTY = 1;
 const STATE_GRAINES = 2;
-const STATE_POUSSE = 2;
+const STATE_POUSSE = 3;
 
 export class Pot extends SceneObject
 {
@@ -44,7 +44,7 @@ export class Pot extends SceneObject
                     new UpdateAction(this.play_, this, 'potpousse'),
                 ];
             }
-            if (this.state === STATE_POUSSE && object.getIdentifier() === 'lampePiles') {
+            if (this.state === STATE_POUSSE && object.getIdentifier() === 'engrais') {
                 return [
                     new MoveAction(this.play_, pointer.position.x),
                     new RemoveInventoryAction(this.play_, object),

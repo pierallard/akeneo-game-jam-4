@@ -21,7 +21,7 @@ export class Bowl extends SceneObject {
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
         let inventoryObject = this.play_.getInventoryObject();
         if (null !== inventoryObject) {
-            if (inventoryObject.getIdentifier() === 'steakLexomil') {
+            if (inventoryObject.getIdentifier() === 'steaklexomil') {
                 this.full = true;
                 let porteGarage = <GarageDoor> this.play_.getMainGroup().getObject(GarageDoor.IDENTIFIER);
                 porteGarage.doOpen();
@@ -37,6 +37,7 @@ export class Bowl extends SceneObject {
                     new TalkAction(this.play_, this.play_.getMainGroup().getObject(Dog.IDENTIFIER), 'ouaf ...'),
                     new TalkAction(this.play_, this.play_.getMainGroup().getObject(Dog.IDENTIFIER), '...'),
                     new TalkAction(this.play_, this.play_.getMainGroup().getObject(Dog.IDENTIFIER), 'zzzzzzz'),
+                    new UpdateAction(this.play_, this.play_.getMainGroup().getObject(Dog.IDENTIFIER), 'dogsleep'),
                     new TalkAction(this.play_, this.play_.getMainGroup().getObject(Dog.IDENTIFIER), 'zzzzzzzzzzz'),
                     new TalkAction(this.play_, this.play_.getBaby(), 'Hahahaha!')
                 ];

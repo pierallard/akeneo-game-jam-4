@@ -14,6 +14,8 @@ import {GarageDoor} from "../scene_objects/GarageDoor";
 import {BedroomDoor} from "../scene_objects/BedroomDoor";
 import {Battery} from "../inventory_objects/Battery";
 import {Lamp} from "../inventory_objects/Lamp";
+import {BouteilleAlcool} from "../inventory_objects/BouteilleAlcool";
+import {ZippoSec} from "../inventory_objects/ZippoSec";
 
 export default class Play extends Phaser.State
 {
@@ -127,8 +129,10 @@ export default class Play extends Phaser.State
         this.inventoryGroup.add(new Lexomil(this));
         this.inventoryGroup.add(new Battery(this));
         this.inventoryGroup.add(new Lamp(this));
+        this.inventoryGroup.add(new BouteilleAlcool(this));
+        this.inventoryGroup.add(new ZippoSec(this));
 
-        this.inventoryGroup.add(new InventoryObject(this, 'steakLexomil', 'le steaknifere', 'Voila qui pourrait endormir un cheval'));
+        this.inventoryGroup.add(new InventoryObject(this, 'steaklexomil', 'le steaknifere', 'Voila qui pourrait endormir un cheval'));
         this.inventoryGroup.add(new InventoryObject(this, 'engrais', "de l'engrais", '"Garder a portee des enfants". Perdu!'));
         this.inventoryGroup.add(new InventoryObject(this, 'feuilles', "la feuille a rouler", "J'ai les doigts qui collent"));
         this.inventoryGroup.add(new InventoryObject(this, 'knife', 'le couteau', "Bien affute, comme je les aime"));
@@ -139,10 +143,9 @@ export default class Play extends Phaser.State
         this.inventoryGroup.add(new InventoryObject(this, 'perceuse', 'la perceuse', "Des p'tits trous, des p'tits trous!"));
         this.inventoryGroup.add(new InventoryObject(this, 'sachet', 'le sachet', "On dirait des graines!"));
         this.inventoryGroup.add(new InventoryObject(this, 'lampePiles', 'la lampe UV', "J'ai perdu mes deux yeux"));
-        this.inventoryGroup.add(new InventoryObject(this, 'zipposec', 'le zippo', "Il est tout sec!"));
         this.inventoryGroup.add(new InventoryObject(this, 'dvdporno', 'le DVD', '"Hairy mature gays"'));
-        this.inventoryGroup.add(new InventoryObject(this, 'bouteille', 'la bouteille', "Une bouteille d'alcool"));
         this.inventoryGroup.add(new InventoryObject(this, 'cannabis', 'la weed', "Ca sent bien ce truc la"));
+        this.inventoryGroup.add(new InventoryObject(this, 'zippo', 'le zippo', "Aie!"));
     }
 
     private createCursor() {

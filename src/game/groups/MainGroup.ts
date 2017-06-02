@@ -17,6 +17,7 @@ import {Four} from "../scene_objects/Four";
 import {Bouteille} from "../scene_objects/Bouteille";
 import {DVDPlayer} from "../scene_objects/DVDPlayer";
 import {Father} from "../scene_objects/Father";
+import {BouteilleAlcool} from "../inventory_objects/BouteilleAlcool";
 
 export class MainGroup extends Phaser.Group
 {

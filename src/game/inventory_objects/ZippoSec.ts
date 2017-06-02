@@ -4,18 +4,18 @@ import {InventoryObject} from "./InventoryObject";
 import Play from "../state/Play";
 import {SceneObject} from "../scene_objects/SceneObject";
 import {Action} from "../actions/Action";
-import {Lexomil} from "./Lexomil";
+import {BouteilleAlcool} from "./BouteilleAlcool";
 
-export class Steak extends InventoryObject
+export class ZippoSec extends InventoryObject
 {
     constructor(play: Play)
     {
-        super(play, Steak.IDENTIFIER, 'Un bon gros steak');
+        super(play, ZippoSec.IDENTIFIER, 'le zippo', 'Il est tout sec!');
     }
 
     protected mixObjects(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        if (this.play_.getInventoryObject().getIdentifier() === Lexomil.IDENTIFIER) {
-            this.play_.getInventory().addItem('steaklexomil');
+        if (this.play_.getInventoryObject().getIdentifier() === BouteilleAlcool.IDENTIFIER) {
+            this.play_.getInventory().addItem('zippo');
             this.play_.getInventory().removeItem(this);
             this.play_.getInventory().removeItem(this.play_.getInventoryObject());
             this.play_.detachInventoryObject();
@@ -27,11 +27,11 @@ export class Steak extends InventoryObject
     }
 
     toFrench(): string {
-        return 'un steak';
+        return 'le zippo';
     }
 
     static get IDENTIFIER()
     {
-        return 'steak';
+        return 'zipposec';
     }
 }

@@ -34,8 +34,8 @@ export class Inventory {
     addItem(identifier: string) {
         let position = this.getPosition(this.items.length);
         let sprite = this.getSprite(identifier);
-        if (null === sprite) {
-            console.log('No sprite found !');
+        if (undefined === sprite) {
+            console.log('No sprite "' + identifier + '" found !');
         }
         sprite.visible = true;
         sprite.position.setTo(position.x, position.y);
