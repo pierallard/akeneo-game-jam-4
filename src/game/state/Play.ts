@@ -165,9 +165,9 @@ export default class Play extends Phaser.State
     }
 
     public render() {
-        this.game.debug.text('mainGroup.x = ' + this.mainGroup.x, 0, 15);
-        this.game.debug.text('action : ' + this.actions.map(function (action) { return action.debugText(); }).join(', '), 0, 30);
-        this.game.debug.text('Inventory : ' + ((null !== this.inventoryObject) ? this.inventoryObject.getIdentifier() : 'null'), 0, 45);
+        // this.game.debug.text('mainGroup.x = ' + this.mainGroup.x, 0, 15);
+        // this.game.debug.text('action : ' + this.actions.map(function (action) { return action.debugText(); }).join(', '), 0, 30);
+        // this.game.debug.text('Inventory : ' + ((null !== this.inventoryObject) ? this.inventoryObject.getIdentifier() : 'null'), 0, 45);
     }
 
     hasAction() {

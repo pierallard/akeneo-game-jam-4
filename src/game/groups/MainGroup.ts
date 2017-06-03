@@ -40,7 +40,7 @@ export class MainGroup extends Phaser.Group
     }
 
     createBackground() {
-        this.clouds = new Phaser.TileSprite(this.play.game, 0, 50, 590*4, 50, 'clouds');
+        this.clouds = new Phaser.TileSprite(this.play.game, 0, 48, 590*4, 54, 'clouds');
         this.clouds.scale = new Phaser.Point(4, 4);
         this.add(this.clouds);
     }
