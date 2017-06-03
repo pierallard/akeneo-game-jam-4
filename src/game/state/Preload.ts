@@ -9,7 +9,9 @@ export default class Preload extends Phaser.State {
         this.game.load.image('arrow_up', 'assets/arrow_up.png');
         this.game.load.image('arrow_down', 'assets/arrow_down.png');
         this.game.load.image('background', 'assets/background.png');
+        this.game.load.image('backgroundwalls', 'assets/backgroundwalls.png');
         this.game.load.image('cursor', 'assets/cursor.png');
+        this.game.load.image('clouds', 'assets/clouds.png');
 
         // Scene
         this.game.load.image('fridgeClose', 'assets/fridgeClose.png');
@@ -24,6 +26,7 @@ export default class Preload extends Phaser.State {
         this.game.load.image('porteChambre', 'assets/porteChambre.png');
         this.game.load.image('porteChambreOpen', 'assets/porteChambreOpen.png');
         this.game.load.image('chien', 'assets/chien.png');
+        this.game.load.image('dogsleep', 'assets/dogsleep.png');
         this.game.load.image('chaineClose', 'assets/chaineClose.png');
         this.game.load.image('chaineOpen', 'assets/chaineOpen.png');
         this.game.load.image('prisepetee', 'assets/prisepetee.png');
@@ -37,6 +40,8 @@ export default class Preload extends Phaser.State {
         this.game.load.image('fatherBusy', 'assets/fatherBusy.png');
         this.game.load.image('mother', 'assets/mother.png');
         this.game.load.image('porteSortie', 'assets/porteSortie.png');
+        this.game.load.image('porteSortieOpen', 'assets/porteSortieOpen.png');
+        this.game.load.image('dvdplayer', 'assets/dvdplayer.png');
 
         // Inventory
         this.game.load.image('cannabis', 'assets/cannabis.png');

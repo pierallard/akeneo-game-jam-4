@@ -7,6 +7,8 @@ import {MoveAction} from "../actions/MoveAction";
 import {Father} from "./Father";
 import {AddInventoryAction} from "../actions/AddInventoryAction";
 import {BouteilleAlcool} from "../inventory_objects/BouteilleAlcool";
+import {RemoveInventoryAction} from "../actions/RemoveInventoryAction";
+import {DisappearAction} from "../actions/DisappearAction";
 
 export class Bouteille extends SceneObject {
     constructor(play: Play) {
@@ -29,6 +31,7 @@ export class Bouteille extends SceneObject {
         else {
             return [
                 new MoveAction(this.play_, pointer.position.x),
+                new DisappearAction(this.play_, Bouteille.IDENTIFIER),
                 new AddInventoryAction(this.play_, BouteilleAlcool.IDENTIFIER),
                 new TalkAction(this.play_, this.play_.getBaby(), "Fais moi penser a gouter!")
             ];

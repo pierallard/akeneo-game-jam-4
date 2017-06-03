@@ -55,6 +55,8 @@ export default class Play extends Phaser.State
         this.verbRepository = new VerbRepository(this);
         this.verbRepository.render();
 
+        this.mainGroup.createBackground();
+
         this.addBackground();
 
         this.mainGroup.createObjects();
@@ -63,10 +65,12 @@ export default class Play extends Phaser.State
         this.baby = new Baby(this, 1200, 66*4, 'baby');
         this.mainGroup.add(this.baby);
 
+        this.mainGroup.createObjectSecond();
+
         this.createCursor();
 
-        //(<GarageDoor> this.mainGroup.getObject(GarageDoor.IDENTIFIER)).doOpen();
-        //(<BedroomDoor> this.mainGroup.getObject(BedroomDoor.IDENTIFIER)).doOpen();
+        // (<GarageDoor> this.mainGroup.getObject(GarageDoor.IDENTIFIER)).doOpen();
+        // (<BedroomDoor> this.mainGroup.getObject(BedroomDoor.IDENTIFIER)).doOpen();
     }
 
     public update()

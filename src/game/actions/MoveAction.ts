@@ -8,8 +8,8 @@ const LIMIT_CAMERA = 350;
 
 export class MoveAction extends Action {
     private goalX: number;
-    private static leftBorder: number = -612;
-    private static rightBorder: number = -1036;
+    private static leftBorder: number = -(612 + 20);
+    private static rightBorder: number = -(1036 - 20);
 
     constructor (play: Play, goalX: number)
     {

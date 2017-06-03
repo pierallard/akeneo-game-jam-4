@@ -8,7 +8,7 @@ import {Father} from "./Father";
 
 export class DVDPlayer extends SceneObject {
     constructor(play: Play) {
-        super(play, DVDPlayer.IDENTIFIER, 402*4, 41*4, 'dvdplayer');
+        super(play, DVDPlayer.IDENTIFIER, 420*4, 44*4, 'dvdplayer');
     }
 
     toFrench(): string {

@@ -39,7 +39,7 @@ export class Mother extends SceneObject {
                 this.bedo = true;
 
                 let result:Array<Action> = [
-                    new MoveAction(this.play_, origin.position.x),
+                    new MoveAction(this.play_, origin.position.x - 800),
                     new RemoveInventoryAction(this.play_, object)
                 ];
 
@@ -60,11 +60,11 @@ export class Mother extends SceneObject {
                 this.zippo = true;
 
                 let result:Array<Action> = [
-                    new MoveAction(this.play_, origin.position.x),
+                    new MoveAction(this.play_, origin.position.x - 800),
                     new RemoveInventoryAction(this.play_, object)
                 ];
 
-                if (!this.zippo) {
+                if (!this.bedo) {
                     result.push(
                         new TalkAction(this.play_, this, "Du feu, du feu... Mais pour allumer quoi?")
                     );

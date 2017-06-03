@@ -35,13 +35,13 @@ export class Inventory {
         top.scale.setTo(4);
         top.anchor.setTo(1,1);
         top.inputEnabled = true;
-        top.events.onInputDown.add(this.pageUp, this);
+        top.events.onInputDown.add(this.pageDown, this);
 
         let bottom = new Phaser.Sprite(this.play.game, SimpleGame.WIDTH - COLUMNS*INVENTORY_SIZE, SimpleGame.HEIGHT - INVENTORY_SIZE, 'arrow_down');
         bottom.scale.setTo(4);
         bottom.anchor.setTo(1,0);
         bottom.inputEnabled = true;
-        bottom.events.onInputDown.add(this.pageDown, this);
+        bottom.events.onInputDown.add(this.pageUp, this);
 
         this.play.add.existing(top);
         this.play.add.existing(bottom);
