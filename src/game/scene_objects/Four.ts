@@ -19,7 +19,7 @@ export class Four extends SceneObject
 
     protected lookAt(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
         if (!this.on) {
-            return [new TalkAction(this.play_, this.play_.getBaby(), "J'ai l'impression qu'il n'a pas d'électricité...")];
+            return [new TalkAction(this.play_, this.play_.getBaby(), "J'ai l'impression qu'il n'a pas d'electricite...")];
         }
 
         return super.lookAt(origin, pointer);
