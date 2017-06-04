@@ -9,8 +9,20 @@ import {TalkAction} from "../actions/TalkAction";
 
 export class Four extends SceneObject
 {
+    private on: boolean;
+
     constructor(play: Play) {
-        super(play, 'four', 233*4, 44*4, 'four');
+        super(play, Four.IDENTIFIER, 233*4, 44*4, 'four');
+
+        this.on = false;
+    }
+
+    protected lookAt(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
+        if (!this.on) {
+            return [new TalkAction(this.play_, this.play_.getBaby(), "J'ai l'impression qu'il n'a pas d'électricité...")];
+        }
+
+        return super.lookAt(origin, pointer);
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
@@ -27,6 +39,14 @@ export class Four extends SceneObject
         }
 
         return super.use(origin, pointer);
+    }
+
+    static get IDENTIFIER() {
+        return 'four';
+    }
+
+    public doOn() {
+        this.on = true;
     }
 
     toFrench(): string {

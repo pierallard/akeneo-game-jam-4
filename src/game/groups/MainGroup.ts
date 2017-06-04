@@ -20,6 +20,7 @@ import {Father} from "../scene_objects/Father";
 import {BouteilleAlcool} from "../inventory_objects/BouteilleAlcool";
 import {Mother} from "../scene_objects/Mother";
 import {OutDoor} from "../scene_objects/OutDoor";
+import {Prise} from "../scene_objects/Prise";
 
 export class MainGroup extends Phaser.Group
 {
@@ -46,6 +47,7 @@ export class MainGroup extends Phaser.Group
     }
 
     createObjects() {
+        this.add(new Prise(this.play));
         this.add(new Fridge(this.play));
         this.add(new Cupboard(this.play));
         this.add(new Microwave(this.play));
@@ -60,6 +62,7 @@ export class MainGroup extends Phaser.Group
         this.add(new Father(this.play));
         this.add(new Mother(this.play));
         this.add(new OutDoor(this.play));
+
         this.add(new PickableObject(this.play, 'lexomil', 'un medicament', 380*4, 55*4, 'lexomil', 'lexomil'));
         this.add(new PickableObject(this.play, 'coldMeat', 'le steak surgele', 295*4, 45*4, 'icesteak', 'icesteak', false));
         this.add(new PickableObject(this.play, 'engrais', 'la bouteille', 270*4, 45*4, 'engrais', 'engrais', false));

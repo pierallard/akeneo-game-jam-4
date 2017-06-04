@@ -20,6 +20,8 @@ import {Tabac} from "../inventory_objects/Tabac";
 import {Cannabis} from "../inventory_objects/Cannabis";
 import {TabacBeuh} from "../inventory_objects/TabacBeuh";
 import {Feuilles} from "../inventory_objects/Feuilles";
+import {Rallonge} from "../inventory_objects/Rallonge";
+import {Couteau} from "../inventory_objects/Couteau";
 
 export default class Play extends Phaser.State
 {
@@ -143,19 +145,20 @@ export default class Play extends Phaser.State
         this.inventoryGroup.add(new Cannabis(this));
         this.inventoryGroup.add(new TabacBeuh(this));
         this.inventoryGroup.add(new Feuilles(this));
+        this.inventoryGroup.add(new Rallonge(this));
+        this.inventoryGroup.add(new Couteau(this));
 
         this.inventoryGroup.add(new InventoryObject(this, 'bedo', "le bedo", "Y'a plus qu'a allumer!"));
         this.inventoryGroup.add(new InventoryObject(this, 'steaklexomil', 'le steaknifere', 'Voila qui pourrait endormir un cheval'));
         this.inventoryGroup.add(new InventoryObject(this, 'engrais', "de l'engrais", '"Garder a portee des enfants". Perdu!'));
-        this.inventoryGroup.add(new InventoryObject(this, 'knife', 'le couteau', "Bien affute, comme je les aime"));
-        this.inventoryGroup.add(new InventoryObject(this, 'gode', 'le jouet', "C'est le jouet de papa"));
-        this.inventoryGroup.add(new InventoryObject(this, 'rallonge', 'la rallonge', "Beehh c'est une rallonge."));
+        this.inventoryGroup.add(new InventoryObject(this, 'gode', 'le masseur de visage', "C'est le jouet de papa, ca vibre"));
         this.inventoryGroup.add(new InventoryObject(this, 'escabeauInventory', "l'escabeau", "Je suis le roi du monde!"));
         this.inventoryGroup.add(new InventoryObject(this, 'perceuse', 'la perceuse', "Des p'tits trous, des p'tits trous!"));
         this.inventoryGroup.add(new InventoryObject(this, 'sachet', 'le sachet', "On dirait des graines!"));
         this.inventoryGroup.add(new InventoryObject(this, 'lampePiles', 'la lampe UV', "J'ai perdu mes deux yeux"));
         this.inventoryGroup.add(new InventoryObject(this, 'dvdporno', 'le DVD', '"Hairy mature gays"'));
         this.inventoryGroup.add(new InventoryObject(this, 'zippo', 'le zippo', "Aie!"));
+        this.inventoryGroup.add(new InventoryObject(this, 'rallongecoupee', 'les fils electriques', "Y'a plus qu'a brancher!"));
     }
 
     private createCursor() {
