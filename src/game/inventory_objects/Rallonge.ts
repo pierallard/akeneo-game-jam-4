@@ -16,15 +16,15 @@ export class Rallonge extends InventoryObject
     }
 
     protected mixObjects(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        if (this.play_.getInventoryObject().getIdentifier() === Couteau.IDENTIFIER) {
+        if (this.play_.getCursor().getInventoryObject().getIdentifier() === Couteau.IDENTIFIER) {
             this.play_.getInventory().addItem('rallongecoupee');
             this.play_.getInventory().removeItem(this);
-            this.play_.getInventory().removeItem(this.play_.getInventoryObject());
-            this.play_.detachInventoryObject();
+            this.play_.getInventory().removeItem(this.play_.getCursor().getInventoryObject());
+            this.play_.getCursor().detach();
 
             return [];
         }
-        if (this.play_.getInventoryObject().getIdentifier() === Lamp.IDENTIFIER) {
+        if (this.play_.getCursor().getInventoryObject().getIdentifier() === Lamp.IDENTIFIER) {
             return [new TalkAction(this.play_, this.play_.getBaby(), "C'est une lampe 12V, pas 220V")];
         }
 

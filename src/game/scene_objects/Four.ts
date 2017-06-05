@@ -6,13 +6,14 @@ import {RemoveInventoryAction} from "../actions/RemoveInventoryAction";
 import {AddInventoryAction} from "../actions/AddInventoryAction";
 import {Action} from "../actions/Action";
 import {TalkAction} from "../actions/TalkAction";
+import {SimpleGame} from "../../app";
 
 export class Four extends SceneObject
 {
     private on: boolean;
 
     constructor(play: Play) {
-        super(play, Four.IDENTIFIER, 233*4, 44*4, 'four');
+        super(play, Four.IDENTIFIER, 233*SimpleGame.SCALE, 44*SimpleGame.SCALE, 'four');
 
         this.on = false;
     }
@@ -30,7 +31,7 @@ export class Four extends SceneObject
             return [new TalkAction(this.play_, this.play_.getBaby(), "Le four n'a pas l'air de vouloir s'allumer")];
         }
 
-        let object = this.play_.getInventoryObject();
+        let object = this.play_.getCursor().getInventoryObject();
         if (null !== object) {
             if (object.getIdentifier() === 'gode') {
                 return [

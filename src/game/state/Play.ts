@@ -22,26 +22,27 @@ import {TabacBeuh} from "../inventory_objects/TabacBeuh";
 import {Feuilles} from "../inventory_objects/Feuilles";
 import {Rallonge} from "../inventory_objects/Rallonge";
 import {Couteau} from "../inventory_objects/Couteau";
+import {ActionManager} from "../actions/ActionManager";
+import {Cursor} from "../Cursor";
+import {SimpleGame} from "../../app";
 
 export default class Play extends Phaser.State
 {
-    private inventoryObject: InventoryObject;
     private baby: Baby;
     private inventory: Inventory;
-    private actions: Array<Action>;
     private verbRepository: VerbRepository;
     private mainGroup: MainGroup;
-    public inventoryGroup: Phaser.Group;
-    private cursor: Phaser.Sprite;
+    private inventoryGroup: Phaser.Group;
+    private cursor: Cursor;
     private sentence: Sentence;
+    private actionManager: ActionManager;
 
     public constructor()
     {
         super();
 
         this.inventory = new Inventory(this);
-        this.actions = [];
-        this.inventoryObject = null;
+        this.actionManager = new ActionManager(this);
     }
 
     public create()
@@ -64,12 +65,12 @@ export default class Play extends Phaser.State
         this.mainGroup.createObjects();
         this.createInventoryObjects();
 
-        this.baby = new Baby(this, 1200, 66*4, 'baby');
+        this.baby = new Baby(this, 1200, 66*SimpleGame.SCALE, 'baby');
         this.mainGroup.add(this.baby);
 
         this.mainGroup.createObjectSecond();
 
-        this.createCursor();
+        this.cursor = new Cursor(this);
 
         // (<GarageDoor> this.mainGroup.getObject(GarageDoor.IDENTIFIER)).doOpen();
         // (<BedroomDoor> this.mainGroup.getObject(BedroomDoor.IDENTIFIER)).doOpen();
@@ -77,25 +78,9 @@ export default class Play extends Phaser.State
 
     public update()
     {
-        if (this.actions.length) {
-            if (this.actions[0].execute() === true) {
-                this.actions.shift();
-            }
-            if (!this.actions.length) {
-                this.verbRepository.setCurrentVerbName(Verb.WALK_TO);
-            }
-        }
+        this.actionManager.execute();
+        this.cursor.update();
 
-        this.cursor.position.set(
-            Math.round(this.game.input.mousePointer.worldX / 4) * 4 + 2,
-            Math.round(this.game.input.mousePointer.worldY / 4) * 4 + 2
-        );
-        if (this.inventoryObject) {
-            this.inventoryObject.position.set(
-                Math.round(this.game.input.mousePointer.worldX / 4) * 4 + 2,
-                Math.round(this.game.input.mousePointer.worldY / 4) * 4 + 2
-            );
-        }
     }
 
     getBaby() {
@@ -106,29 +91,19 @@ export default class Play extends Phaser.State
         return this.inventory;
     }
 
-    addActions(actions: Array<Action>) {
-        if (this.actions.length) {
-            return;
-        }
-
-        this.actions = this.actions.concat(actions);
-    }
-
     getCurrentVerb(): string {
         return this.verbRepository.getCurrentVerb().getName();
     }
 
     move(backgroundSprite: Phaser.Sprite, pointer: Phaser.Pointer) {
         if (this.getCurrentVerb() === Verb.WALK_TO) {
-            this.addActions([
-                new MoveAction(this, pointer.position.x)
-            ]);
+            this.actionManager.addAction(new MoveAction(this, pointer.position.x));
         }
     }
 
     private addBackground() {
         let sprite = this.game.add.sprite(0, 0, 'background', null, this.mainGroup);
-        sprite.scale.setTo(4);
+        sprite.scale.setTo(SimpleGame.SCALE);
         sprite.inputEnabled = true;
         sprite.events.onInputDown.add(this.move, this);
     }
@@ -161,41 +136,10 @@ export default class Play extends Phaser.State
         this.inventoryGroup.add(new InventoryObject(this, 'rallongecoupee', 'les fils electriques', "Y'a plus qu'a brancher!"));
     }
 
-    private createCursor() {
-        this.cursor = this.game.add.sprite(0, 0, 'cursor');
-        this.cursor.anchor.setTo(0.5);
-        this.cursor.scale.setTo(4);
-    }
-
     public render() {
         // this.game.debug.text('mainGroup.x = ' + this.mainGroup.x, 0, 15);
         // this.game.debug.text('action : ' + this.actions.map(function (action) { return action.debugText(); }).join(', '), 0, 30);
         // this.game.debug.text('Inventory : ' + ((null !== this.inventoryObject) ? this.inventoryObject.getIdentifier() : 'null'), 0, 45);
-    }
-
-    hasAction() {
-        return this.actions.length > 0;
-    }
-
-    attachInventoryObject(inventoryObject: InventoryObject) {
-        if (null !== this.inventoryObject) {
-            this.detachInventoryObject();
-        }
-        this.verbRepository.setCurrentVerbName(Verb.USE);
-        this.inventoryObject = inventoryObject;
-        this.sentence.setObject(inventoryObject);
-    }
-
-    detachInventoryObject() {
-        if (null !== this.inventoryObject) {
-            this.inventoryObject.detach();
-            this.inventoryObject = null;
-            this.verbRepository.setCurrentVerbName(Verb.WALK_TO);
-        }
-    }
-
-    getInventoryObject() {
-        return this.inventoryObject;
     }
 
     getMainGroup(): MainGroup {
@@ -204,5 +148,21 @@ export default class Play extends Phaser.State
 
     getSentence(): Sentence {
         return this.sentence;
+    }
+
+    getVerbRepository(): VerbRepository {
+        return this.verbRepository;
+    }
+
+    getActionManager(): ActionManager {
+        return this.actionManager;
+    }
+
+    getInventoryGroup(): Phaser.Group {
+        return this.inventoryGroup;
+    }
+
+    getCursor(): Cursor {
+        return this.cursor;
     }
 }

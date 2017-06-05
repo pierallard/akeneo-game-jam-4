@@ -15,11 +15,11 @@ export class Tabac extends InventoryObject
     }
 
     protected mixObjects(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        if (this.play_.getInventoryObject().getIdentifier() === Cannabis.IDENTIFIER) {
+        if (this.play_.getCursor().getInventoryObject().getIdentifier() === Cannabis.IDENTIFIER) {
             this.play_.getInventory().addItem('tabacbeuh');
             this.play_.getInventory().removeItem(this);
-            this.play_.getInventory().removeItem(this.play_.getInventoryObject());
-            this.play_.detachInventoryObject();
+            this.play_.getInventory().removeItem(this.play_.getCursor().getInventoryObject());
+            this.play_.getCursor().detach();
 
             return [];
         }

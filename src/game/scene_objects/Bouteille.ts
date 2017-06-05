@@ -9,10 +9,11 @@ import {AddInventoryAction} from "../actions/AddInventoryAction";
 import {BouteilleAlcool} from "../inventory_objects/BouteilleAlcool";
 import {RemoveInventoryAction} from "../actions/RemoveInventoryAction";
 import {DisappearAction} from "../actions/DisappearAction";
+import {SimpleGame} from "../../app";
 
 export class Bouteille extends SceneObject {
     constructor(play: Play) {
-        super(play, Bouteille.IDENTIFIER, 382*4, 41*4, 'bouteille');
+        super(play, Bouteille.IDENTIFIER, 382*SimpleGame.SCALE, 41*SimpleGame.SCALE, 'bouteille');
     }
 
     toFrench(): string {

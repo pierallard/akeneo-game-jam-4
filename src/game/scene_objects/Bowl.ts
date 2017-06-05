@@ -10,16 +10,17 @@ import {GarageDoor} from "./GarageDoor";
 import {Steak} from "../inventory_objects/Steak";
 import {Dog} from "./Dog";
 import Game = Phaser.Game;
+import {SimpleGame} from "../../app";
 
 export class Bowl extends SceneObject {
     private full: boolean = false;
 
     constructor(play: Play) {
-        super(play, Bowl.IDENTIFIER, 203*4, 50*4, 'gamelleVide');
+        super(play, Bowl.IDENTIFIER, 203*SimpleGame.SCALE, 50*SimpleGame.SCALE, 'gamelleVide');
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        let inventoryObject = this.play_.getInventoryObject();
+        let inventoryObject = this.play_.getCursor().getInventoryObject();
         if (null !== inventoryObject) {
             if (inventoryObject.getIdentifier() === 'steaklexomil') {
                 this.full = true;

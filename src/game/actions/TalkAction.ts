@@ -3,16 +3,18 @@
 import {Action} from "./Action";
 import Play from "../state/Play";
 import {SimpleGame} from "../../app";
+import {SceneObject} from "../scene_objects/SceneObject";
+import {Yolo} from "../Yolo";
 
 const DIALOG_WIDTH:number = 400;
 
 export class TalkAction extends Action {
-    private source: Phaser.Sprite;
+    private source: Yolo;
     private text: string;
     private timing: number;
     private textSprite: Phaser.Text;
 
-    constructor(play: Play, source: Phaser.Sprite, text: string)
+    constructor(play: Play, source: Yolo, text: string)
     {
         super(play);
 
@@ -47,7 +49,7 @@ export class TalkAction extends Action {
                 align: "center",
                 wordWrapWidth: DIALOG_WIDTH,
                 wordWrap: true,
-                stroke: '#ffffff',
+                stroke: this.source.getStroke(),
                 strokeThickness: 20,
             };
 

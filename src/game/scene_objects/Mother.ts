@@ -6,13 +6,14 @@ import {MoveAction} from "../actions/MoveAction";
 import {RemoveInventoryAction} from "../actions/RemoveInventoryAction";
 import {UpdateAction} from "../actions/UpdateAction";
 import {TalkAction} from "../actions/TalkAction";
+import {SimpleGame} from "../../app";
 
 export class Mother extends SceneObject {
     private zippo: boolean;
     private bedo: boolean;
 
     constructor(play: Play) {
-        super(play, Mother.IDENTIFIER, 323*4, 66*4, 'mother');
+        super(play, Mother.IDENTIFIER, 323*SimpleGame.SCALE, 66*SimpleGame.SCALE, 'mother');
 
         this.zippo = false;
         this.bedo = false;
@@ -33,7 +34,7 @@ export class Mother extends SceneObject {
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        let object = this.play_.getInventoryObject();
+        let object = this.play_.getCursor().getInventoryObject();
         if (null !== object) {
             if (object.getIdentifier() === 'bedo') {
                 this.bedo = true;
@@ -84,5 +85,9 @@ export class Mother extends SceneObject {
 
     protected lookAt(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
         return [new TalkAction(this.play_, this.play_.getBaby(), "Chatroulette, sans doute un site avec des chats")];
+    }
+
+    getStroke(): string {
+        return '#d77bba';
     }
 }

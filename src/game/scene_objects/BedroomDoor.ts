@@ -4,12 +4,13 @@ import Play from "../state/Play";
 import {Action} from "../actions/Action";
 import {TalkAction} from "../actions/TalkAction";
 import {MoveAction} from "../actions/MoveAction";
+import {SimpleGame} from "../../app";
 
 export class BedroomDoor extends SceneObject {
     private open: boolean = false;
 
     constructor(play: Play) {
-        super(play, BedroomDoor.IDENTIFIER, 441*4, 11*4, 'porteChambre');
+        super(play, BedroomDoor.IDENTIFIER, 441*SimpleGame.SCALE, 11*SimpleGame.SCALE, 'porteChambre');
     }
 
     toFrench(): string {

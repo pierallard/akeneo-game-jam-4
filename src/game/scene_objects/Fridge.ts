@@ -7,16 +7,17 @@ import {MoveAction} from "../actions/MoveAction";
 import {Action} from "../actions/Action";
 import {AppearAction} from "../actions/AppearAction";
 import {DisappearAction} from "../actions/DisappearAction";
+import {SimpleGame} from "../../app";
 
 export class Fridge extends SceneObject {
     private open: boolean = false;
 
     constructor(play: Play) {
-        super(play, Fridge.IDENTIFIER, 294*4, 42*4, 'fridgeClose');
+        super(play, Fridge.IDENTIFIER, 294*SimpleGame.SCALE, 42*SimpleGame.SCALE, 'fridgeClose');
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        if (null !== this.play_.getInventoryObject()) {
+        if (null !== this.play_.getCursor().getInventoryObject()) {
             return super.use(origin, pointer);
         }
 

@@ -5,6 +5,7 @@ import {TakeAction} from "../actions/TakeAction";
 import Play from "../state/Play";
 import {SceneObject} from "./SceneObject";
 import {Action} from "../actions/Action";
+import {SimpleGame} from "../../app";
 
 export class PickableObject extends SceneObject
 {
@@ -16,7 +17,7 @@ export class PickableObject extends SceneObject
         super(play, identifier, x, y, key);
 
         this.french = french;
-        this.scale.setTo(4);
+        this.scale.setTo(SimpleGame.SCALE);
         this.inputEnabled = true;
         this.generatedObjectIdentifier = generatedObjectIdentifier;
         this.visible = display;

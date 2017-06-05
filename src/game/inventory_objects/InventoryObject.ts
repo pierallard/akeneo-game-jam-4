@@ -32,7 +32,7 @@ export class InventoryObject extends SceneObject
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        let attachedObject = this.play_.getInventoryObject();
+        let attachedObject = this.play_.getCursor().getInventoryObject();
         if (null === attachedObject) {
             this.attach();
             return [];
@@ -54,7 +54,7 @@ export class InventoryObject extends SceneObject
     {
         this.inputEnabled = false;
         this.oldPosition = new Phaser.Point(this.position.x, this.position.y);
-        this.play_.attachInventoryObject(this);
+        this.play_.getCursor().attach(this);
     }
 
     detach() {
@@ -63,7 +63,7 @@ export class InventoryObject extends SceneObject
     }
 
     protected mixObjects(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        this.play_.detachInventoryObject();
+        this.play_.getCursor().detach();
         return super.use(origin, pointer);
     }
 

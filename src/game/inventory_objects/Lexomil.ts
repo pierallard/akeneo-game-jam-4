@@ -14,11 +14,11 @@ export class Lexomil extends InventoryObject
     }
 
     protected mixObjects(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        if (this.play_.getInventoryObject().getIdentifier() === Steak.IDENTIFIER) {
+        if (this.play_.getCursor().getInventoryObject().getIdentifier() === Steak.IDENTIFIER) {
             this.play_.getInventory().addItem('steaklexomil');
             this.play_.getInventory().removeItem(this);
-            this.play_.getInventory().removeItem(this.play_.getInventoryObject());
-            this.play_.detachInventoryObject();
+            this.play_.getInventory().removeItem(this.play_.getCursor().getInventoryObject());
+            this.play_.getCursor().detach();
 
             return [];
         }

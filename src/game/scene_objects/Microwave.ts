@@ -6,15 +6,16 @@ import Play from "../state/Play";
 import {MoveAction} from "../actions/MoveAction";
 import {AddInventoryAction} from "../actions/AddInventoryAction";
 import {RemoveInventoryAction} from "../actions/RemoveInventoryAction";
+import {SimpleGame} from "../../app";
 
 export class Microwave extends SceneObject
 {
     constructor(play: Play) {
-        super(play, Microwave.IDENTIFIER, 251*4, 44*4, 'microOndes');
+        super(play, Microwave.IDENTIFIER, 251*SimpleGame.SCALE, 44*SimpleGame.SCALE, 'microOndes');
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        let inventoryObject = this.play_.getInventoryObject();
+        let inventoryObject = this.play_.getCursor().getInventoryObject();
 
         if (null !== inventoryObject) {
             if (inventoryObject.getIdentifier() === 'icesteak') {

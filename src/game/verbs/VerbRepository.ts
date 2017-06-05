@@ -3,7 +3,7 @@ import {Verb} from "./Verb";
 import {SimpleGame} from "../../app";
 import Play from "../state/Play";
 
-const PANEL_WIDTH = 400 - 12*4;
+const PANEL_WIDTH = 400 - 12*SimpleGame.SCALE;
 const PANEL_HEIGHT= 100;
 
 export class VerbRepository {
@@ -46,7 +46,7 @@ export class VerbRepository {
     }
 
     public setCurrentVerb(verb: Verb) {
-        if (false === this.play.hasAction()) {
+        if (false === this.play.getActionManager().hasAction()) {
             this.currentItem = verb;
             this.play.getSentence().setVerb(this.currentItem);
 

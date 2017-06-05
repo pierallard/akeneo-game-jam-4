@@ -8,12 +8,13 @@ import {UpdateAction} from "../actions/UpdateAction";
 import {Father} from "./Father";
 import {Mother} from "./Mother";
 import {RemoveInventoryAction} from "../actions/RemoveInventoryAction";
+import {SimpleGame} from "../../app";
 
 export class OutDoor extends SceneObject {
     private open: boolean = false;
 
     constructor(play: Play) {
-        super(play, OutDoor.IDENTIFIER, 352*4, 16*4, 'porteSortie');
+        super(play, OutDoor.IDENTIFIER, 352*SimpleGame.SCALE, 16*SimpleGame.SCALE, 'porteSortie');
     }
 
     toFrench(): string {
@@ -21,7 +22,7 @@ export class OutDoor extends SceneObject {
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        let object = this.play_.getInventoryObject();
+        let object = this.play_.getCursor().getInventoryObject();
         if (null !== object && object.getIdentifier() === 'perceuse') {
             let mother = <Mother> this.play_.getMainGroup().getObject(Mother.IDENTIFIER);
             if (mother.isDefoncee()) {

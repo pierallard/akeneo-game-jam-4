@@ -5,10 +5,11 @@ import {Action} from "../actions/Action";
 import {MoveAction} from "../actions/MoveAction";
 import {RemoveInventoryAction} from "../actions/RemoveInventoryAction";
 import {Father} from "./Father";
+import {SimpleGame} from "../../app";
 
 export class DVDPlayer extends SceneObject {
     constructor(play: Play) {
-        super(play, DVDPlayer.IDENTIFIER, 420*4, 44*4, 'dvdplayer');
+        super(play, DVDPlayer.IDENTIFIER, 420*SimpleGame.SCALE, 44*SimpleGame.SCALE, 'dvdplayer');
     }
 
     toFrench(): string {
@@ -16,7 +17,7 @@ export class DVDPlayer extends SceneObject {
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        let object = this.play_.getInventoryObject();
+        let object = this.play_.getCursor().getInventoryObject();
         if (null !== object && object.getIdentifier() === 'dvdporno') {
             let father = <Father> this.play_.getMainGroup().getObject(Father.IDENTIFIER);
             father.setBusy();

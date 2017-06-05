@@ -5,12 +5,13 @@ import {Action} from "../actions/Action";
 import {TalkAction} from "../actions/TalkAction";
 import {MoveAction} from "../actions/MoveAction";
 import {Dog} from "./Dog";
+import {SimpleGame} from "../../app";
 
 export class GarageDoor extends SceneObject {
     private open: boolean = false;
 
     constructor(play: Play) {
-        super(play, GarageDoor.IDENTIFIER, 158*4, 11*4, 'porteGarage');
+        super(play, GarageDoor.IDENTIFIER, 158*SimpleGame.SCALE, 11*SimpleGame.SCALE, 'porteGarage');
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {

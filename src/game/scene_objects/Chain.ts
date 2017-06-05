@@ -6,10 +6,11 @@ import {Action} from "../actions/Action";
 import {BedroomDoor} from "./BedroomDoor";
 import {RemoveInventoryAction} from "../actions/RemoveInventoryAction";
 import {TalkAction} from "../actions/TalkAction";
+import {SimpleGame} from "../../app";
 
 export class Chain extends SceneObject {
     constructor(play: Play) {
-        super(play, Chain.IDENTIFIER, 450*4, 17*4, 'chaineClose');
+        super(play, Chain.IDENTIFIER, 450*SimpleGame.SCALE, 17*SimpleGame.SCALE, 'chaineClose');
     }
 
     toFrench(): string {
@@ -21,7 +22,7 @@ export class Chain extends SceneObject {
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        let object = this.play_.getInventoryObject();
+        let object = this.play_.getCursor().getInventoryObject();
         if (null !== object && object.getIdentifier() === 'escabeauInventory') {
             this.loadTexture('chaineOpen');
             let porteChambre = <BedroomDoor> this.play_.getMainGroup().getObject(BedroomDoor.IDENTIFIER);

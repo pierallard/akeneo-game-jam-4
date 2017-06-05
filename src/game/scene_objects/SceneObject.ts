@@ -4,8 +4,10 @@ import Play from "../state/Play";
 import {Verb} from "../verbs/Verb";
 import {TalkAction} from "../actions/TalkAction";
 import {Action} from "../actions/Action";
+import {Yolo} from "../Yolo";
+import {SimpleGame} from "../../app";
 
-export class SceneObject extends Phaser.Sprite
+export class SceneObject extends Yolo
 {
     protected play_: Play;
     protected shouldDetach: boolean;
@@ -16,7 +18,7 @@ export class SceneObject extends Phaser.Sprite
         super(play.game, x, y, key);
 
         this.identifier = identifier;
-        this.scale.setTo(4);
+        this.scale.setTo(SimpleGame.SCALE);
         this.inputEnabled = true;
         this.events.onInputDown.add(this.executeVerb, this);
         this.events.onInputOver.add(this.mouseOver, this);
@@ -38,7 +40,7 @@ export class SceneObject extends Phaser.Sprite
     }
 
     private mouseOver() {
-        if (null !== this.play_.getInventoryObject()) {
+        if (null !== this.play_.getCursor().getInventoryObject()) {
             this.play_.getSentence().setSecondaryObject(this);
         } else {
             this.play_.getSentence().setObject(this);
@@ -46,7 +48,7 @@ export class SceneObject extends Phaser.Sprite
     }
 
     private mouseOut() {
-        if (!this.play_.getInventoryObject()) {
+        if (!this.play_.getCursor().getInventoryObject()) {
             this.play_.getSentence().setObject(null);
         }
         this.play_.getSentence().setSecondaryObject(null);
@@ -54,27 +56,30 @@ export class SceneObject extends Phaser.Sprite
 
     private executeVerb(origin: SceneObject, pointer: Phaser.Pointer)
     {
-        if (!this.play_.hasAction()) {
+        let actions = [];
+        if (!this.play_.getActionManager().hasAction()) {
             switch (this.play_.getCurrentVerb()) {
                 case Verb.WALK_TO:
-                    this.play_.addActions(this.walkTo(origin, pointer));
+                    actions = this.walkTo(origin, pointer);
                     break;
 
                 case Verb.PICK_UP:
-                    this.play_.addActions(this.pickUp(origin, pointer));
+                    actions = this.pickUp(origin, pointer);
                     break;
 
                 case Verb.USE:
-                    this.play_.addActions(this.use(origin, pointer));
+                    actions = this.use(origin, pointer);
                     break;
 
                 case Verb.LOOK_AT:
-                    this.play_.addActions(this.lookAt(origin, pointer));
+                    actions = this.lookAt(origin, pointer);
                     break;
             }
 
+            this.play_.getActionManager().addActions(actions);
+
             if (this.shouldDetach) {
-                this.play_.detachInventoryObject();
+                this.play_.getCursor().detach();
             }
         }
     }

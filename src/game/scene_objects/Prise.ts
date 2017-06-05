@@ -9,10 +9,11 @@ import {TalkAction} from "../actions/TalkAction";
 import {Four} from "./Four";
 import {Rallonge} from "../inventory_objects/Rallonge";
 import {UpdateAction} from "../actions/UpdateAction";
+import {SimpleGame} from "../../app";
 
 export class Prise extends SceneObject {
     constructor(play: Play) {
-        super(play, Prise.IDENTIFIER, 175*4, 57*4, 'prisepetee');
+        super(play, Prise.IDENTIFIER, 175*SimpleGame.SCALE, 57*SimpleGame.SCALE, 'prisepetee');
     }
 
     toFrench(): string {
@@ -24,7 +25,7 @@ export class Prise extends SceneObject {
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        let object = this.play_.getInventoryObject();
+        let object = this.play_.getCursor().getInventoryObject();
         if (null !== object) {
             if (object.getIdentifier() === Rallonge.IDENTIFIER) {
                 return [new TalkAction(this.play_, this.play_.getBaby(), "Faudrait que je denude les fils avant")];

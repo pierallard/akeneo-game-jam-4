@@ -14,12 +14,12 @@ export class Lamp extends InventoryObject
     }
 
     protected mixObjects(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        if (this.play_.getInventoryObject().getIdentifier() === Battery.IDENTIFIER) {
+        if (this.play_.getCursor().getInventoryObject().getIdentifier() === Battery.IDENTIFIER) {
 
             this.play_.getInventory().addItem('lampePiles');
             this.play_.getInventory().removeItem(this);
-            this.play_.getInventory().removeItem(this.play_.getInventoryObject());
-            this.play_.detachInventoryObject();
+            this.play_.getInventory().removeItem(this.play_.getCursor().getInventoryObject());
+            this.play_.getCursor().detach();
 
             return [];
         }

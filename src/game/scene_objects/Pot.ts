@@ -9,6 +9,7 @@ import {UpdateAction} from "../actions/UpdateAction";
 import {AppearAction} from "../actions/AppearAction";
 import {DisappearAction} from "../actions/DisappearAction";
 import {TalkAction} from "../actions/TalkAction";
+import {SimpleGame} from "../../app";
 
 export class Pot extends SceneObject
 {
@@ -17,7 +18,7 @@ export class Pot extends SceneObject
     private engrais: boolean;
 
     constructor(play: Play) {
-        super(play, 'potvide', 218*4, 36*4, 'potvide');
+        super(play, 'potvide', 218*SimpleGame.SCALE, 36*SimpleGame.SCALE, 'potvide');
 
         this.graines = false;
         this.lampe = false;
@@ -25,7 +26,7 @@ export class Pot extends SceneObject
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        let object = this.play_.getInventoryObject();
+        let object = this.play_.getCursor().getInventoryObject();
         if (null !== object) {
             if (!this.graines) {
                 if (object.getIdentifier() === 'sachet') {

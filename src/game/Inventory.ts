@@ -3,7 +3,7 @@ import Play from "./state/Play";
 import {SimpleGame} from "../app";
 import {InventoryObject} from "./inventory_objects/InventoryObject";
 
-const INVENTORY_SIZE: number = (16+8)*4;
+const INVENTORY_SIZE: number = (16+8)*SimpleGame.SCALE;
 const COLUMNS: number = 4;
 const LINES: number = 2;
 
@@ -25,20 +25,20 @@ export class Inventory {
         for (let i = 0; i < COLUMNS * LINES; i++) {
             let position = this.getPosition(i);
             let sprite = new Phaser.Sprite(this.play.game, position.x, position.y, 'inventory');
-            sprite.scale.setTo(4);
+            sprite.scale.setTo(SimpleGame.SCALE);
             sprite.anchor.setTo(0.5);
 
             this.play.add.existing(sprite);
-            this.play.inventoryGroup.add(sprite);
+            this.play.getInventoryGroup().add(sprite);
         }
         let top = new Phaser.Sprite(this.play.game, SimpleGame.WIDTH - COLUMNS*INVENTORY_SIZE, SimpleGame.HEIGHT - INVENTORY_SIZE, 'arrow_up');
-        top.scale.setTo(4);
+        top.scale.setTo(SimpleGame.SCALE);
         top.anchor.setTo(1,1);
         top.inputEnabled = true;
         top.events.onInputDown.add(this.pageDown, this);
 
         let bottom = new Phaser.Sprite(this.play.game, SimpleGame.WIDTH - COLUMNS*INVENTORY_SIZE, SimpleGame.HEIGHT - INVENTORY_SIZE, 'arrow_down');
-        bottom.scale.setTo(4);
+        bottom.scale.setTo(SimpleGame.SCALE);
         bottom.anchor.setTo(1,0);
         bottom.inputEnabled = true;
         bottom.events.onInputDown.add(this.pageUp, this);
@@ -75,8 +75,8 @@ export class Inventory {
     }
 
     removeItem(item: InventoryObject) {
-        if (this.play.getInventoryObject() === item) {
-            this.play.detachInventoryObject();
+        if (this.play.getCursor().getInventoryObject() === item) {
+            this.play.getCursor().detach();
         }
         this.items = this.items.filter(function(obj) {
             return item !== obj
@@ -110,9 +110,9 @@ export class Inventory {
     }
 
     getSprite(identifier: string): InventoryObject {
-        for (let i = 0; i< this.play.inventoryGroup.children.length; i++) {
-            if (typeof this.play.inventoryGroup.children[i]['getIdentifier'] == 'function') {
-                let object = <InventoryObject> this.play.inventoryGroup.children[i];
+        for (let i = 0; i< this.play.getInventoryGroup().children.length; i++) {
+            if (typeof this.play.getInventoryGroup().children[i]['getIdentifier'] == 'function') {
+                let object = <InventoryObject> this.play.getInventoryGroup().children[i];
                 if (object.getIdentifier() === identifier) {
                     return object;
                 }

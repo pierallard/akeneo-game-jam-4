@@ -8,6 +8,7 @@ export class SimpleGame extends Phaser.Game {
 
     static WIDTH = 800;
     static HEIGHT = 456;
+    static SCALE = 4;
 
     constructor()
     {

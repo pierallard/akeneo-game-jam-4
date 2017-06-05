@@ -6,16 +6,17 @@ import {TalkAction} from "../actions/TalkAction";
 import {MoveAction} from "../actions/MoveAction";
 import {Action} from "../actions/Action";
 import {AppearAction} from "../actions/AppearAction";
+import {SimpleGame} from "../../app";
 
 export class Cupboard extends SceneObject {
     private open: boolean = false;
 
     constructor(play: Play) {
-        super(play, Cupboard.IDENTIFIER, 270*4, 43*4, 'placardClose');
+        super(play, Cupboard.IDENTIFIER, 270*SimpleGame.SCALE, 43*SimpleGame.SCALE, 'placardClose');
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        if (null !== this.play_.getInventoryObject()) {
+        if (null !== this.play_.getCursor().getInventoryObject()) {
             return super.use(origin, pointer);
         }
 
