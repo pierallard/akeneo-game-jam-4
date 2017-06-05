@@ -50,7 +50,7 @@ export class Mother extends SceneObject {
                 } else {
                     result.push(
                         new TalkAction(this.play_, this, "Oh, putain, je suis defoncee..."),
-                        new UpdateAction(this.play_, this, 'motherDefonce')
+                        new UpdateAction(this.play_, this, 'motherdefoncee')
                     );
                 }
 
@@ -71,7 +71,7 @@ export class Mother extends SceneObject {
                 } else {
                     result.push(
                         new TalkAction(this.play_, this, "Oh, putain, je suis defoncee..."),
-                        new UpdateAction(this.play_, this, 'motherDefonce')
+                        new UpdateAction(this.play_, this, 'motherdefoncee')
                     );
                 }
 

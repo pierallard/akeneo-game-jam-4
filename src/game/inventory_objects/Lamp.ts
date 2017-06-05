@@ -28,7 +28,7 @@ export class Lamp extends InventoryObject
     }
 
     toFrench(): string {
-        return 'la lampe UV';
+        return 'la lampe UV 12V';
     }
 
     static get IDENTIFIER()

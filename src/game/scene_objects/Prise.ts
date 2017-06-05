@@ -35,7 +35,7 @@ export class Prise extends SceneObject {
                 four.doOn();
 
                 return [
-                    new MoveAction(this.play_, origin.position.x),
+                    new MoveAction(this.play_, origin.position.x - 500),
                     new RemoveInventoryAction(this.play_, object),
                     new UpdateAction(this.play_, this, 'prise'),
                     new TalkAction(this.play_, this.play_.getBaby(), "Le four marche! On va pouvoir faire fondre des trucs!")

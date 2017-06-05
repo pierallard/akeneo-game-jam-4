@@ -16,7 +16,7 @@ export class Bouteille extends SceneObject {
     }
 
     toFrench(): string {
-        return 'la bouteille';
+        return "la bouteille d'eau de vie";
     }
 
     protected pickUp(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {

@@ -6,6 +6,7 @@ import {SceneObject} from "../scene_objects/SceneObject";
 import {Action} from "../actions/Action";
 import {Lamp} from "./Lamp";
 import {Couteau} from "./Couteau";
+import {TalkAction} from "../actions/TalkAction";
 
 export class Rallonge extends InventoryObject
 {
@@ -22,6 +23,9 @@ export class Rallonge extends InventoryObject
             this.play_.detachInventoryObject();
 
             return [];
+        }
+        if (this.play_.getInventoryObject().getIdentifier() === Lamp.IDENTIFIER) {
+            return [new TalkAction(this.play_, this.play_.getBaby(), "C'est une lampe 12V, pas 220V")];
         }
 
         return super.mixObjects(origin, pointer);

@@ -39,6 +39,7 @@ export default class Preload extends Phaser.State {
         this.game.load.image('father', 'assets/father.png');
         this.game.load.image('fatherBusy', 'assets/fatherBusy.png');
         this.game.load.image('mother', 'assets/mother.png');
+        this.game.load.image('motherdefoncee', 'assets/motherdefoncee.png');
         this.game.load.image('porteSortie', 'assets/porteSortie.png');
         this.game.load.image('porteSortieOpen', 'assets/porteSortieOpen.png');
         this.game.load.image('dvdplayer', 'assets/dvdplayer.png');
@@ -56,6 +57,7 @@ export default class Preload extends Phaser.State {
         this.game.load.image('neon', 'assets/neon.png');
         this.game.load.image('piles', 'assets/piles.png');
         this.game.load.image('rallonge', 'assets/rallonge.png');
+        this.game.load.image('rallongecoupee', 'assets/rallongecoupee.png');
         this.game.load.image('sachet', 'assets/sachet.png');
         this.game.load.image('steak', 'assets/steak.png');
         this.game.load.image('tabac', 'assets/tabac.png');
@@ -66,6 +68,8 @@ export default class Preload extends Phaser.State {
         this.game.load.image('escabeauInventory', 'assets/escabeau.png');
         this.game.load.image('lampePiles', 'assets/lampepiles.png');
         this.game.load.image('steaklexomil', 'assets/steaklexomil.png');
+        this.game.load.image('bedo', 'assets/bedo.png');
+        this.game.load.image('tabacbeuh', 'assets/tabacbeuh.png');
     }
 
     public create ()

@@ -26,6 +26,10 @@ export class Four extends SceneObject
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
+        if (!this.on) {
+            return [new TalkAction(this.play_, this.play_.getBaby(), "Le four n'a pas l'air de vouloir s'allumer")];
+        }
+
         let object = this.play_.getInventoryObject();
         if (null !== object) {
             if (object.getIdentifier() === 'gode') {

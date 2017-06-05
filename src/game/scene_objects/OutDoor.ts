@@ -7,6 +7,7 @@ import {MoveAction} from "../actions/MoveAction";
 import {UpdateAction} from "../actions/UpdateAction";
 import {Father} from "./Father";
 import {Mother} from "./Mother";
+import {RemoveInventoryAction} from "../actions/RemoveInventoryAction";
 
 export class OutDoor extends SceneObject {
     private open: boolean = false;
@@ -28,6 +29,7 @@ export class OutDoor extends SceneObject {
 
                 return [
                     new MoveAction(this.play_, pointer.position.x),
+                    new RemoveInventoryAction(this.play_, object),
                     new UpdateAction(this.play_, this, 'porteSortieOpen')
                 ];
             }
