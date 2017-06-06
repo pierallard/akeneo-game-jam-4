@@ -10,7 +10,7 @@ import {SimpleGame} from "../../app";
 
 export class Chain extends SceneObject {
     constructor(play: Play) {
-        super(play, Chain.IDENTIFIER, 450*SimpleGame.SCALE, 17*SimpleGame.SCALE, 'chaineClose');
+        super(play, Chain.IDENTIFIER, 438*SimpleGame.SCALE, 19*SimpleGame.SCALE, 'chaineClose');
     }
 
     toFrench(): string {

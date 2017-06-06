@@ -61,7 +61,7 @@ export class Bowl extends SceneObject {
             ];
         } else {
             return [
-                new TalkAction(this.play_, this.play_.getBaby(), "Je ferais mieux de donner à manger au chien avant qu'il me mange"),
+                new TalkAction(this.play_, this.play_.getBaby(), "Je devrais donner a manger au chien avant qu'il me mange"),
             ];
         }
     }

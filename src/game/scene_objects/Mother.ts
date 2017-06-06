@@ -46,7 +46,7 @@ export class Mother extends SceneObject {
 
                 if (!this.zippo) {
                     result.push(
-                        new TalkAction(this.play_, this, "Tiens, je me rappelle pas avoir mis ca la... Ou est mon feu?")
+                        new TalkAction(this.play_, this, "Quelle surprise! Ou est mon feu?")
                     );
                 } else {
                     result.push(

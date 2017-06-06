@@ -3,7 +3,7 @@ import Play from "./state/Play";
 import {SimpleGame} from "../app";
 import {InventoryObject} from "./inventory_objects/InventoryObject";
 
-const INVENTORY_SIZE: number = (16+8)*SimpleGame.SCALE;
+const INVENTORY_SIZE: number = (16+8)*4;
 const COLUMNS: number = 4;
 const LINES: number = 2;
 

@@ -77,7 +77,7 @@ export class MainGroup extends Phaser.Group
         this.add(new PickableObject(this.play, 'perceuse', 'la perceuse', 89*SimpleGame.SCALE, 30*SimpleGame.SCALE, 'perceuse', 'perceuse'));
         this.add(new PickableObject(this.play, 'sachet', 'le sachet de graines', 395*SimpleGame.SCALE, 51*SimpleGame.SCALE, 'sachet', 'sachet'));
         this.add(new PickableObject(this.play, 'potfull', 'la tournee de beuh', 218*SimpleGame.SCALE, 36*SimpleGame.SCALE, 'potfull', 'cannabis', false));
-        this.add(new PickableObject(this.play, 'zipposec', 'le briquet', 254*SimpleGame.SCALE, 25*SimpleGame.SCALE, 'zipposec', 'zipposec'));
+        this.add(new PickableObject(this.play, 'zipposec', 'le zippo sec', 254*SimpleGame.SCALE, 25*SimpleGame.SCALE, 'zipposec', 'zipposec'));
         this.add(new PickableObject(this.play, 'dvdporno', 'le DVD', 500*SimpleGame.SCALE, 25*SimpleGame.SCALE, 'dvdporno', 'dvdporno'));
     }
 
