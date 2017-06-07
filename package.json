@@ -15,12 +15,27 @@
   "license": "MIT",
   "homepage": "https://github.com/pierallard/akeneo-game-jam-4",
   "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-google": "^0.8.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "typescript": "2.2.2",
     "webpack": "^2.4.1",
-    "webpack-dev-server": "^2.4.2",
-    "typescript": "2.2.2"
+    "webpack-dev-server": "^2.4.2"
   },
   "dependencies": {
     "ts-loader": "^2.0.3",
     "easystarjs": "0.4.1"
+  },
+  "rules": {
+    "semi": [
+      "error",
+      "always"
+    ],
+    "quotes": [
+      "error",
+      "double"
+    ]
   }
 }
