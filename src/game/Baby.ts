@@ -1,11 +1,11 @@
 
 import Play from "./state/Play";
-import {Yolo} from "./Yolo";
+import {InteractiveObject} from "./InteractiveObject";
 import {SimpleGame} from "../app";
 
 const BABY_SPEED = 3;
 
-export class Baby extends Yolo
+export class Baby extends InteractiveObject
 {
     private walking: boolean;
 

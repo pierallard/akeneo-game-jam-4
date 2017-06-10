@@ -4,17 +4,17 @@ import {Action} from "./Action";
 import Play from "../state/Play";
 import {SimpleGame} from "../../app";
 import {SceneObject} from "../scene_objects/SceneObject";
-import {Yolo} from "../Yolo";
+import {InteractiveObject} from "../InteractiveObject";
 
 const DIALOG_WIDTH:number = 400;
 
 export class TalkAction extends Action {
-    private source: Yolo;
+    private source: InteractiveObject;
     private text: string;
     private timing: number;
     private textSprite: Phaser.Text;
 
-    constructor(play: Play, source: Yolo, text: string)
+    constructor(play: Play, source: InteractiveObject, text: string)
     {
         super(play);
 

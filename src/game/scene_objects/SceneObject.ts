@@ -4,10 +4,10 @@ import Play from "../state/Play";
 import {Verb} from "../verbs/Verb";
 import {TalkAction} from "../actions/TalkAction";
 import {Action} from "../actions/Action";
-import {Yolo} from "../Yolo";
+import {InteractiveObject} from "../InteractiveObject";
 import {SimpleGame} from "../../app";
 
-export class SceneObject extends Yolo
+export class SceneObject extends InteractiveObject
 {
     protected play_: Play;
     protected shouldDetach: boolean;
