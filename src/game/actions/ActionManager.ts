@@ -37,4 +37,8 @@ export class ActionManager {
     hasAction(): boolean {
         return this.actions.length > 0;
     }
+
+    getActions(): Array<Action> {
+        return this.actions;
+    }
 }

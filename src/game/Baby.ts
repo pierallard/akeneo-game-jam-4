@@ -10,19 +10,19 @@ export class Baby extends InteractiveObject
     private walking: boolean;
     private walkingSprite: Phaser.Sprite;
 
-    public constructor(play: Play, x: number, y: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | PIXI.Texture, frame?: string | number)
+    public constructor(play: Play)
     {
         super(play);
 
         this.walking = false;
-        this.walkingSprite = new Phaser.Sprite(play.game, x, y, 'babyanim');
+        this.walkingSprite = new Phaser.Sprite(play.game, 1200, 66*SimpleGame.SCALE, 'babyanim');
         this.walkingSprite.scale.setTo(SimpleGame.SCALE);
         this.walkingSprite.anchor.x = 0.5;
         this.walkingSprite.anchor.y = 1;
         this.walkingSprite.animations.add('walk');
         this.walkingSprite.visible = false;
         this.setSprite(
-            new Phaser.Sprite(play.game, x, y, key, frame)
+            new Phaser.Sprite(play.game, 1200, 66*SimpleGame.SCALE, 'baby')
         );
         this.sprite.anchor.x = 0.5;
         this.sprite.anchor.y = 1;

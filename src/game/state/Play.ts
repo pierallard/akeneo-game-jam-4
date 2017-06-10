@@ -1,14 +1,13 @@
 
 import {Baby} from "../Baby";
 import {Inventory} from "../Inventory";
-import {Action} from "../actions/Action";
 import {VerbRepository} from "../verbs/VerbRepository";
 import {MoveAction} from "../actions/MoveAction";
 import {Verb} from "../verbs/Verb";
 import {InventoryObject} from "../inventory_objects/InventoryObject";
 import {Steak} from "../inventory_objects/Steak";
 import {Lexomil} from "../inventory_objects/Lexomil";
-import {MainGroup} from "../groups/MainGroup";
+import {Scene} from "../groups/Scene";
 import {Sentence} from "../Sentence";
 import {GarageDoor} from "../scene_objects/GarageDoor";
 import {BedroomDoor} from "../scene_objects/BedroomDoor";
@@ -31,10 +30,11 @@ export default class Play extends Phaser.State
     private baby: Baby;
     private inventory: Inventory;
     private verbRepository: VerbRepository;
-    private mainGroup: MainGroup;
+    private scene: Scene;
     private cursor: Cursor;
     private sentence: Sentence;
     private actionManager: ActionManager;
+    private debug: boolean;
 
     public constructor()
     {
@@ -42,37 +42,39 @@ export default class Play extends Phaser.State
 
         this.inventory = new Inventory(this);
         this.actionManager = new ActionManager(this);
+        this.debug = false;
     }
 
     public create()
     {
-        this.mainGroup = new MainGroup(this);
-        this.game.add.existing(this.mainGroup);
+        this.scene = new Scene(this);
+        this.game.add.existing(this.scene);
 
         this.inventory.create();
-        this.inventory.render();
 
         this.sentence = new Sentence(this.game);
 
         this.verbRepository = new VerbRepository(this);
         this.verbRepository.render();
 
-        this.mainGroup.createBackground();
+        this.scene.createBackground();
 
         this.addBackground();
 
-        this.mainGroup.createObjects();
+        this.scene.createObjects();
         this.createInventoryObjects();
 
-        this.baby = new Baby(this, 1200, 66*SimpleGame.SCALE, 'baby');
-        this.mainGroup.addMultiple(this.baby.getSprites());
+        this.baby = new Baby(this);
+        this.scene.addMultiple(this.baby.getSprites());
 
-        this.mainGroup.createObjectSecond();
+        this.scene.createObjectSecond();
 
         this.cursor = new Cursor(this);
 
-        // (<GarageDoor> this.mainGroup.getObject(GarageDoor.IDENTIFIER)).doOpen();
-        // (<BedroomDoor> this.mainGroup.getObject(BedroomDoor.IDENTIFIER)).doOpen();
+        if (this.debug) {
+            (<GarageDoor> this.scene.getObject(GarageDoor.IDENTIFIER)).doOpen();
+            (<BedroomDoor> this.scene.getObject(BedroomDoor.IDENTIFIER)).doOpen();
+        }
     }
 
     public update()
@@ -101,7 +103,7 @@ export default class Play extends Phaser.State
     }
 
     private addBackground() {
-        let sprite = this.game.add.sprite(0, 0, 'background', null, this.mainGroup);
+        let sprite = this.game.add.sprite(0, 0, 'background', null, this.scene);
         sprite.scale.setTo(SimpleGame.SCALE);
         sprite.inputEnabled = true;
         sprite.events.onInputDown.add(this.move, this);
@@ -136,13 +138,15 @@ export default class Play extends Phaser.State
     }
 
     public render() {
-        // this.game.debug.text('mainGroup.x = ' + this.mainGroup.x, 0, 15);
-        // this.game.debug.text('action : ' + this.actions.map(function (action) { return action.debugText(); }).join(', '), 0, 30);
-        // this.game.debug.text('Inventory : ' + ((null !== this.inventoryObject) ? this.inventoryObject.getIdentifier() : 'null'), 0, 45);
+        if (this.debug) {
+            this.game.debug.text('mainGroup.x = ' + this.scene.x, 0, 15);
+            this.game.debug.text('action : ' + this.getActionManager().getActions().map(function (action) { return action.debugText(); }).join(', '), 0, 30);
+            this.game.debug.text('Inventory : ' + ((null !== this.getCursor().getInventoryObject()) ? this.getCursor().getInventoryObject().getIdentifier() : 'null'), 0, 45);
+        }
     }
 
-    getMainGroup(): MainGroup {
-        return this.mainGroup;
+    getMainGroup(): Scene {
+        return this.scene;
     }
 
     getSentence(): Sentence {

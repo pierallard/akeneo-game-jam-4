@@ -24,9 +24,7 @@ export class Inventory {
 
     public create() {
         this.inventoryGroup = this.play.game.add.group();
-    }
 
-    render() {
         for (let i = 0; i < COLUMNS * LINES; i++) {
             let position = Inventory.getPosition(i);
             let sprite = new Phaser.Sprite(this.play.game, position.x, position.y, 'inventory');

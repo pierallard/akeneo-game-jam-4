@@ -22,7 +22,7 @@ import {OutDoor} from "../scene_objects/OutDoor";
 import {Prise} from "../scene_objects/Prise";
 import {SimpleGame} from "../../app";
 
-export class MainGroup extends Phaser.Group
+export class Scene extends Phaser.Group
 {
     private play: Play;
     private clouds: Phaser.TileSprite;
