@@ -17,19 +17,19 @@ export class Fridge extends SceneObject {
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        if (null !== this.play_.getCursor().getInventoryObject()) {
+        if (null !== this.play.getCursor().getInventoryObject()) {
             return super.use(origin, pointer);
         }
 
         let actions: Array<Action> = [
-            new MoveAction(this.play_, pointer.position.x)
+            new MoveAction(this.play, pointer.position.x)
         ];
         if (this.open) {
-            actions.push(new UpdateAction(this.play_, this, 'fridgeClose'));
-            actions.push(new DisappearAction(this.play_, 'coldMeat'));
+            actions.push(new UpdateAction(this.play, this, 'fridgeClose'));
+            actions.push(new DisappearAction(this.play, 'coldMeat'));
         } else {
-            actions.push(new UpdateAction(this.play_, this, 'fridgeOpen'));
-            actions.push(new AppearAction(this.play_, 'coldMeat'));
+            actions.push(new UpdateAction(this.play, this, 'fridgeOpen'));
+            actions.push(new AppearAction(this.play, 'coldMeat'));
         }
         this.open = !this.open;
 
@@ -39,7 +39,7 @@ export class Fridge extends SceneObject {
     protected lookAt(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
         if (this.open) {
             return [
-                new TalkAction(this.play_, this.play_.getBaby(), "Il fait froid la d'dans"),
+                new TalkAction(this.play, this.play.getBaby(), "Il fait froid la d'dans"),
             ];
         } else {
             return super.lookAt(origin, pointer);

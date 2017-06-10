@@ -8,7 +8,8 @@ const COLUMNS: number = 4;
 const LINES: number = 2;
 
 export class Inventory {
-    private items: Array<Phaser.Sprite>;
+    private inventoryGroup: Phaser.Group;
+    private items: Array<InventoryObject>;
     private play: Play;
     private table: number;
     private page: number;
@@ -21,15 +22,19 @@ export class Inventory {
         this.page = 0;
     }
 
+    public create() {
+        this.inventoryGroup = this.play.game.add.group();
+    }
+
     render() {
         for (let i = 0; i < COLUMNS * LINES; i++) {
-            let position = this.getPosition(i);
+            let position = Inventory.getPosition(i);
             let sprite = new Phaser.Sprite(this.play.game, position.x, position.y, 'inventory');
             sprite.scale.setTo(SimpleGame.SCALE);
             sprite.anchor.setTo(0.5);
 
             this.play.add.existing(sprite);
-            this.play.getInventoryGroup().add(sprite);
+            this.inventoryGroup.add(sprite);
         }
         let top = new Phaser.Sprite(this.play.game, SimpleGame.WIDTH - COLUMNS*INVENTORY_SIZE, SimpleGame.HEIGHT - INVENTORY_SIZE, 'arrow_up');
         top.scale.setTo(SimpleGame.SCALE);
@@ -61,15 +66,19 @@ export class Inventory {
         }
     }
 
-    addItem(identifier: string) {
-        let position = this.getPosition(this.items.length);
-        let sprite = this.getSprite(identifier);
-        if (undefined === sprite) {
+    addObject(object: InventoryObject) {
+        object.hide();
+        this.items.push(object);
+    }
+
+    activeItem(identifier: string) {
+        let position = Inventory.getPosition(this.items.length);
+        let inventoryObject = this.getInventoryObject(identifier);
+        if (undefined === inventoryObject) {
             console.log('No sprite "' + identifier + '" found !');
         }
-        sprite.visible = true;
-        sprite.position.setTo(position.x, position.y);
-        this.items.push(sprite);
+        inventoryObject.display();
+        inventoryObject.setPosition(position.x, position.y);
         this.page = Math.floor((this.items.length - 1) / (COLUMNS * LINES));
         this.update();
     }
@@ -87,19 +96,19 @@ export class Inventory {
     }
 
     update () {
-        this.items.forEach(function (item, i) {
+        this.items.forEach(function (item: InventoryObject, i) {
             if (Math.floor(i / (COLUMNS * LINES)) === this.page) {
-                let position = this.getPosition(i);
-                item.position.setTo(position.x, position.y);
-                item.visible = true;
+                let position = Inventory.getPosition(i);
+                item.setPosition(position.x, position.y);
+                item.display();
             }
             else {
-                item.visible = false;
+                item.hide();
             }
         }.bind(this))
     }
 
-    getPosition(i: number) {
+    static getPosition(i: number) {
         let x = i % (COLUMNS * LINES) % COLUMNS;
         let y = Math.floor(i % (COLUMNS * LINES) / COLUMNS);
 
@@ -109,14 +118,14 @@ export class Inventory {
         );
     }
 
-    getSprite(identifier: string): InventoryObject {
-        for (let i = 0; i< this.play.getInventoryGroup().children.length; i++) {
-            if (typeof this.play.getInventoryGroup().children[i]['getIdentifier'] == 'function') {
-                let object = <InventoryObject> this.play.getInventoryGroup().children[i];
-                if (object.getIdentifier() === identifier) {
-                    return object;
-                }
+    getInventoryObject(identifier: string): InventoryObject {
+        for (let i = 0; i < this.items.length; i++) {
+            let object = this.items[i];
+            if (object.getIdentifier() === identifier) {
+                return object;
             }
         }
+
+        return null;
     }
 }

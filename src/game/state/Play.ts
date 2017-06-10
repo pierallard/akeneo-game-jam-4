@@ -32,7 +32,6 @@ export default class Play extends Phaser.State
     private inventory: Inventory;
     private verbRepository: VerbRepository;
     private mainGroup: MainGroup;
-    private inventoryGroup: Phaser.Group;
     private cursor: Cursor;
     private sentence: Sentence;
     private actionManager: ActionManager;
@@ -50,7 +49,7 @@ export default class Play extends Phaser.State
         this.mainGroup = new MainGroup(this);
         this.game.add.existing(this.mainGroup);
 
-        this.inventoryGroup = this.game.add.group();
+        this.inventory.create();
         this.inventory.render();
 
         this.sentence = new Sentence(this.game);
@@ -66,7 +65,7 @@ export default class Play extends Phaser.State
         this.createInventoryObjects();
 
         this.baby = new Baby(this, 1200, 66*SimpleGame.SCALE, 'baby');
-        this.mainGroup.add(this.baby);
+        this.mainGroup.addMultiple(this.baby.getSprites());
 
         this.mainGroup.createObjectSecond();
 
@@ -83,7 +82,7 @@ export default class Play extends Phaser.State
 
     }
 
-    getBaby() {
+    getBaby(): Baby {
         return this.baby;
     }
 
@@ -109,31 +108,31 @@ export default class Play extends Phaser.State
     }
 
     private createInventoryObjects() {
-        this.inventoryGroup.add(new InventoryObject(this, 'icesteak', 'le steak surgele', 'Un steak surgele'));
-        this.inventoryGroup.add(new Steak(this));
-        this.inventoryGroup.add(new Lexomil(this));
-        this.inventoryGroup.add(new Battery(this));
-        this.inventoryGroup.add(new Lamp(this));
-        this.inventoryGroup.add(new BouteilleAlcool(this));
-        this.inventoryGroup.add(new ZippoSec(this));
-        this.inventoryGroup.add(new Tabac(this));
-        this.inventoryGroup.add(new Cannabis(this));
-        this.inventoryGroup.add(new TabacBeuh(this));
-        this.inventoryGroup.add(new Feuilles(this));
-        this.inventoryGroup.add(new Rallonge(this));
-        this.inventoryGroup.add(new Couteau(this));
+        this.inventory.addObject(new InventoryObject(this, 'icesteak', 'le steak surgele', 'Un steak surgele'));
+        this.inventory.addObject(new Steak(this));
+        this.inventory.addObject(new Lexomil(this));
+        this.inventory.addObject(new Battery(this));
+        this.inventory.addObject(new Lamp(this));
+        this.inventory.addObject(new BouteilleAlcool(this));
+        this.inventory.addObject(new ZippoSec(this));
+        this.inventory.addObject(new Tabac(this));
+        this.inventory.addObject(new Cannabis(this));
+        this.inventory.addObject(new TabacBeuh(this));
+        this.inventory.addObject(new Feuilles(this));
+        this.inventory.addObject(new Rallonge(this));
+        this.inventory.addObject(new Couteau(this));
 
-        this.inventoryGroup.add(new InventoryObject(this, 'bedo', "le bedo", "Y'a plus qu'a allumer!"));
-        this.inventoryGroup.add(new InventoryObject(this, 'steaklexomil', 'le steaknifere', 'Voila qui pourrait endormir un cheval'));
-        this.inventoryGroup.add(new InventoryObject(this, 'engrais', "de l'engrais", '"Garder a portee des enfants". Perdu!'));
-        this.inventoryGroup.add(new InventoryObject(this, 'gode', 'le masseur de visage', "C'est le jouet de papa, ca vibre"));
-        this.inventoryGroup.add(new InventoryObject(this, 'escabeauInventory', "l'escabeau", "Je suis le roi du monde!"));
-        this.inventoryGroup.add(new InventoryObject(this, 'perceuse', 'la perceuse', "Des p'tits trous, des p'tits trous!"));
-        this.inventoryGroup.add(new InventoryObject(this, 'sachet', 'le sachet', "On dirait des graines!"));
-        this.inventoryGroup.add(new InventoryObject(this, 'lampePiles', 'la lampe UV', "J'ai perdu mes deux yeux"));
-        this.inventoryGroup.add(new InventoryObject(this, 'dvdporno', 'le DVD', '"Hairy mature gays"'));
-        this.inventoryGroup.add(new InventoryObject(this, 'zippo', 'le zippo', "Aie!"));
-        this.inventoryGroup.add(new InventoryObject(this, 'rallongecoupee', 'les fils electriques', "Y'a plus qu'a brancher!"));
+        this.inventory.addObject(new InventoryObject(this, 'bedo', "le bedo", "Y'a plus qu'a allumer!"));
+        this.inventory.addObject(new InventoryObject(this, 'steaklexomil', 'le steaknifere', 'Voila qui pourrait endormir un cheval'));
+        this.inventory.addObject(new InventoryObject(this, 'engrais', "de l'engrais", '"Garder a portee des enfants". Perdu!'));
+        this.inventory.addObject(new InventoryObject(this, 'gode', 'le masseur de visage', "C'est le jouet de papa, ca vibre"));
+        this.inventory.addObject(new InventoryObject(this, 'escabeauInventory', "l'escabeau", "Je suis le roi du monde!"));
+        this.inventory.addObject(new InventoryObject(this, 'perceuse', 'la perceuse', "Des p'tits trous, des p'tits trous!"));
+        this.inventory.addObject(new InventoryObject(this, 'sachet', 'le sachet', "On dirait des graines!"));
+        this.inventory.addObject(new InventoryObject(this, 'lampePiles', 'la lampe UV', "J'ai perdu mes deux yeux"));
+        this.inventory.addObject(new InventoryObject(this, 'dvdporno', 'le DVD', '"Hairy mature gays"'));
+        this.inventory.addObject(new InventoryObject(this, 'zippo', 'le zippo', "Aie!"));
+        this.inventory.addObject(new InventoryObject(this, 'rallongecoupee', 'les fils electriques', "Y'a plus qu'a brancher!"));
     }
 
     public render() {
@@ -156,10 +155,6 @@ export default class Play extends Phaser.State
 
     getActionManager(): ActionManager {
         return this.actionManager;
-    }
-
-    getInventoryGroup(): Phaser.Group {
-        return this.inventoryGroup;
     }
 
     getCursor(): Cursor {

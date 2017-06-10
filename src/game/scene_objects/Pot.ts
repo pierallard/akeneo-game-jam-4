@@ -26,19 +26,19 @@ export class Pot extends SceneObject
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        let object = this.play_.getCursor().getInventoryObject();
+        let object = this.play.getCursor().getInventoryObject();
         if (null !== object) {
             if (!this.graines) {
                 if (object.getIdentifier() === 'sachet') {
                     this.graines = true;
 
                     return [
-                        new MoveAction(this.play_, pointer.position.x),
-                        new RemoveInventoryAction(this.play_, object),
-                        new UpdateAction(this.play_, this, 'potgraine'),
+                        new MoveAction(this.play, pointer.position.x),
+                        new RemoveInventoryAction(this.play, object),
+                        new UpdateAction(this.play, this, 'potgraine'),
                     ];
                 } else {
-                    return [new TalkAction(this.play_, this.play_.getBaby(), "Il faudrait planter un truc")];
+                    return [new TalkAction(this.play, this.play.getBaby(), "Il faudrait planter un truc")];
                 }
             } else {
                 if (object.getIdentifier() === 'lampePiles' || object.getIdentifier() === 'engrais') {
@@ -47,44 +47,44 @@ export class Pot extends SceneObject
                         this.lampe = true;
 
                         result = result.concat([
-                            new MoveAction(this.play_, pointer.position.x),
-                            new RemoveInventoryAction(this.play_, object),
+                            new MoveAction(this.play, pointer.position.x),
+                            new RemoveInventoryAction(this.play, object),
                         ]);
 
                         if (this.engrais) {
                             return result.concat([
-                                new AppearAction(this.play_, 'potfull'),
-                                new DisappearAction(this.play_, this.getIdentifier()),
+                                new AppearAction(this.play, 'potfull'),
+                                new DisappearAction(this.play, this.getIdentifier()),
                             ]);
                         } else {
                             return result.concat([
-                                new UpdateAction(this.play_, this, 'potpousse'),
+                                new UpdateAction(this.play, this, 'potpousse'),
                             ])
                         }
                     } else if (object.getIdentifier() === 'engrais') {
                         this.engrais = true;
 
                         result = result.concat([
-                            new MoveAction(this.play_, pointer.position.x),
-                            new RemoveInventoryAction(this.play_, object),
+                            new MoveAction(this.play, pointer.position.x),
+                            new RemoveInventoryAction(this.play, object),
 
                         ]);
 
                         if (this.lampe) {
                             return result.concat([
-                                new AppearAction(this.play_, 'potfull'),
-                                new DisappearAction(this.play_, this.getIdentifier()),
+                                new AppearAction(this.play, 'potfull'),
+                                new DisappearAction(this.play, this.getIdentifier()),
                             ]);
                         } else {
                             return result.concat([
-                                new UpdateAction(this.play_, this, 'potpousse'),
+                                new UpdateAction(this.play, this, 'potpousse'),
                             ])
                         }
                     } else {
-                        return [new TalkAction(this.play_, this.play_.getBaby(), "Tu crois que ca va aider a faire grandir la plante?")]
+                        return [new TalkAction(this.play, this.play.getBaby(), "Tu crois que ca va aider a faire grandir la plante?")]
                     }
                 } else {
-                    return [new TalkAction(this.play_, this.play_.getBaby(), "Maintenant, faut la faire grandir!")]
+                    return [new TalkAction(this.play, this.play.getBaby(), "Maintenant, faut la faire grandir!")]
                 }
             }
         }

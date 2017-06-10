@@ -15,22 +15,22 @@ export class Microwave extends SceneObject
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        let inventoryObject = this.play_.getCursor().getInventoryObject();
+        let inventoryObject = this.play.getCursor().getInventoryObject();
 
         if (null !== inventoryObject) {
             if (inventoryObject.getIdentifier() === 'icesteak') {
                 return [
-                    new MoveAction(this.play_, pointer.position.x),
-                    new RemoveInventoryAction(this.play_, inventoryObject),
-                    new AddInventoryAction(this.play_, 'steak'),
-                    new TalkAction(this.play_, this.play_.getBaby(), "Mmmh, on va se regaler...")
+                    new MoveAction(this.play, pointer.position.x),
+                    new RemoveInventoryAction(this.play, inventoryObject),
+                    new AddInventoryAction(this.play, 'steak'),
+                    new TalkAction(this.play, this.play.getBaby(), "Mmmh, on va se regaler...")
                 ];
             }
 
             return super.use(origin, pointer);
         }
         else {
-            return [new TalkAction(this.play_, this.play_.getBaby(), "Faut jamais faire tourner un micro-ondes a vide")];
+            return [new TalkAction(this.play, this.play.getBaby(), "Faut jamais faire tourner un micro-ondes a vide")];
         }
     }
 

@@ -13,7 +13,7 @@ export class AddInventoryAction extends Action {
     }
 
     execute(): boolean {
-        this.play.getInventory().addItem(this.objectIdentifier);
+        this.play.getInventory().activeItem(this.objectIdentifier);
 
         return true;
     }

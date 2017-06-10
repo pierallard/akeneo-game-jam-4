@@ -3,7 +3,7 @@ import Play from "../state/Play";
 import {Verb} from "../verbs/Verb";
 
 export class ActionManager {
-    private actions: Array<Action>
+    private actions: Array<Action>;
     private play: Play;
 
     constructor(play: Play) {

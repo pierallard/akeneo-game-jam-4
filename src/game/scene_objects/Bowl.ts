@@ -20,34 +20,34 @@ export class Bowl extends SceneObject {
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        let inventoryObject = this.play_.getCursor().getInventoryObject();
+        let inventoryObject = this.play.getCursor().getInventoryObject();
         if (null !== inventoryObject) {
             if (inventoryObject.getIdentifier() === 'steaklexomil') {
                 this.full = true;
-                let porteGarage = <GarageDoor> this.play_.getMainGroup().getObject(GarageDoor.IDENTIFIER);
+                let porteGarage = <GarageDoor> this.play.getMainGroup().getObject(GarageDoor.IDENTIFIER);
                 porteGarage.doOpen();
 
                 return [
-                    new TalkAction(this.play_, this.play_.getMainGroup().getObject(Dog.IDENTIFIER), 'Ouaf!'),
-                    new MoveAction(this.play_, origin.position.x - 612),
-                    new RemoveInventoryAction(this.play_, inventoryObject),
-                    new UpdateAction(this.play_, this, 'gamellePleine'),
-                    new MoveAction(this.play_, origin.position.x - 300),
-                    new MoveAction(this.play_, origin.position.x - 320),
-                    new TalkAction(this.play_, this.play_.getMainGroup().getObject(Dog.IDENTIFIER), 'Ouaf!'),
-                    new TalkAction(this.play_, this.play_.getMainGroup().getObject(Dog.IDENTIFIER), 'ouaf ...'),
-                    new TalkAction(this.play_, this.play_.getMainGroup().getObject(Dog.IDENTIFIER), '...'),
-                    new TalkAction(this.play_, this.play_.getMainGroup().getObject(Dog.IDENTIFIER), 'zzzzzzz'),
-                    new UpdateAction(this.play_, this.play_.getMainGroup().getObject(Dog.IDENTIFIER), 'dogsleep'),
-                    new TalkAction(this.play_, this.play_.getMainGroup().getObject(Dog.IDENTIFIER), 'zzzzzzzzzzz'),
-                    new TalkAction(this.play_, this.play_.getBaby(), 'Hahahaha!')
+                    new TalkAction(this.play, this.play.getMainGroup().getObject(Dog.IDENTIFIER), 'Ouaf!'),
+                    new MoveAction(this.play, origin.getPosition().x - 612),
+                    new RemoveInventoryAction(this.play, inventoryObject),
+                    new UpdateAction(this.play, this, 'gamellePleine'),
+                    new MoveAction(this.play, origin.getPosition().x - 300),
+                    new MoveAction(this.play, origin.getPosition().x - 320),
+                    new TalkAction(this.play, this.play.getMainGroup().getObject(Dog.IDENTIFIER), 'Ouaf!'),
+                    new TalkAction(this.play, this.play.getMainGroup().getObject(Dog.IDENTIFIER), 'ouaf ...'),
+                    new TalkAction(this.play, this.play.getMainGroup().getObject(Dog.IDENTIFIER), '...'),
+                    new TalkAction(this.play, this.play.getMainGroup().getObject(Dog.IDENTIFIER), 'zzzzzzz'),
+                    new UpdateAction(this.play, this.play.getMainGroup().getObject(Dog.IDENTIFIER), 'dogsleep'),
+                    new TalkAction(this.play, this.play.getMainGroup().getObject(Dog.IDENTIFIER), 'zzzzzzzzzzz'),
+                    new TalkAction(this.play, this.play.getBaby(), 'Hahahaha!')
                 ];
             }
             if (inventoryObject.getIdentifier() === 'icesteak') {
-                return [new TalkAction(this.play_, this.play_.getBaby(), "Je suis pas un barbare il va se peter les dents")];
+                return [new TalkAction(this.play, this.play.getBaby(), "Je suis pas un barbare il va se peter les dents")];
             }
             if (inventoryObject.getIdentifier() === Steak.IDENTIFIER) {
-                return [new TalkAction(this.play_, this.play_.getBaby(), "Je pense qu'il manque l'ingredient du chef")];
+                return [new TalkAction(this.play, this.play.getBaby(), "Je pense qu'il manque l'ingredient du chef")];
             }
         }
 
@@ -57,11 +57,11 @@ export class Bowl extends SceneObject {
     protected lookAt(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
         if (this.full) {
             return [
-                new TalkAction(this.play_, this.play_.getBaby(), "J'ai pas tres envie de gouter, tiens"),
+                new TalkAction(this.play, this.play.getBaby(), "J'ai pas tres envie de gouter, tiens"),
             ];
         } else {
             return [
-                new TalkAction(this.play_, this.play_.getBaby(), "Je devrais donner a manger au chien avant qu'il me mange"),
+                new TalkAction(this.play, this.play.getBaby(), "Je devrais donner a manger au chien avant qu'il me mange"),
             ];
         }
     }

@@ -5,7 +5,6 @@ import {TakeAction} from "../actions/TakeAction";
 import Play from "../state/Play";
 import {SceneObject} from "./SceneObject";
 import {Action} from "../actions/Action";
-import {SimpleGame} from "../../app";
 
 export class PickableObject extends SceneObject
 {
@@ -17,10 +16,11 @@ export class PickableObject extends SceneObject
         super(play, identifier, x, y, key);
 
         this.french = french;
-        this.scale.setTo(SimpleGame.SCALE);
-        this.inputEnabled = true;
         this.generatedObjectIdentifier = generatedObjectIdentifier;
-        this.visible = display;
+
+        if (!display) {
+            this.hide();
+        }
     }
 
     public getGeneratedObjectIdentifier(): string {
@@ -29,8 +29,8 @@ export class PickableObject extends SceneObject
 
     protected pickUp(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
         return [
-            new MoveAction(this.play_, pointer.position.x),
-            new TakeAction(this.play_, <PickableObject> origin),
+            new MoveAction(this.play, pointer.position.x),
+            new TakeAction(this.play, <PickableObject> origin),
         ];
     }
 

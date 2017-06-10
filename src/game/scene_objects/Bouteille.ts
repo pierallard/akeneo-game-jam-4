@@ -21,20 +21,20 @@ export class Bouteille extends SceneObject {
     }
 
     protected pickUp(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        let father = <Father> this.play_.getMainGroup().getObject(Father.IDENTIFIER);
+        let father = <Father> this.play.getMainGroup().getObject(Father.IDENTIFIER);
         if (!father.isBusy()) {
             return [
-                new MoveAction(this.play_, pointer.position.x),
-                new TalkAction(this.play_, father, "Touche pas a ca fils de pute!"),
-                new TalkAction(this.play_, this.play_.getBaby(), "Faudrait que je detourne son attention...")
+                new MoveAction(this.play, pointer.position.x),
+                new TalkAction(this.play, father, "Touche pas a ca fils de pute!"),
+                new TalkAction(this.play, this.play.getBaby(), "Faudrait que je detourne son attention...")
             ];
         }
         else {
             return [
-                new MoveAction(this.play_, pointer.position.x),
-                new DisappearAction(this.play_, Bouteille.IDENTIFIER),
-                new AddInventoryAction(this.play_, BouteilleAlcool.IDENTIFIER),
-                new TalkAction(this.play_, this.play_.getBaby(), "Fais moi penser a gouter!")
+                new MoveAction(this.play, pointer.position.x),
+                new DisappearAction(this.play, Bouteille.IDENTIFIER),
+                new AddInventoryAction(this.play, BouteilleAlcool.IDENTIFIER),
+                new TalkAction(this.play, this.play.getBaby(), "Fais moi penser a gouter!")
             ];
         }
     }

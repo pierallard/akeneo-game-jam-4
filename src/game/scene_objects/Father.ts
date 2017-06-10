@@ -10,7 +10,7 @@ export class Father extends SceneObject {
         super(play, Father.IDENTIFIER, 400*SimpleGame.SCALE, 65*SimpleGame.SCALE, 'father');
 
         this.busy = false;
-        this.anchor.setTo(0, 1);
+        this.sprite.anchor.setTo(0, 1);
     }
 
     toFrench(): string {
@@ -19,7 +19,7 @@ export class Father extends SceneObject {
 
     setBusy() {
         this.busy = true;
-        this.loadTexture('fatherBusy');
+        this.sprite.loadTexture('fatherBusy');
     }
 
     static get IDENTIFIER()

@@ -15,11 +15,11 @@ export class Feuilles extends InventoryObject
     }
 
     protected mixObjects(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        if (this.play_.getCursor().getInventoryObject().getIdentifier() === TabacBeuh.IDENTIFIER) {
-            this.play_.getInventory().addItem('bedo');
-            this.play_.getInventory().removeItem(this);
-            this.play_.getInventory().removeItem(this.play_.getCursor().getInventoryObject());
-            this.play_.getCursor().detach();
+        if (this.play.getCursor().getInventoryObject().getIdentifier() === TabacBeuh.IDENTIFIER) {
+            this.play.getInventory().activeItem('bedo');
+            this.play.getInventory().removeItem(this);
+            this.play.getInventory().removeItem(this.play.getCursor().getInventoryObject());
+            this.play.getCursor().detach();
 
             return [];
         }

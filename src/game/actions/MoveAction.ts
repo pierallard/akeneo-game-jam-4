@@ -19,7 +19,7 @@ export class MoveAction extends Action {
     }
 
     execute(): boolean {
-        let babyPosition = this.play.getBaby().worldPosition.x;
+        let babyPosition = this.play.getBaby().getWorldPosition().x;
         if (babyPosition <= LIMIT_CAMERA) {
             let diff = LIMIT_CAMERA - babyPosition;
             if (this.play.getMainGroup().x + diff > MoveAction.leftBorder) {

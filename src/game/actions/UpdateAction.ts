@@ -18,7 +18,6 @@ export class UpdateAction extends Action
 
     execute(): boolean {
         this.origin.loadTexture(this.newTexture);
-        this.origin.update();
 
         return true;
     }

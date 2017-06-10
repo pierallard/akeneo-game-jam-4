@@ -22,19 +22,19 @@ export class Chain extends SceneObject {
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        let object = this.play_.getCursor().getInventoryObject();
+        let object = this.play.getCursor().getInventoryObject();
         if (null !== object && object.getIdentifier() === 'escabeauInventory') {
             this.loadTexture('chaineOpen');
-            let porteChambre = <BedroomDoor> this.play_.getMainGroup().getObject(BedroomDoor.IDENTIFIER);
+            let porteChambre = <BedroomDoor> this.play.getMainGroup().getObject(BedroomDoor.IDENTIFIER);
             porteChambre.doOpen();
 
 
             return [
-                new MoveAction(this.play_, origin.position.x - 1100),
-                new RemoveInventoryAction(this.play_, object)
+                new MoveAction(this.play, origin.getPosition().x - 1100),
+                new RemoveInventoryAction(this.play, object)
             ];
         }
 
-        return [new TalkAction(this.play_, this.play_.getBaby(), "C'est beaucoup trop haut !")];
+        return [new TalkAction(this.play, this.play.getBaby(), "C'est beaucoup trop haut !")];
     }
 }

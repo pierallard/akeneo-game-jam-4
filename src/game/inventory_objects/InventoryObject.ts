@@ -15,9 +15,8 @@ export class InventoryObject extends SceneObject
 
         this.french = french;
         this.text = text;
-        this.play_ = play;
-        this.anchor.setTo(0.5);
-        this.visible = false;
+        this.sprite.anchor.setTo(0.5);
+        this.hide();
         this.shouldDetach = false;
     }
 
@@ -28,11 +27,11 @@ export class InventoryObject extends SceneObject
     }
 
     protected pickUp(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        return [new TalkAction(this.play_, this.play_.getBaby(), "MAIS JE L'AI DEJA, BANANE")];
+        return [new TalkAction(this.play, this.play.getBaby(), "MAIS JE L'AI DEJA, BANANE")];
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        let attachedObject = this.play_.getCursor().getInventoryObject();
+        let attachedObject = this.play.getCursor().getInventoryObject();
         if (null === attachedObject) {
             this.attach();
             return [];
@@ -44,7 +43,7 @@ export class InventoryObject extends SceneObject
 
     protected lookAt(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
         if (null !== this.text) {
-            return [new TalkAction(this.play_, this.play_.getBaby(), this.text)];
+            return [new TalkAction(this.play, this.play.getBaby(), this.text)];
         }
 
         return super.lookAt(origin, pointer);
@@ -52,18 +51,22 @@ export class InventoryObject extends SceneObject
 
     private attach()
     {
-        this.inputEnabled = false;
-        this.oldPosition = new Phaser.Point(this.position.x, this.position.y);
-        this.play_.getCursor().attach(this);
+        this.sprite.inputEnabled = false;
+        this.oldPosition = new Phaser.Point(this.sprite.position.x, this.sprite.position.y);
+        this.play.getCursor().attach(this);
     }
 
     detach() {
-        this.position.setTo(this.oldPosition.x, this.oldPosition.y);
-        this.inputEnabled = true;
+        this.sprite.position.setTo(this.oldPosition.x, this.oldPosition.y);
+        this.sprite.inputEnabled = true;
+    }
+
+    updatePosition(x: number, y: number) {
+        this.sprite.position.setTo(x, y);
     }
 
     protected mixObjects(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        this.play_.getCursor().detach();
+        this.play.getCursor().detach();
         return super.use(origin, pointer);
     }
 
@@ -73,5 +76,9 @@ export class InventoryObject extends SceneObject
         }
 
         return super.toFrench();
+    }
+
+    setPosition(x: number, y: number) {
+        this.sprite.position.setTo(x, y);
     }
 }

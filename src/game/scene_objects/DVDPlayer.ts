@@ -17,14 +17,14 @@ export class DVDPlayer extends SceneObject {
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        let object = this.play_.getCursor().getInventoryObject();
+        let object = this.play.getCursor().getInventoryObject();
         if (null !== object && object.getIdentifier() === 'dvdporno') {
-            let father = <Father> this.play_.getMainGroup().getObject(Father.IDENTIFIER);
+            let father = <Father> this.play.getMainGroup().getObject(Father.IDENTIFIER);
             father.setBusy();
 
             return [
-                new MoveAction(this.play_, pointer.position.x),
-                new RemoveInventoryAction(this.play_, object)
+                new MoveAction(this.play, pointer.position.x),
+                new RemoveInventoryAction(this.play, object)
             ]
         }
         return super.use(origin, pointer);
