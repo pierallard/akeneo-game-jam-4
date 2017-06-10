@@ -2,15 +2,12 @@
 import {Baby} from "../Baby";
 import {Inventory} from "../Inventory";
 import {VerbRepository} from "../verbs/VerbRepository";
-import {MoveAction} from "../actions/MoveAction";
-import {Verb} from "../verbs/Verb";
 import {Scene} from "../groups/Scene";
 import {Sentence} from "../Sentence";
 import {GarageDoor} from "../scene_objects/GarageDoor";
 import {BedroomDoor} from "../scene_objects/BedroomDoor";
 import {ActionManager} from "../actions/ActionManager";
 import {Cursor} from "../Cursor";
-import {SimpleGame} from "../../app";
 
 export default class Play extends Phaser.State
 {
@@ -23,8 +20,7 @@ export default class Play extends Phaser.State
     private actionManager: ActionManager;
     private debug: boolean;
 
-    public constructor()
-    {
+    public constructor() {
         super();
 
         this.inventory = new Inventory(this);
@@ -33,19 +29,13 @@ export default class Play extends Phaser.State
         this.debug = false;
     }
 
-    public create()
-    {
+    public create() {
         this.scene = new Scene(this);
-        this.game.add.existing(this.scene);
         this.inventory.create();
         this.sentence = new Sentence(this.game);
         this.verbRepository.create();
-        this.scene.createBackground();
-        this.addBackground();
-        this.scene.createObjects();
         this.baby = new Baby(this);
-        this.scene.addMultiple(this.baby.getSprites());
-        this.scene.createObjectSecond();
+        this.scene.createWithBaby(this.baby);
         this.cursor = new Cursor(this);
 
         if (this.debug) {
@@ -54,8 +44,7 @@ export default class Play extends Phaser.State
         }
     }
 
-    public update()
-    {
+    public update() {
         this.actionManager.execute();
         this.cursor.update();
         this.verbRepository.update();
@@ -71,19 +60,6 @@ export default class Play extends Phaser.State
 
     getCurrentVerb(): string {
         return this.verbRepository.getCurrentVerb().getName();
-    }
-
-    move(backgroundSprite: Phaser.Sprite, pointer: Phaser.Pointer) {
-        if (this.getCurrentVerb() === Verb.WALK_TO) {
-            this.actionManager.addAction(new MoveAction(this, pointer.position.x));
-        }
-    }
-
-    private addBackground() {
-        let sprite = this.game.add.sprite(0, 0, 'background', null, this.scene);
-        sprite.scale.setTo(SimpleGame.SCALE);
-        sprite.inputEnabled = true;
-        sprite.events.onInputDown.add(this.move, this);
     }
 
     public render() {

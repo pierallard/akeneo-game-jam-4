@@ -21,6 +21,8 @@ import {Mother} from "../scene_objects/Mother";
 import {OutDoor} from "../scene_objects/OutDoor";
 import {Prise} from "../scene_objects/Prise";
 import {SimpleGame} from "../../app";
+import {Baby} from "../Baby";
+import {Verb} from "../verbs/Verb";
 
 export class Scene extends Phaser.Group
 {
@@ -34,6 +36,27 @@ export class Scene extends Phaser.Group
         this.play = play;
         this.x = MoveAction.getLimitsCenter();
         this.objects = [];
+        this.play.game.add.existing(this);
+    }
+
+    createWithBaby(baby: Baby) {
+        this.createClouds();
+
+        let sprite = this.game.add.sprite(0, 0, 'background', null, this);
+        sprite.scale.setTo(SimpleGame.SCALE);
+        sprite.inputEnabled = true;
+        sprite.events.onInputDown.add(this.move, this);
+
+        this.createObjects();
+
+        this.addMultiple(baby.getSprites());
+        this.createObjectSecond();
+    }
+
+    move(ignore: Phaser.Sprite, pointer: Phaser.Pointer) {
+        if (this.play.getVerbRepository().getCurrentVerb().getName() === Verb.WALK_TO) {
+            this.play.getActionManager().addAction(new MoveAction(this.play, pointer.position.x));
+        }
     }
 
     update() {
@@ -42,18 +65,18 @@ export class Scene extends Phaser.Group
         this.clouds.x = (this.clouds.x + 0.2) % (169*SimpleGame.SCALE);
     }
 
-    createBackground() {
+    private createClouds() {
         this.clouds = new Phaser.TileSprite(this.play.game, 0, 48, 590*SimpleGame.SCALE, 54, 'clouds');
         this.clouds.scale = new Phaser.Point(SimpleGame.SCALE, SimpleGame.SCALE);
         this.add(this.clouds);
     }
 
-    addObject(object: SceneObject) {
+    private addObject(object: SceneObject) {
         this.add(object.getSprite());
         this.objects.push(object);
     }
 
-    createObjects() {
+    private createObjects() {
         this.addObject(new Prise(this.play));
         this.addObject(new Fridge(this.play));
         this.addObject(new Cupboard(this.play));
@@ -87,7 +110,7 @@ export class Scene extends Phaser.Group
         this.addObject(new PickableObject(this.play, 'dvdporno', 'le DVD', 500*SimpleGame.SCALE, 25*SimpleGame.SCALE, 'dvdporno', 'dvdporno'));
     }
 
-    createObjectSecond() {
+    private createObjectSecond() {
         this.addObject(new DVDPlayer(this.play));
         let walls = new Phaser.Sprite(this.play.game, 0, 0, 'backgroundwalls');
         walls.scale.set(SimpleGame.SCALE);
