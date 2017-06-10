@@ -32,7 +32,7 @@ export class Prise extends SceneObject {
             }
             if (object.getIdentifier() === 'rallongecoupee') {
                 this.loadTexture('prise');
-                let four = <Four> this.play.getMainGroup().getObject(Four.IDENTIFIER);
+                let four = <Four> this.play.getScene().getObject(Four.IDENTIFIER);
                 four.doOn();
 
                 return [

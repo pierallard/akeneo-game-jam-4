@@ -24,7 +24,7 @@ export class OutDoor extends SceneObject {
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
         let object = this.play.getCursor().getInventoryObject();
         if (null !== object && object.getIdentifier() === 'perceuse') {
-            let mother = <Mother> this.play.getMainGroup().getObject(Mother.IDENTIFIER);
+            let mother = <Mother> this.play.getScene().getObject(Mother.IDENTIFIER);
             if (mother.isDefoncee()) {
                 this.doOpen();
 
@@ -58,8 +58,8 @@ export class OutDoor extends SceneObject {
         return [
             new MoveAction(this.play, pointer.position.x),
             new TalkAction(this.play, this.play.getBaby(), "Yeeeeha!"),
-            new TalkAction(this.play, this.play.getMainGroup().getObject(Father.IDENTIFIER), "Reviens ici, fils de pute!"),
-            new TalkAction(this.play, this.play.getMainGroup().getObject(Mother.IDENTIFIER), "MMm.. Kevin arrete tes conneriiiiies....")
+            new TalkAction(this.play, this.play.getScene().getObject(Father.IDENTIFIER), "Reviens ici, fils de pute!"),
+            new TalkAction(this.play, this.play.getScene().getObject(Mother.IDENTIFIER), "MMm.. Kevin arrete tes conneriiiiies....")
         ];
     }
 

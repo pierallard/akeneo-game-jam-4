@@ -24,22 +24,22 @@ export class Bowl extends SceneObject {
         if (null !== inventoryObject) {
             if (inventoryObject.getIdentifier() === 'steaklexomil') {
                 this.full = true;
-                let porteGarage = <GarageDoor> this.play.getMainGroup().getObject(GarageDoor.IDENTIFIER);
+                let porteGarage = <GarageDoor> this.play.getScene().getObject(GarageDoor.IDENTIFIER);
                 porteGarage.doOpen();
 
                 return [
-                    new TalkAction(this.play, this.play.getMainGroup().getObject(Dog.IDENTIFIER), 'Ouaf!'),
+                    new TalkAction(this.play, this.play.getScene().getObject(Dog.IDENTIFIER), 'Ouaf!'),
                     new MoveAction(this.play, origin.getPosition().x - 612),
                     new RemoveInventoryAction(this.play, inventoryObject),
                     new UpdateAction(this.play, this, 'gamellePleine'),
                     new MoveAction(this.play, origin.getPosition().x - 300),
                     new MoveAction(this.play, origin.getPosition().x - 320),
-                    new TalkAction(this.play, this.play.getMainGroup().getObject(Dog.IDENTIFIER), 'Ouaf!'),
-                    new TalkAction(this.play, this.play.getMainGroup().getObject(Dog.IDENTIFIER), 'ouaf ...'),
-                    new TalkAction(this.play, this.play.getMainGroup().getObject(Dog.IDENTIFIER), '...'),
-                    new TalkAction(this.play, this.play.getMainGroup().getObject(Dog.IDENTIFIER), 'zzzzzzz'),
-                    new UpdateAction(this.play, this.play.getMainGroup().getObject(Dog.IDENTIFIER), 'dogsleep'),
-                    new TalkAction(this.play, this.play.getMainGroup().getObject(Dog.IDENTIFIER), 'zzzzzzzzzzz'),
+                    new TalkAction(this.play, this.play.getScene().getObject(Dog.IDENTIFIER), 'Ouaf!'),
+                    new TalkAction(this.play, this.play.getScene().getObject(Dog.IDENTIFIER), 'ouaf ...'),
+                    new TalkAction(this.play, this.play.getScene().getObject(Dog.IDENTIFIER), '...'),
+                    new TalkAction(this.play, this.play.getScene().getObject(Dog.IDENTIFIER), 'zzzzzzz'),
+                    new UpdateAction(this.play, this.play.getScene().getObject(Dog.IDENTIFIER), 'dogsleep'),
+                    new TalkAction(this.play, this.play.getScene().getObject(Dog.IDENTIFIER), 'zzzzzzzzzzz'),
                     new TalkAction(this.play, this.play.getBaby(), 'Hahahaha!')
                 ];
             }

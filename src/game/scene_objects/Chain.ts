@@ -25,7 +25,7 @@ export class Chain extends SceneObject {
         let object = this.play.getCursor().getInventoryObject();
         if (null !== object && object.getIdentifier() === 'escabeauInventory') {
             this.loadTexture('chaineOpen');
-            let porteChambre = <BedroomDoor> this.play.getMainGroup().getObject(BedroomDoor.IDENTIFIER);
+            let porteChambre = <BedroomDoor> this.play.getScene().getObject(BedroomDoor.IDENTIFIER);
             porteChambre.doOpen();
 
 

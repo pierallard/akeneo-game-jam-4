@@ -15,7 +15,7 @@ export class AppearAction extends Action {
     }
 
     execute(): boolean {
-        let object = this.play.getMainGroup().getObject(this.objectIdentifier);
+        let object = this.play.getScene().getObject(this.objectIdentifier);
         if (null !== object) {
             object.display();
         }

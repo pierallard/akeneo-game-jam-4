@@ -18,7 +18,7 @@ export class GarageDoor extends SceneObject {
         if (!this.open) {
             return [
                 new MoveAction(this.play, pointer.position.x),
-                new TalkAction(this.play, this.play.getMainGroup().getObject(Dog.IDENTIFIER), 'Ouaf!'),
+                new TalkAction(this.play, this.play.getScene().getObject(Dog.IDENTIFIER), 'Ouaf!'),
                 new TalkAction(this.play, this.play.getBaby(), 'Saucisse monte la garde')
             ];
         }

@@ -19,7 +19,7 @@ export class DVDPlayer extends SceneObject {
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
         let object = this.play.getCursor().getInventoryObject();
         if (null !== object && object.getIdentifier() === 'dvdporno') {
-            let father = <Father> this.play.getMainGroup().getObject(Father.IDENTIFIER);
+            let father = <Father> this.play.getScene().getObject(Father.IDENTIFIER);
             father.setBusy();
 
             return [

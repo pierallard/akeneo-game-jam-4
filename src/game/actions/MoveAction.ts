@@ -22,23 +22,23 @@ export class MoveAction extends Action {
         let babyPosition = this.play.getBaby().getWorldPosition().x;
         if (babyPosition <= LIMIT_CAMERA) {
             let diff = LIMIT_CAMERA - babyPosition;
-            if (this.play.getMainGroup().x + diff > MoveAction.leftBorder) {
-                diff = -this.play.getMainGroup().x + MoveAction.leftBorder;
+            if (this.play.getScene().getPosition().x + diff > MoveAction.leftBorder) {
+                diff = -this.play.getScene().getPosition().x + MoveAction.leftBorder;
             }
             diff = Math.max(diff, - Baby.BABY_SPEED);
-            this.play.getMainGroup().x += diff;
+            this.play.getScene().getPosition().x += diff;
             this.goalX += diff;
         } else if (babyPosition >= SimpleGame.WIDTH - LIMIT_CAMERA) {
             let diff = (SimpleGame.WIDTH - LIMIT_CAMERA) - babyPosition;
-            if (this.play.getMainGroup().x + diff < MoveAction.rightBorder) {
-                diff = -this.play.getMainGroup().x + MoveAction.rightBorder;
+            if (this.play.getScene().getPosition().x + diff < MoveAction.rightBorder) {
+                diff = -this.play.getScene().getPosition().x + MoveAction.rightBorder;
             }
             diff = Math.max(diff, - Baby.BABY_SPEED);
-            this.play.getMainGroup().x += diff;
+            this.play.getScene().setPositionX(this.play.getScene().getPosition().x + diff);
             this.goalX += diff;
         }
 
-        return this.play.getBaby().updatePosition(this.goalX - this.play.getMainGroup().x);
+        return this.play.getBaby().updatePosition(this.goalX - this.play.getScene().getPosition().x);
     }
 
     debugText(): string {

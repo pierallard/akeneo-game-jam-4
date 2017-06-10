@@ -64,13 +64,13 @@ export default class Play extends Phaser.State
 
     public render() {
         if (this.debug) {
-            this.game.debug.text('mainGroup.x = ' + this.scene.x, 0, 15);
+            this.game.debug.text('mainGroup.x = ' + this.scene.getPosition().x, 0, 15);
             this.game.debug.text('action : ' + this.getActionManager().getActions().map(function (action) { return action.debugText(); }).join(', '), 0, 30);
             this.game.debug.text('Inventory : ' + ((null !== this.getCursor().getInventoryObject()) ? this.getCursor().getInventoryObject().getIdentifier() : 'null'), 0, 45);
         }
     }
 
-    getMainGroup(): Scene {
+    getScene(): Scene {
         return this.scene;
     }
 

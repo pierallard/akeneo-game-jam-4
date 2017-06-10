@@ -21,7 +21,7 @@ export class Bouteille extends SceneObject {
     }
 
     protected pickUp(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        let father = <Father> this.play.getMainGroup().getObject(Father.IDENTIFIER);
+        let father = <Father> this.play.getScene().getObject(Father.IDENTIFIER);
         if (!father.isBusy()) {
             return [
                 new MoveAction(this.play, pointer.position.x),

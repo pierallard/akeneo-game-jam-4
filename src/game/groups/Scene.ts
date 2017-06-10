@@ -24,32 +24,30 @@ import {SimpleGame} from "../../app";
 import {Baby} from "../Baby";
 import {Verb} from "../verbs/Verb";
 
-export class Scene extends Phaser.Group
-{
+export class Scene {
     private play: Play;
     private clouds: Phaser.TileSprite;
     private objects: Array<SceneObject>;
+    private group: Phaser.Group;
 
     constructor(play: Play) {
-        super(play.game, null, 'Main Group');
-
         this.play = play;
-        this.x = MoveAction.getLimitsCenter();
         this.objects = [];
-        this.play.game.add.existing(this);
+        this.group = new Phaser.Group(this.play.game, null, 'Main Group');
+        this.group.x = MoveAction.getLimitsCenter();
     }
 
     createWithBaby(baby: Baby) {
+        this.play.game.add.existing(this.group);
         this.createClouds();
-
-        let sprite = this.game.add.sprite(0, 0, 'background', null, this);
+        let sprite = this.play.game.add.sprite(0, 0, 'background', null, this.group);
         sprite.scale.setTo(SimpleGame.SCALE);
         sprite.inputEnabled = true;
         sprite.events.onInputDown.add(this.move, this);
 
         this.createObjects();
 
-        this.addMultiple(baby.getSprites());
+        this.group.addMultiple(baby.getSprites());
         this.createObjectSecond();
     }
 
@@ -60,19 +58,26 @@ export class Scene extends Phaser.Group
     }
 
     update() {
-        super.update();
-
+        this.group.update();
         this.clouds.x = (this.clouds.x + 0.2) % (169*SimpleGame.SCALE);
+    }
+
+    getPosition() {
+        return this.group.position;
+    }
+
+    setPositionX(x: number) {
+        this.group.x = x;
     }
 
     private createClouds() {
         this.clouds = new Phaser.TileSprite(this.play.game, 0, 48, 590*SimpleGame.SCALE, 54, 'clouds');
         this.clouds.scale = new Phaser.Point(SimpleGame.SCALE, SimpleGame.SCALE);
-        this.add(this.clouds);
+        this.group.add(this.clouds);
     }
 
     private addObject(object: SceneObject) {
-        this.add(object.getSprite());
+        this.group.add(object.getSprite());
         this.objects.push(object);
     }
 
@@ -114,7 +119,7 @@ export class Scene extends Phaser.Group
         this.addObject(new DVDPlayer(this.play));
         let walls = new Phaser.Sprite(this.play.game, 0, 0, 'backgroundwalls');
         walls.scale.set(SimpleGame.SCALE);
-        this.add(walls);
+        this.group.add(walls);
     }
 
     public getObject(objectIdentifier: string): SceneObject|null
