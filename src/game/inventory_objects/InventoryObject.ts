@@ -9,6 +9,7 @@ export class InventoryObject extends SceneObject
     private oldPosition: Phaser.Point;
     private text: string = null;
     private french: string = null;
+    private active: boolean;
 
     constructor(play: Play, texture: string, french: string = null, text:string = null) {
         super(play, texture, 0, 0, texture);
@@ -16,8 +17,13 @@ export class InventoryObject extends SceneObject
         this.french = french;
         this.text = text;
         this.sprite.anchor.setTo(0.5);
+        this.active = false;
         this.hide();
         this.shouldDetach = false;
+    }
+
+    public setActive(bool: boolean) {
+        this.active = bool;
     }
 
     protected walkTo(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
@@ -80,5 +86,9 @@ export class InventoryObject extends SceneObject
 
     setPosition(x: number, y: number) {
         this.sprite.position.setTo(x, y);
+    }
+
+    isActive(): boolean {
+        return this.active;
     }
 }

@@ -36,6 +36,7 @@ export class Inventory {
             this.play.add.existing(sprite);
             this.inventoryGroup.add(sprite);
         }
+
         let top = new Phaser.Sprite(this.play.game, SimpleGame.WIDTH - COLUMNS*INVENTORY_SIZE, SimpleGame.HEIGHT - INVENTORY_SIZE, 'arrow_up');
         top.scale.setTo(SimpleGame.SCALE);
         top.anchor.setTo(1,1);
@@ -67,19 +68,12 @@ export class Inventory {
     }
 
     addObject(object: InventoryObject) {
-        object.hide();
         this.items.push(object);
+        this.inventoryGroup.add(object.getSprite());
     }
 
     activeItem(identifier: string) {
-        let position = Inventory.getPosition(this.items.length);
-        let inventoryObject = this.getInventoryObject(identifier);
-        if (undefined === inventoryObject) {
-            console.log('No sprite "' + identifier + '" found !');
-        }
-        inventoryObject.display();
-        inventoryObject.setPosition(position.x, position.y);
-        this.page = Math.floor((this.items.length - 1) / (COLUMNS * LINES));
+        this.getInventoryObject(identifier).setActive(true);
         this.update();
     }
 
@@ -96,13 +90,19 @@ export class Inventory {
     }
 
     update () {
-        this.items.forEach(function (item: InventoryObject, i) {
-            if (Math.floor(i / (COLUMNS * LINES)) === this.page) {
-                let position = Inventory.getPosition(i);
-                item.setPosition(position.x, position.y);
-                item.display();
-            }
-            else {
+        let i = 0;
+        this.items.forEach(function (item: InventoryObject) {
+            if (item.isActive()) {
+                if (Math.floor(i / (COLUMNS * LINES)) === this.page) {
+                    let position = Inventory.getPosition(i);
+                    item.setPosition(position.x, position.y);
+                    item.display();
+                }
+                else {
+                    item.hide();
+                }
+                i++;
+            } else {
                 item.hide();
             }
         }.bind(this))
