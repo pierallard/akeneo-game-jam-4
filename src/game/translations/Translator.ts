@@ -1,5 +1,5 @@
 
-import {getContenuUtile} from "./fichier";
+import {getContent} from "./FileLoader";
 
 export class Translator {
     static translations;
@@ -7,23 +7,21 @@ export class Translator {
 
     static initialize() {
         this.translations = [];
-        getContenuUtile("translations/fr.json", data => {
+        getContent("translations/fr.json", data => {
             this.translations['fr'] = data;
         });
-        getContenuUtile("translations/en.json", data => {
+        getContent("translations/en.json", data => {
             this.translations['en'] = data;
         });
     }
 
     static t(key: string) {
         key = this.locale + '.' + key;
-        let result = 'missing translation: ' + key;
+        let result = key;
         try {
-            result = key.split('.').reduce(function (tree, key) {
-                return tree[key];
-            }, this.translations);
+            result = key.split('.').reduce((tree, key) => tree[key], this.translations);
         } catch (e) {
-            console.log(result);
+            console.log('Missing translation: "' + result + '"');
         }
 
         return result;
