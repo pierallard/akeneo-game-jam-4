@@ -1,4 +1,5 @@
 
+import {Translator} from "../translations/Translator";
 export default class Preload extends Phaser.State {
 
     public preload ()
@@ -71,6 +72,8 @@ export default class Preload extends Phaser.State {
         this.game.load.image('steaklexomil', 'assets/steaklexomil.png');
         this.game.load.image('bedo', 'assets/bedo.png');
         this.game.load.image('tabacbeuh', 'assets/tabacbeuh.png');
+
+        Translator.initialize();
     }
 
     public create ()

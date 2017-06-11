@@ -23,6 +23,7 @@ import {Prise} from "../scene_objects/Prise";
 import {SimpleGame} from "../../app";
 import {Baby} from "../Baby";
 import {Verb} from "../verbs/Verb";
+import {Translator} from "../translations/Translator";
 
 export class Scene {
     private play: Play;
@@ -102,7 +103,7 @@ export class Scene {
         this.addObject(new PickableObject(this.play, 'coldMeat', 'le steak surgele', 295*SimpleGame.SCALE, 45*SimpleGame.SCALE, 'icesteak', 'icesteak', false));
         this.addObject(new PickableObject(this.play, 'engrais', 'la bouteille', 270*SimpleGame.SCALE, 45*SimpleGame.SCALE, 'engrais', 'engrais', false));
         this.addObject(new PickableObject(this.play, 'feuilles', 'les feuilles', 45*SimpleGame.SCALE, 47*SimpleGame.SCALE, 'feuilles', 'feuilles'));
-        this.addObject(new PickableObject(this.play, 'knife', 'le couteau', 234*SimpleGame.SCALE, 26*SimpleGame.SCALE, 'knife', 'knife'));
+        this.addObject(new PickableObject(this.play, 'knife', Translator.t('scene.knife.label'), 234*SimpleGame.SCALE, 26*SimpleGame.SCALE, 'knife', 'knife'));
         this.addObject(new PickableObject(this.play, 'neon', 'une lampe', 42*SimpleGame.SCALE, 25*SimpleGame.SCALE, 'neon', 'neon'));
         this.addObject(new PickableObject(this.play, 'gode', 'un jouet', 516*SimpleGame.SCALE, 29*SimpleGame.SCALE, 'gode', 'gode'));
         this.addObject(new PickableObject(this.play, 'rallonge', 'une rallonge', 71*SimpleGame.SCALE, 46*SimpleGame.SCALE, 'rallonge', 'rallonge'));
@@ -111,7 +112,7 @@ export class Scene {
         this.addObject(new PickableObject(this.play, 'perceuse', 'la perceuse', 89*SimpleGame.SCALE, 30*SimpleGame.SCALE, 'perceuse', 'perceuse'));
         this.addObject(new PickableObject(this.play, 'sachet', 'le sachet de graines', 395*SimpleGame.SCALE, 51*SimpleGame.SCALE, 'sachet', 'sachet'));
         this.addObject(new PickableObject(this.play, 'potfull', 'la tournee de beuh', 218*SimpleGame.SCALE, 36*SimpleGame.SCALE, 'potfull', 'cannabis', false));
-        this.addObject(new PickableObject(this.play, 'zipposec', 'le zippo sec', 254*SimpleGame.SCALE, 25*SimpleGame.SCALE, 'zipposec', 'zipposec'));
+        this.addObject(new PickableObject(this.play, 'zipposec', Translator.t('scene.zippo.label'), 254*SimpleGame.SCALE, 25*SimpleGame.SCALE, 'zipposec', 'zipposec'));
         this.addObject(new PickableObject(this.play, 'dvdporno', 'le DVD', 500*SimpleGame.SCALE, 25*SimpleGame.SCALE, 'dvdporno', 'dvdporno'));
     }
 

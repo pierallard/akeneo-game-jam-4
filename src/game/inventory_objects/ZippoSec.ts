@@ -5,6 +5,7 @@ import Play from "../state/Play";
 import {SceneObject} from "../scene_objects/SceneObject";
 import {Action} from "../actions/Action";
 import {BouteilleAlcool} from "./BouteilleAlcool";
+import {Translator} from "../translations/Translator";
 
 export class ZippoSec extends InventoryObject
 {
