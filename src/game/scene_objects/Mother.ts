@@ -17,7 +17,7 @@ export class Mother extends SceneObject {
 
         this.zippo = false;
         this.bedo = false;
-        this.anchor.setTo(0, 1);
+        this.sprite.anchor.setTo(0, 1);
     }
 
     isDefoncee():boolean {
@@ -34,24 +34,24 @@ export class Mother extends SceneObject {
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        let object = this.play_.getCursor().getInventoryObject();
+        let object = this.play.getCursor().getInventoryObject();
         if (null !== object) {
             if (object.getIdentifier() === 'bedo') {
                 this.bedo = true;
 
                 let result:Array<Action> = [
-                    new MoveAction(this.play_, origin.position.x - 800),
-                    new RemoveInventoryAction(this.play_, object)
+                    new MoveAction(this.play, origin.getPosition().x - 800),
+                    new RemoveInventoryAction(this.play, object)
                 ];
 
                 if (!this.zippo) {
                     result.push(
-                        new TalkAction(this.play_, this, "Quelle surprise! Ou est mon feu?")
+                        new TalkAction(this.play, this, "Quelle surprise! Ou est mon feu?")
                     );
                 } else {
                     result.push(
-                        new TalkAction(this.play_, this, "Oh, putain, je suis defoncee..."),
-                        new UpdateAction(this.play_, this, 'motherdefoncee')
+                        new TalkAction(this.play, this, "Oh, putain, je suis defoncee..."),
+                        new UpdateAction(this.play, this, 'motherdefoncee')
                     );
                 }
 
@@ -61,18 +61,18 @@ export class Mother extends SceneObject {
                 this.zippo = true;
 
                 let result:Array<Action> = [
-                    new MoveAction(this.play_, origin.position.x - 800),
-                    new RemoveInventoryAction(this.play_, object)
+                    new MoveAction(this.play, origin.getPosition().x - 800),
+                    new RemoveInventoryAction(this.play, object)
                 ];
 
                 if (!this.bedo) {
                     result.push(
-                        new TalkAction(this.play_, this, "Du feu, du feu... Mais pour allumer quoi?")
+                        new TalkAction(this.play, this, "Du feu, du feu... Mais pour allumer quoi?")
                     );
                 } else {
                     result.push(
-                        new TalkAction(this.play_, this, "Oh, putain, je suis defoncee..."),
-                        new UpdateAction(this.play_, this, 'motherdefoncee')
+                        new TalkAction(this.play, this, "Oh, putain, je suis defoncee..."),
+                        new UpdateAction(this.play, this, 'motherdefoncee')
                     );
                 }
 
@@ -84,7 +84,7 @@ export class Mother extends SceneObject {
     }
 
     protected lookAt(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        return [new TalkAction(this.play_, this.play_.getBaby(), "Chatroulette, sans doute un site avec des chats")];
+        return [new TalkAction(this.play, this.play.getBaby(), "Chatroulette, sans doute un site avec des chats")];
     }
 
     getStroke(): string {

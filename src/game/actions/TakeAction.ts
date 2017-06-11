@@ -15,8 +15,8 @@ export class TakeAction extends Action
     }
 
     execute(): boolean {
+        this.play.getInventory().activeItem(this.object.getGeneratedObjectIdentifier());
         this.object.destroy();
-        this.play.getInventory().addItem(this.object.getGeneratedObjectIdentifier());
 
         return true;
     }

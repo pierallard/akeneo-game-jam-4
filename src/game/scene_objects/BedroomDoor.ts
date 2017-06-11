@@ -20,8 +20,8 @@ export class BedroomDoor extends SceneObject {
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
         if (!this.open) {
             return [
-                new MoveAction(this.play_, pointer.position.x),
-                new TalkAction(this.play_, this.play_.getBaby(), "C'est bloque par un verrou")
+                new MoveAction(this.play, pointer.position.x),
+                new TalkAction(this.play, this.play.getBaby(), "C'est bloque par un verrou")
             ];
         }
 
@@ -30,7 +30,7 @@ export class BedroomDoor extends SceneObject {
 
     public doOpen() {
         this.open = true;
-        this.loadTexture('porteChambreOpen');
+        this.sprite.loadTexture('porteChambreOpen');
         MoveAction.setRightBorder(-1556);
     }
 

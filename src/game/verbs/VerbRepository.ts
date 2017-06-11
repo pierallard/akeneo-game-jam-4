@@ -13,31 +13,31 @@ export class VerbRepository {
 
     constructor(play: Play)
     {
+        this.items = [];
+        this.play = play;
+    }
+
+    public create() {
         let style = {
             font: "28px 3dventuremedium",
             align: "center",
         };
 
         this.items = [
-            new Verb(this, play.game, PANEL_WIDTH / 4, SimpleGame.HEIGHT - PANEL_HEIGHT / 4 * 3, Verb.WALK_TO, 'Aller vers', style),
-            new Verb(this, play.game, PANEL_WIDTH / 4 * 3, SimpleGame.HEIGHT - PANEL_HEIGHT / 4 * 3, Verb.LOOK_AT, 'Regarder', style),
-            new Verb(this, play.game, PANEL_WIDTH / 4, SimpleGame.HEIGHT - PANEL_HEIGHT / 4, Verb.PICK_UP, 'Prendre', style),
-            new Verb(this, play.game, PANEL_WIDTH / 4 * 3, SimpleGame.HEIGHT - PANEL_HEIGHT / 4, Verb.USE, 'Utiliser', style)
+            new Verb(this, this.play.game, PANEL_WIDTH / 4, SimpleGame.HEIGHT - PANEL_HEIGHT / 4 * 3, Verb.WALK_TO, 'Aller vers', style),
+            new Verb(this, this.play.game, PANEL_WIDTH / 4 * 3, SimpleGame.HEIGHT - PANEL_HEIGHT / 4 * 3, Verb.LOOK_AT, 'Regarder', style),
+            new Verb(this, this.play.game, PANEL_WIDTH / 4, SimpleGame.HEIGHT - PANEL_HEIGHT / 4, Verb.PICK_UP, 'Prendre', style),
+            new Verb(this, this.play.game, PANEL_WIDTH / 4 * 3, SimpleGame.HEIGHT - PANEL_HEIGHT / 4, Verb.USE, 'Utiliser', style)
         ];
 
-        this.play = play;
-        this.setCurrentVerb(this.items[0]);
-    }
-
-    public render () {
         this.items.forEach(function (verb) {
             this.play.add.existing(verb);
         }.bind(this));
 
-        this.update();
+        this.setCurrentVerb(this.items[0]);
     }
 
-    private update() {
+    public update() {
         this.items.forEach(function (verb, i) {
             let f = verb.style;
             f.fill = (verb === this.currentItem) ? '#639bff' : '#306082';

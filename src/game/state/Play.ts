@@ -1,89 +1,56 @@
 
 import {Baby} from "../Baby";
 import {Inventory} from "../Inventory";
-import {Action} from "../actions/Action";
 import {VerbRepository} from "../verbs/VerbRepository";
-import {MoveAction} from "../actions/MoveAction";
-import {Verb} from "../verbs/Verb";
-import {InventoryObject} from "../inventory_objects/InventoryObject";
-import {Steak} from "../inventory_objects/Steak";
-import {Lexomil} from "../inventory_objects/Lexomil";
-import {MainGroup} from "../groups/MainGroup";
+import {Scene} from "../groups/Scene";
 import {Sentence} from "../Sentence";
 import {GarageDoor} from "../scene_objects/GarageDoor";
 import {BedroomDoor} from "../scene_objects/BedroomDoor";
-import {Battery} from "../inventory_objects/Battery";
-import {Lamp} from "../inventory_objects/Lamp";
-import {BouteilleAlcool} from "../inventory_objects/BouteilleAlcool";
-import {ZippoSec} from "../inventory_objects/ZippoSec";
-import {Tabac} from "../inventory_objects/Tabac";
-import {Cannabis} from "../inventory_objects/Cannabis";
-import {TabacBeuh} from "../inventory_objects/TabacBeuh";
-import {Feuilles} from "../inventory_objects/Feuilles";
-import {Rallonge} from "../inventory_objects/Rallonge";
-import {Couteau} from "../inventory_objects/Couteau";
 import {ActionManager} from "../actions/ActionManager";
 import {Cursor} from "../Cursor";
-import {SimpleGame} from "../../app";
 
 export default class Play extends Phaser.State
 {
     private baby: Baby;
     private inventory: Inventory;
     private verbRepository: VerbRepository;
-    private mainGroup: MainGroup;
-    private inventoryGroup: Phaser.Group;
+    private scene: Scene;
     private cursor: Cursor;
     private sentence: Sentence;
     private actionManager: ActionManager;
+    private debug: boolean;
 
-    public constructor()
-    {
+    public constructor() {
         super();
 
         this.inventory = new Inventory(this);
         this.actionManager = new ActionManager(this);
+        this.verbRepository = new VerbRepository(this);
+        this.debug = false;
     }
 
-    public create()
-    {
-        this.mainGroup = new MainGroup(this);
-        this.game.add.existing(this.mainGroup);
-
-        this.inventoryGroup = this.game.add.group();
-        this.inventory.render();
-
+    public create() {
+        this.scene = new Scene(this);
+        this.inventory.create();
         this.sentence = new Sentence(this.game);
-
-        this.verbRepository = new VerbRepository(this);
-        this.verbRepository.render();
-
-        this.mainGroup.createBackground();
-
-        this.addBackground();
-
-        this.mainGroup.createObjects();
-        this.createInventoryObjects();
-
-        this.baby = new Baby(this, 1200, 66*SimpleGame.SCALE, 'baby');
-        this.mainGroup.add(this.baby);
-
-        this.mainGroup.createObjectSecond();
-
+        this.verbRepository.create();
+        this.baby = new Baby(this);
+        this.scene.createWithBaby(this.baby);
         this.cursor = new Cursor(this);
 
-        // (<GarageDoor> this.mainGroup.getObject(GarageDoor.IDENTIFIER)).doOpen();
-        // (<BedroomDoor> this.mainGroup.getObject(BedroomDoor.IDENTIFIER)).doOpen();
+        if (this.debug) {
+            (<GarageDoor> this.scene.getObject(GarageDoor.IDENTIFIER)).doOpen();
+            (<BedroomDoor> this.scene.getObject(BedroomDoor.IDENTIFIER)).doOpen();
+        }
     }
 
-    public update()
-    {
+    public update() {
         this.actionManager.execute();
         this.cursor.update();
-
+        this.verbRepository.update();
     }
 
-    getBaby() {
+    getBaby(): Baby {
         return this.baby;
     }
 
@@ -95,55 +62,16 @@ export default class Play extends Phaser.State
         return this.verbRepository.getCurrentVerb().getName();
     }
 
-    move(backgroundSprite: Phaser.Sprite, pointer: Phaser.Pointer) {
-        if (this.getCurrentVerb() === Verb.WALK_TO) {
-            this.actionManager.addAction(new MoveAction(this, pointer.position.x));
+    public render() {
+        if (this.debug) {
+            this.game.debug.text('mainGroup.x = ' + this.scene.getPosition().x, 0, 15);
+            this.game.debug.text('action : ' + this.getActionManager().getActions().map(function (action) { return action.debugText(); }).join(', '), 0, 30);
+            this.game.debug.text('Inventory : ' + ((null !== this.getCursor().getInventoryObject()) ? this.getCursor().getInventoryObject().getIdentifier() : 'null'), 0, 45);
         }
     }
 
-    private addBackground() {
-        let sprite = this.game.add.sprite(0, 0, 'background', null, this.mainGroup);
-        sprite.scale.setTo(SimpleGame.SCALE);
-        sprite.inputEnabled = true;
-        sprite.events.onInputDown.add(this.move, this);
-    }
-
-    private createInventoryObjects() {
-        this.inventoryGroup.add(new InventoryObject(this, 'icesteak', 'le steak surgele', 'Un steak surgele'));
-        this.inventoryGroup.add(new Steak(this));
-        this.inventoryGroup.add(new Lexomil(this));
-        this.inventoryGroup.add(new Battery(this));
-        this.inventoryGroup.add(new Lamp(this));
-        this.inventoryGroup.add(new BouteilleAlcool(this));
-        this.inventoryGroup.add(new ZippoSec(this));
-        this.inventoryGroup.add(new Tabac(this));
-        this.inventoryGroup.add(new Cannabis(this));
-        this.inventoryGroup.add(new TabacBeuh(this));
-        this.inventoryGroup.add(new Feuilles(this));
-        this.inventoryGroup.add(new Rallonge(this));
-        this.inventoryGroup.add(new Couteau(this));
-
-        this.inventoryGroup.add(new InventoryObject(this, 'bedo', "le bedo", "Y'a plus qu'a allumer!"));
-        this.inventoryGroup.add(new InventoryObject(this, 'steaklexomil', 'le steaknifere', 'Voila qui pourrait endormir un cheval'));
-        this.inventoryGroup.add(new InventoryObject(this, 'engrais', "de l'engrais", '"Garder a portee des enfants". Perdu!'));
-        this.inventoryGroup.add(new InventoryObject(this, 'gode', 'le masseur de visage', "C'est le jouet de papa, ca vibre"));
-        this.inventoryGroup.add(new InventoryObject(this, 'escabeauInventory', "l'escabeau", "Je suis le roi du monde!"));
-        this.inventoryGroup.add(new InventoryObject(this, 'perceuse', 'la perceuse', "Des p'tits trous, des p'tits trous!"));
-        this.inventoryGroup.add(new InventoryObject(this, 'sachet', 'le sachet', "On dirait des graines!"));
-        this.inventoryGroup.add(new InventoryObject(this, 'lampePiles', 'la lampe UV', "J'ai perdu mes deux yeux"));
-        this.inventoryGroup.add(new InventoryObject(this, 'dvdporno', 'le DVD', '"Hairy mature gays"'));
-        this.inventoryGroup.add(new InventoryObject(this, 'zippo', 'le zippo', "Aie!"));
-        this.inventoryGroup.add(new InventoryObject(this, 'rallongecoupee', 'les fils electriques', "Y'a plus qu'a brancher!"));
-    }
-
-    public render() {
-        // this.game.debug.text('mainGroup.x = ' + this.mainGroup.x, 0, 15);
-        // this.game.debug.text('action : ' + this.actions.map(function (action) { return action.debugText(); }).join(', '), 0, 30);
-        // this.game.debug.text('Inventory : ' + ((null !== this.inventoryObject) ? this.inventoryObject.getIdentifier() : 'null'), 0, 45);
-    }
-
-    getMainGroup(): MainGroup {
-        return this.mainGroup;
+    getScene(): Scene {
+        return this.scene;
     }
 
     getSentence(): Sentence {
@@ -156,10 +84,6 @@ export default class Play extends Phaser.State
 
     getActionManager(): ActionManager {
         return this.actionManager;
-    }
-
-    getInventoryGroup(): Phaser.Group {
-        return this.inventoryGroup;
     }
 
     getCursor(): Cursor {

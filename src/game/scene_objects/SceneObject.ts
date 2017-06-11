@@ -4,26 +4,24 @@ import Play from "../state/Play";
 import {Verb} from "../verbs/Verb";
 import {TalkAction} from "../actions/TalkAction";
 import {Action} from "../actions/Action";
-import {Yolo} from "../Yolo";
-import {SimpleGame} from "../../app";
+import {InteractiveObject} from "../InteractiveObject";
 
-export class SceneObject extends Yolo
+export class SceneObject extends InteractiveObject
 {
-    protected play_: Play;
     protected shouldDetach: boolean;
     private identifier: string;
 
     constructor(play: Play, identifier: string, x: number, y: number, key: string)
     {
-        super(play.game, x, y, key);
+        super(play);
 
+        this.setSprite(new Phaser.Sprite(play.game, x, y, key));
         this.identifier = identifier;
-        this.scale.setTo(SimpleGame.SCALE);
-        this.inputEnabled = true;
-        this.events.onInputDown.add(this.executeVerb, this);
-        this.events.onInputOver.add(this.mouseOver, this);
-        this.events.onInputOut.add(this.mouseOut, this);
-        this.play_ = play;
+
+        this.sprite.inputEnabled = true;
+        this.sprite.events.onInputDown.add(this.executeVerb, this);
+        this.sprite.events.onInputOver.add(this.mouseOver, this);
+        this.sprite.events.onInputOut.add(this.mouseOut, this);
         this.shouldDetach = true;
     }
 
@@ -32,61 +30,61 @@ export class SceneObject extends Yolo
     }
 
     display() {
-        this.visible = true;
+        this.sprite.visible = true;
     }
 
     hide() {
-        this.visible = false;
+        this.sprite.visible = false;
     }
 
     private mouseOver() {
-        if (null !== this.play_.getCursor().getInventoryObject()) {
-            this.play_.getSentence().setSecondaryObject(this);
+        if (null !== this.play.getCursor().getInventoryObject()) {
+            this.play.getSentence().setSecondaryObject(this);
         } else {
-            this.play_.getSentence().setObject(this);
+            this.play.getSentence().setObject(this);
         }
     }
 
     private mouseOut() {
-        if (!this.play_.getCursor().getInventoryObject()) {
-            this.play_.getSentence().setObject(null);
+        if (!this.play.getCursor().getInventoryObject()) {
+            this.play.getSentence().setObject(null);
         }
-        this.play_.getSentence().setSecondaryObject(null);
+        this.play.getSentence().setSecondaryObject(null);
     }
 
-    private executeVerb(origin: SceneObject, pointer: Phaser.Pointer)
+    private executeVerb(origin: Phaser.Sprite, pointer: Phaser.Pointer)
     {
         let actions = [];
-        if (!this.play_.getActionManager().hasAction()) {
-            switch (this.play_.getCurrentVerb()) {
+        if (!this.play.getActionManager().hasAction()) {
+            switch (this.play.getCurrentVerb()) {
                 case Verb.WALK_TO:
-                    actions = this.walkTo(origin, pointer);
+                    actions = this.walkTo(this, pointer);
                     break;
 
                 case Verb.PICK_UP:
-                    actions = this.pickUp(origin, pointer);
+                    actions = this.pickUp(this, pointer);
                     break;
 
                 case Verb.USE:
-                    actions = this.use(origin, pointer);
+                    actions = this.use(this, pointer);
                     break;
 
                 case Verb.LOOK_AT:
-                    actions = this.lookAt(origin, pointer);
+                    actions = this.lookAt(this, pointer);
                     break;
             }
 
-            this.play_.getActionManager().addActions(actions);
+            this.play.getActionManager().addActions(actions);
 
             if (this.shouldDetach) {
-                this.play_.getCursor().detach();
+                this.play.getCursor().detach();
             }
         }
     }
 
     protected walkTo(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
         return [
-            new MoveAction(this.play_, pointer.position.x)
+            new MoveAction(this.play, pointer.position.x)
         ];
     }
 
@@ -102,8 +100,8 @@ export class SceneObject extends Yolo
 
         return [
             new TalkAction(
-                this.play_,
-                this.play_.getBaby(),
+                this.play,
+                this.play.getBaby(),
                 noPickUpMessages[Math.floor(Math.random() * noPickUpMessages.length)]
             )
         ];
@@ -120,8 +118,8 @@ export class SceneObject extends Yolo
 
         return [
             new TalkAction(
-                this.play_,
-                this.play_.getBaby(),
+                this.play,
+                this.play.getBaby(),
                 noUseMessages[Math.floor(Math.random() * noUseMessages.length)]
             )
         ];
@@ -139,8 +137,8 @@ export class SceneObject extends Yolo
 
         return [
             new TalkAction(
-                this.play_,
-                this.play_.getBaby(),
+                this.play,
+                this.play.getBaby(),
                 lookAtMessages[Math.floor(Math.random() * lookAtMessages.length)]
             ),
         ];
@@ -148,5 +146,9 @@ export class SceneObject extends Yolo
 
     toFrench(): string {
         return 'un truc';
+    }
+
+    getSprite() {
+        return this.sprite;
     }
 }

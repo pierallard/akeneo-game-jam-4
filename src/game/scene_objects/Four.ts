@@ -20,7 +20,7 @@ export class Four extends SceneObject
 
     protected lookAt(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
         if (!this.on) {
-            return [new TalkAction(this.play_, this.play_.getBaby(), "J'ai l'impression qu'il n'a pas d'electricite...")];
+            return [new TalkAction(this.play, this.play.getBaby(), "J'ai l'impression qu'il n'a pas d'electricite...")];
         }
 
         return super.lookAt(origin, pointer);
@@ -28,17 +28,17 @@ export class Four extends SceneObject
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
         if (!this.on) {
-            return [new TalkAction(this.play_, this.play_.getBaby(), "Le four n'a pas l'air de vouloir s'allumer")];
+            return [new TalkAction(this.play, this.play.getBaby(), "Le four n'a pas l'air de vouloir s'allumer")];
         }
 
-        let object = this.play_.getCursor().getInventoryObject();
+        let object = this.play.getCursor().getInventoryObject();
         if (null !== object) {
             if (object.getIdentifier() === 'gode') {
                 return [
-                    new MoveAction(this.play_, pointer.position.x),
-                    new RemoveInventoryAction(this.play_, object),
-                    new AddInventoryAction(this.play_, 'piles'),
-                    new TalkAction(this.play_, this.play_.getBaby(), 'Ca sent le crame maintenant, bravo'),
+                    new MoveAction(this.play, pointer.position.x),
+                    new RemoveInventoryAction(this.play, object),
+                    new AddInventoryAction(this.play, 'piles'),
+                    new TalkAction(this.play, this.play.getBaby(), 'Ca sent le crame maintenant, bravo'),
                 ];
             }
         }

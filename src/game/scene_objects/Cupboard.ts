@@ -16,19 +16,19 @@ export class Cupboard extends SceneObject {
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        if (null !== this.play_.getCursor().getInventoryObject()) {
+        if (null !== this.play.getCursor().getInventoryObject()) {
             return super.use(origin, pointer);
         }
 
         let actions: Array<Action> = [
-            new MoveAction(this.play_, pointer.position.x)
+            new MoveAction(this.play, pointer.position.x)
         ];
 
         if (this.open) {
-            actions.push(new UpdateAction(this.play_, this, 'placardClose'));
+            actions.push(new UpdateAction(this.play, this, 'placardClose'));
         } else {
-            actions.push(new UpdateAction(this.play_, this, 'placardOpen'));
-            actions.push(new AppearAction(this.play_, 'engrais'));
+            actions.push(new UpdateAction(this.play, this, 'placardOpen'));
+            actions.push(new AppearAction(this.play, 'engrais'));
         }
         this.open = !this.open;
 

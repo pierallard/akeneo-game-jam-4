@@ -9,15 +9,15 @@ export class Cursor extends Phaser.Sprite {
     private play_: Play;
     private inventoryObject: InventoryObject;
 
-    constructor(play: Play) {
-        super(play.game, 0, 0, 'cursor');
+    constructor(play_: Play) {
+        super(play_.game, 0, 0, 'cursor');
 
-        this.play_ = play;
+        this.play_ = play_;
         this.anchor.setTo(0.5);
         this.scale.setTo(SimpleGame.SCALE);
         this.inventoryObject = null;
 
-        play.game.add.existing(this);
+        play_.game.add.existing(this);
     }
 
     update() {
@@ -28,7 +28,7 @@ export class Cursor extends Phaser.Sprite {
         this.position.set(positionX, positionY);
 
         if (this.inventoryObject) {
-            this.inventoryObject.position.set(positionX, positionY);
+            this.inventoryObject.updatePosition(positionX, positionY);
         }
     }
 

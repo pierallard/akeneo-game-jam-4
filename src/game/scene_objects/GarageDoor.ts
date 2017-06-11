@@ -17,9 +17,9 @@ export class GarageDoor extends SceneObject {
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
         if (!this.open) {
             return [
-                new MoveAction(this.play_, pointer.position.x),
-                new TalkAction(this.play_, this.play_.getMainGroup().getObject(Dog.IDENTIFIER), 'Ouaf!'),
-                new TalkAction(this.play_, this.play_.getBaby(), 'Saucisse monte la garde')
+                new MoveAction(this.play, pointer.position.x),
+                new TalkAction(this.play, this.play.getScene().getObject(Dog.IDENTIFIER), 'Ouaf!'),
+                new TalkAction(this.play, this.play.getBaby(), 'Saucisse monte la garde')
             ];
         }
         return super.use(origin, pointer);

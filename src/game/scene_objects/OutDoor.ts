@@ -22,29 +22,29 @@ export class OutDoor extends SceneObject {
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        let object = this.play_.getCursor().getInventoryObject();
+        let object = this.play.getCursor().getInventoryObject();
         if (null !== object && object.getIdentifier() === 'perceuse') {
-            let mother = <Mother> this.play_.getMainGroup().getObject(Mother.IDENTIFIER);
+            let mother = <Mother> this.play.getScene().getObject(Mother.IDENTIFIER);
             if (mother.isDefoncee()) {
                 this.doOpen();
 
                 return [
-                    new MoveAction(this.play_, pointer.position.x),
-                    new RemoveInventoryAction(this.play_, object),
-                    new UpdateAction(this.play_, this, 'porteSortieOpen')
+                    new MoveAction(this.play, pointer.position.x),
+                    new RemoveInventoryAction(this.play, object),
+                    new UpdateAction(this.play, this, 'porteSortieOpen')
                 ];
             }
             else {
                 return [
-                    new TalkAction(this.play_, mother, "Kevin, arrete d'embeter maman!")
+                    new TalkAction(this.play, mother, "Kevin, arrete d'embeter maman!")
                 ]
             }
         }
 
         if (!this.open) {
             return [
-                new MoveAction(this.play_, pointer.position.x),
-                new TalkAction(this.play_, this.play_.getBaby(), "C'est bloque")
+                new MoveAction(this.play, pointer.position.x),
+                new TalkAction(this.play, this.play.getBaby(), "C'est bloque")
             ];
         }
 
@@ -56,10 +56,10 @@ export class OutDoor extends SceneObject {
             return super.walkTo(origin, pointer)
         }
         return [
-            new MoveAction(this.play_, pointer.position.x),
-            new TalkAction(this.play_, this.play_.getBaby(), "Yeeeeha!"),
-            new TalkAction(this.play_, this.play_.getMainGroup().getObject(Father.IDENTIFIER), "Reviens ici, fils de pute!"),
-            new TalkAction(this.play_, this.play_.getMainGroup().getObject(Mother.IDENTIFIER), "MMm.. Kevin arrete tes conneriiiiies....")
+            new MoveAction(this.play, pointer.position.x),
+            new TalkAction(this.play, this.play.getBaby(), "Yeeeeha!"),
+            new TalkAction(this.play, this.play.getScene().getObject(Father.IDENTIFIER), "Reviens ici, fils de pute!"),
+            new TalkAction(this.play, this.play.getScene().getObject(Mother.IDENTIFIER), "MMm.. Kevin arrete tes conneriiiiies....")
         ];
     }
 
