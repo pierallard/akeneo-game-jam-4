@@ -2,6 +2,31 @@
   "scene": {
     "zippo": {
       "label": "le zippo sec"
+    },
+    "default": {
+      "no_pick_up": [
+        "Je peux pas prendre ca!",
+        "Mmmh... Non, c'est pas une bonne idee.",
+        "T'es sur de toi la ?",
+        "Haha, mais tu es vraiment debile en fait",
+        "Non.",
+        "Jamais de la vie Michel"
+      ],
+      "no_use": [
+        "Je peux pas faire ca!",
+        "J'ai aucune idee de ce que tu veux faire.",
+        "Arrete de cliquouiller partout la",
+        "Oui oui c'est ca oui",
+        "Et la marmotte elle met le chocholat dans le papier d'alu"
+      ],
+      "no_look_at": [
+        "C'est tres beau, non?",
+        "Pas cher chez Amazon",
+        "Tu veux me faire regarder toute la maison comme ca?",
+        "C'est vraiment tres interessant",
+        "Tu me fatigues Michel",
+        "Areuh areuh"
+      ]
     }
   }
 }
