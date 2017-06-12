@@ -34,7 +34,7 @@ export class PickableObject extends SceneObject
         ];
     }
 
-    toFrench(): string {
+    getLabel(): string {
         return this.french;
     }
 }

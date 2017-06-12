@@ -16,7 +16,7 @@ export class Bouteille extends SceneObject {
         super(play, Bouteille.IDENTIFIER, 382*SimpleGame.SCALE, 41*SimpleGame.SCALE, 'bouteille');
     }
 
-    toFrench(): string {
+    getLabel(): string {
         return "la bouteille d'eau de vie";
     }
 

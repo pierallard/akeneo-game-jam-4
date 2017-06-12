@@ -54,7 +54,7 @@ export class Four extends SceneObject
         this.on = true;
     }
 
-    toFrench(): string {
+    getLabel(): string {
         return 'le four';
     }
 }

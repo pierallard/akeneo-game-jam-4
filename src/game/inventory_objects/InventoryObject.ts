@@ -76,12 +76,12 @@ export class InventoryObject extends SceneObject
         return super.use(origin, pointer);
     }
 
-    toFrench(): string {
+    getLabel(): string {
         if (null !== this.french) {
             return this.french;
         }
 
-        return super.toFrench();
+        return super.getLabel();
     }
 
     setPosition(x: number, y: number) {

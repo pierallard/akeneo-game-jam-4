@@ -12,7 +12,7 @@ export class Dog extends SceneObject {
         return 'dog';
     }
 
-    toFrench(): string {
+    getLabel(): string {
         return 'Saucisse';
     }
 

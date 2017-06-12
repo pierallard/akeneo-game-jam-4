@@ -71,7 +71,7 @@ export class Bowl extends SceneObject {
         return 'bowl';
     }
 
-    toFrench(): string {
+    getLabel(): string {
         return 'la gamelle';
     }
 }

@@ -24,7 +24,7 @@ export class Mother extends SceneObject {
         return this.zippo && this.bedo;
     }
 
-    toFrench(): string {
+    getLabel(): string {
         return 'maman';
     }
 

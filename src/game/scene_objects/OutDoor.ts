@@ -17,7 +17,7 @@ export class OutDoor extends SceneObject {
         super(play, OutDoor.IDENTIFIER, 352*SimpleGame.SCALE, 16*SimpleGame.SCALE, 'porteSortie');
     }
 
-    toFrench(): string {
+    getLabel(): string {
         return 'la sortie';
     }
 

@@ -92,7 +92,7 @@ export class Pot extends SceneObject
         return super.use(origin, pointer);
     }
 
-    toFrench(): string {
+    getLabel(): string {
         if (!this.graines) {
             return 'le pot vide';
         } else {

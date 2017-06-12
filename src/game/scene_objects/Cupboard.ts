@@ -39,7 +39,7 @@ export class Cupboard extends SceneObject {
         return 'cupboard';
     }
 
-    toFrench(): string {
+    getLabel(): string {
         return 'le placard';
     }
 }

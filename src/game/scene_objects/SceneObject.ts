@@ -122,8 +122,8 @@ export class SceneObject extends InteractiveObject
         ];
     }
 
-    toFrench(): string {
-        return 'un truc';
+    getLabel(): string {
+        return Translator.t('scene.default.label');
     }
 
     getSprite() {

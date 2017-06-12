@@ -13,7 +13,7 @@ export class BedroomDoor extends SceneObject {
         super(play, BedroomDoor.IDENTIFIER, 441*SimpleGame.SCALE, 11*SimpleGame.SCALE, 'porteChambre');
     }
 
-    toFrench(): string {
+    getLabel(): string {
         return 'la porte';
     }
 

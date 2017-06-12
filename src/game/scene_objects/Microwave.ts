@@ -38,7 +38,7 @@ export class Microwave extends SceneObject
         return 'microOndes';
     }
 
-    toFrench(): string {
+    getLabel(): string {
         return 'le micro-ondes';
     }
 }

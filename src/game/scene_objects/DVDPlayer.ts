@@ -12,7 +12,7 @@ export class DVDPlayer extends SceneObject {
         super(play, DVDPlayer.IDENTIFIER, 420*SimpleGame.SCALE, 44*SimpleGame.SCALE, 'dvdplayer');
     }
 
-    toFrench(): string {
+    getLabel(): string {
         return 'le lecteur DVD';
     }
 

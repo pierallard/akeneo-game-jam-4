@@ -13,7 +13,7 @@ export class Father extends SceneObject {
         this.sprite.anchor.setTo(0, 1);
     }
 
-    toFrench(): string {
+    getLabel(): string {
         return 'papa';
     }
 

@@ -36,7 +36,7 @@ export class GarageDoor extends SceneObject {
         return 'porteGarage';
     }
 
-    toFrench(): string {
+    getLabel(): string {
         return 'la porte';
     }
 }

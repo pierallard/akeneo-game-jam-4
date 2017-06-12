@@ -50,7 +50,7 @@ export class Fridge extends SceneObject {
         return 'fridge';
     }
 
-    toFrench(): string {
+    getLabel(): string {
         return 'le freezer';
     }
 }

@@ -16,7 +16,7 @@ export class Prise extends SceneObject {
         super(play, Prise.IDENTIFIER, 175*SimpleGame.SCALE, 57*SimpleGame.SCALE, 'prisepetee');
     }
 
-    toFrench(): string {
+    getLabel(): string {
         return 'la prise cassee';
     }
 

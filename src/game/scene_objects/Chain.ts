@@ -13,7 +13,7 @@ export class Chain extends SceneObject {
         super(play, Chain.IDENTIFIER, 438*SimpleGame.SCALE, 19*SimpleGame.SCALE, 'chaineClose');
     }
 
-    toFrench(): string {
+    getLabel(): string {
         return 'le verrou';
     }
 
