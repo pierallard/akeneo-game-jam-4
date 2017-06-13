@@ -7,14 +7,11 @@ import {BedroomDoor} from "./BedroomDoor";
 import {RemoveInventoryAction} from "../actions/RemoveInventoryAction";
 import {TalkAction} from "../actions/TalkAction";
 import {SimpleGame} from "../../app";
+import {Translator} from "../translations/Translator";
 
 export class Chain extends SceneObject {
     constructor(play: Play) {
         super(play, Chain.IDENTIFIER, 438*SimpleGame.SCALE, 19*SimpleGame.SCALE, 'chaineClose');
-    }
-
-    toFrench(): string {
-        return 'le verrou';
     }
 
     static get IDENTIFIER() {
@@ -35,6 +32,6 @@ export class Chain extends SceneObject {
             ];
         }
 
-        return [new TalkAction(this.play, this.play.getBaby(), "C'est beaucoup trop haut !")];
+        return [new TalkAction(this.play, this.play.getBaby(), Translator.t('scene.chain.default_use'))];
     }
 }

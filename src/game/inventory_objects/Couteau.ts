@@ -11,7 +11,7 @@ export class Couteau extends InventoryObject
 {
     constructor(play: Play)
     {
-        super(play, Couteau.IDENTIFIER, 'un couteau de boucher');
+        super(play, Couteau.IDENTIFIER);
     }
 
     protected mixObjects(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
@@ -30,9 +30,5 @@ export class Couteau extends InventoryObject
     static get IDENTIFIER()
     {
         return 'knife';
-    }
-
-    toFrench(): string {
-        return 'le couteau';
     }
 }

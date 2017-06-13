@@ -12,7 +12,7 @@ export class Rallonge extends InventoryObject
 {
     constructor(play: Play)
     {
-        super(play, Rallonge.IDENTIFIER, 'une rallonge electrique');
+        super(play, Rallonge.IDENTIFIER);
     }
 
     protected mixObjects(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
@@ -34,9 +34,5 @@ export class Rallonge extends InventoryObject
     static get IDENTIFIER()
     {
         return 'rallonge';
-    }
-
-    toFrench(): string {
-        return 'la rallonge';
     }
 }

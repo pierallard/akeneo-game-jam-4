@@ -5,6 +5,7 @@ import {Verb} from "../verbs/Verb";
 import {TalkAction} from "../actions/TalkAction";
 import {Action} from "../actions/Action";
 import {InteractiveObject} from "../InteractiveObject";
+import {Translator} from "../translations/Translator";
 
 export class SceneObject extends InteractiveObject
 {
@@ -52,7 +53,7 @@ export class SceneObject extends InteractiveObject
         this.play.getSentence().setSecondaryObject(null);
     }
 
-    private executeVerb(origin: Phaser.Sprite, pointer: Phaser.Pointer)
+    private executeVerb(ignore: Phaser.Sprite, pointer: Phaser.Pointer)
     {
         let actions = [];
         if (!this.play.getActionManager().hasAction()) {
@@ -89,63 +90,40 @@ export class SceneObject extends InteractiveObject
     }
 
     protected pickUp(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        let noPickUpMessages = [
-            'Je peux pas prendre ca!',
-            "Mmmh... Non, c'est pas une bonne idee.",
-            "T'es sur de toi la ?",
-            'Haha, mais tu es vraiment debile en fait',
-            'Non.',
-            'Jamais de la vie Michel'
-        ];
-
+        let defaultValues = Translator.t('scene.default.no_pick_up');
         return [
             new TalkAction(
                 this.play,
                 this.play.getBaby(),
-                noPickUpMessages[Math.floor(Math.random() * noPickUpMessages.length)]
+                defaultValues[Math.floor(Math.random() * defaultValues.length)]
             )
         ];
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        let noUseMessages = [
-            'Je peux pas faire ca!',
-            "J'ai aucune idee de ce que tu veux faire.",
-            "Arrete de cliquouiller partout la",
-            "Oui oui c'est ca oui",
-            "Et la marmotte elle met le chocholat dans le papier d'alu"
-        ];
-
+        let defaultValues = Translator.t('scene.default.no_use');
         return [
             new TalkAction(
                 this.play,
                 this.play.getBaby(),
-                noUseMessages[Math.floor(Math.random() * noUseMessages.length)]
+                defaultValues[Math.floor(Math.random() * defaultValues.length)]
             )
         ];
     }
 
     protected lookAt(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        let lookAtMessages = [
-            "C'est tres beau, non?",
-            "Pas cher chez Amazon",
-            "Tu veux me faire regarder toute la maison comme ca?",
-            "C'est vraiment tres interessant",
-            "Tu me fatigues Michel",
-            "Areuh areuh"
-        ];
-
+        let defaultValues = Translator.t('scene.default.no_look_at');
         return [
             new TalkAction(
                 this.play,
                 this.play.getBaby(),
-                lookAtMessages[Math.floor(Math.random() * lookAtMessages.length)]
+                defaultValues[Math.floor(Math.random() * defaultValues.length)]
             ),
         ];
     }
 
-    toFrench(): string {
-        return 'un truc';
+    getLabel(): string {
+        return Translator.t('scene.' + this.getIdentifier() + '.label');
     }
 
     getSprite() {

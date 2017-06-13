@@ -4,14 +4,13 @@ import {InventoryObject} from "./InventoryObject";
 import Play from "../state/Play";
 import {SceneObject} from "../scene_objects/SceneObject";
 import {Action} from "../actions/Action";
-import {Lamp} from "./Lamp";
 import {Tabac} from "./Tabac";
 
 export class Cannabis extends InventoryObject
 {
     constructor(play: Play)
     {
-        super(play, Cannabis.IDENTIFIER, 'Ca sent bon!');
+        super(play, Cannabis.IDENTIFIER);
     }
 
     protected mixObjects(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
@@ -30,9 +29,5 @@ export class Cannabis extends InventoryObject
     static get IDENTIFIER()
     {
         return 'cannabis';
-    }
-
-    toFrench(): string {
-        return 'la weed';
     }
 }

@@ -10,14 +10,11 @@ import {BouteilleAlcool} from "../inventory_objects/BouteilleAlcool";
 import {RemoveInventoryAction} from "../actions/RemoveInventoryAction";
 import {DisappearAction} from "../actions/DisappearAction";
 import {SimpleGame} from "../../app";
+import {Translator} from "../translations/Translator";
 
 export class Bouteille extends SceneObject {
     constructor(play: Play) {
         super(play, Bouteille.IDENTIFIER, 382*SimpleGame.SCALE, 41*SimpleGame.SCALE, 'bouteille');
-    }
-
-    toFrench(): string {
-        return "la bouteille d'eau de vie";
     }
 
     protected pickUp(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
@@ -25,8 +22,8 @@ export class Bouteille extends SceneObject {
         if (!father.isBusy()) {
             return [
                 new MoveAction(this.play, pointer.position.x),
-                new TalkAction(this.play, father, "Touche pas a ca fils de pute!"),
-                new TalkAction(this.play, this.play.getBaby(), "Faudrait que je detourne son attention...")
+                new TalkAction(this.play, father, Translator.t('scene.bouteille.father')),
+                new TalkAction(this.play, this.play.getBaby(), Translator.t('scene.bouteille.baby'))
             ];
         }
         else {
@@ -34,7 +31,7 @@ export class Bouteille extends SceneObject {
                 new MoveAction(this.play, pointer.position.x),
                 new DisappearAction(this.play, Bouteille.IDENTIFIER),
                 new AddInventoryAction(this.play, BouteilleAlcool.IDENTIFIER),
-                new TalkAction(this.play, this.play.getBaby(), "Fais moi penser a gouter!")
+                new TalkAction(this.play, this.play.getBaby(), Translator.t('scene.bouteille.success'))
             ];
         }
     }

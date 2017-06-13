@@ -7,6 +7,7 @@ import {AddInventoryAction} from "../actions/AddInventoryAction";
 import {Action} from "../actions/Action";
 import {TalkAction} from "../actions/TalkAction";
 import {SimpleGame} from "../../app";
+import {Translator} from "../translations/Translator";
 
 export class Four extends SceneObject
 {
@@ -20,7 +21,7 @@ export class Four extends SceneObject
 
     protected lookAt(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
         if (!this.on) {
-            return [new TalkAction(this.play, this.play.getBaby(), "J'ai l'impression qu'il n'a pas d'electricite...")];
+            return [new TalkAction(this.play, this.play.getBaby(), Translator.t('scene.four.look_off'))];
         }
 
         return super.lookAt(origin, pointer);
@@ -28,7 +29,7 @@ export class Four extends SceneObject
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
         if (!this.on) {
-            return [new TalkAction(this.play, this.play.getBaby(), "Le four n'a pas l'air de vouloir s'allumer")];
+            return [new TalkAction(this.play, this.play.getBaby(), Translator.t('scene.four.use_off'))];
         }
 
         let object = this.play.getCursor().getInventoryObject();
@@ -38,7 +39,7 @@ export class Four extends SceneObject
                     new MoveAction(this.play, pointer.position.x),
                     new RemoveInventoryAction(this.play, object),
                     new AddInventoryAction(this.play, 'piles'),
-                    new TalkAction(this.play, this.play.getBaby(), 'Ca sent le crame maintenant, bravo'),
+                    new TalkAction(this.play, this.play.getBaby(), Translator.t('scene.four.success')),
                 ];
             }
         }
@@ -52,9 +53,5 @@ export class Four extends SceneObject
 
     public doOn() {
         this.on = true;
-    }
-
-    toFrench(): string {
-        return 'le four';
     }
 }

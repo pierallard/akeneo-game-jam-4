@@ -13,10 +13,6 @@ export class Father extends SceneObject {
         this.sprite.anchor.setTo(0, 1);
     }
 
-    toFrench(): string {
-        return 'papa';
-    }
-
     setBusy() {
         this.busy = true;
         this.sprite.loadTexture('fatherBusy');

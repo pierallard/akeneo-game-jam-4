@@ -11,7 +11,7 @@ export class BouteilleAlcool extends InventoryObject
 {
     constructor(play: Play)
     {
-        super(play, BouteilleAlcool.IDENTIFIER, 'la bouteille');
+        super(play, BouteilleAlcool.IDENTIFIER);
     }
 
     protected mixObjects(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
@@ -30,9 +30,5 @@ export class BouteilleAlcool extends InventoryObject
     static get IDENTIFIER()
     {
         return 'bouteille';
-    }
-
-    toFrench(): string {
-        return 'la bouteille';
     }
 }

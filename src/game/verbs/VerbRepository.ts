@@ -18,16 +18,11 @@ export class VerbRepository {
     }
 
     public create() {
-        let style = {
-            font: "28px 3dventuremedium",
-            align: "center",
-        };
-
         this.items = [
-            new Verb(this, this.play.game, PANEL_WIDTH / 4, SimpleGame.HEIGHT - PANEL_HEIGHT / 4 * 3, Verb.WALK_TO, 'Aller vers', style),
-            new Verb(this, this.play.game, PANEL_WIDTH / 4 * 3, SimpleGame.HEIGHT - PANEL_HEIGHT / 4 * 3, Verb.LOOK_AT, 'Regarder', style),
-            new Verb(this, this.play.game, PANEL_WIDTH / 4, SimpleGame.HEIGHT - PANEL_HEIGHT / 4, Verb.PICK_UP, 'Prendre', style),
-            new Verb(this, this.play.game, PANEL_WIDTH / 4 * 3, SimpleGame.HEIGHT - PANEL_HEIGHT / 4, Verb.USE, 'Utiliser', style)
+            new Verb(this, this.play.game, PANEL_WIDTH / 4, SimpleGame.HEIGHT - PANEL_HEIGHT / 4 * 3, Verb.WALK_TO),
+            new Verb(this, this.play.game, PANEL_WIDTH / 4 * 3, SimpleGame.HEIGHT - PANEL_HEIGHT / 4 * 3, Verb.LOOK_AT),
+            new Verb(this, this.play.game, PANEL_WIDTH / 4, SimpleGame.HEIGHT - PANEL_HEIGHT / 4, Verb.PICK_UP),
+            new Verb(this, this.play.game, PANEL_WIDTH / 4 * 3, SimpleGame.HEIGHT - PANEL_HEIGHT / 4, Verb.USE)
         ];
 
         this.items.forEach(function (verb) {
@@ -42,6 +37,7 @@ export class VerbRepository {
             let f = verb.style;
             f.fill = (verb === this.currentItem) ? '#639bff' : '#306082';
             verb.setStyle(f);
+            verb.text = verb.getLabel();
         }.bind(this));
     }
 

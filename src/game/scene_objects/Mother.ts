@@ -7,6 +7,7 @@ import {RemoveInventoryAction} from "../actions/RemoveInventoryAction";
 import {UpdateAction} from "../actions/UpdateAction";
 import {TalkAction} from "../actions/TalkAction";
 import {SimpleGame} from "../../app";
+import {Translator} from "../translations/Translator";
 
 export class Mother extends SceneObject {
     private zippo: boolean;
@@ -22,10 +23,6 @@ export class Mother extends SceneObject {
 
     isDefoncee():boolean {
         return this.zippo && this.bedo;
-    }
-
-    toFrench(): string {
-        return 'maman';
     }
 
     static get IDENTIFIER()
@@ -46,11 +43,11 @@ export class Mother extends SceneObject {
 
                 if (!this.zippo) {
                     result.push(
-                        new TalkAction(this.play, this, "Quelle surprise! Ou est mon feu?")
+                        new TalkAction(this.play, this, Translator.t('scene.mother.bedo'))
                     );
                 } else {
                     result.push(
-                        new TalkAction(this.play, this, "Oh, putain, je suis defoncee..."),
+                        new TalkAction(this.play, this, Translator.t('scene.mother.success')),
                         new UpdateAction(this.play, this, 'motherdefoncee')
                     );
                 }
@@ -67,11 +64,11 @@ export class Mother extends SceneObject {
 
                 if (!this.bedo) {
                     result.push(
-                        new TalkAction(this.play, this, "Du feu, du feu... Mais pour allumer quoi?")
+                        new TalkAction(this.play, this, Translator.t('scene.mother.zippo'))
                     );
                 } else {
                     result.push(
-                        new TalkAction(this.play, this, "Oh, putain, je suis defoncee..."),
+                        new TalkAction(this.play, this, Translator.t('scene.mother.success')),
                         new UpdateAction(this.play, this, 'motherdefoncee')
                     );
                 }
@@ -84,7 +81,7 @@ export class Mother extends SceneObject {
     }
 
     protected lookAt(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        return [new TalkAction(this.play, this.play.getBaby(), "Chatroulette, sans doute un site avec des chats")];
+        return [new TalkAction(this.play, this.play.getBaby(), Translator.t('scene.mother.description'))];
     }
 
     getStroke(): string {

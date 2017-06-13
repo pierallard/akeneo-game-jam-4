@@ -1,0 +1,268 @@
+{
+  "scene": {
+    "zipposec": {
+      "label": "the dry zippo"
+    },
+    "lexomil": {
+      "label": "the medecine"
+    },
+    "coldMeat": {
+      "label": "the frozen steak"
+    },
+    "engrais": {
+      "label": "the bottle"
+    },
+    "feuilles": {
+      "label": "the cirarette papers"
+    },
+    "knife": {
+      "label": "the knife"
+    },
+    "neon": {
+      "label": "a lamp"
+    },
+    "gode": {
+      "label": "a toy"
+    },
+    "rallonge": {
+      "label": "an extension cable"
+    },
+    "tabac": {
+      "label": "some tobacco"
+    },
+    "escabeau": {
+      "label": "the stepladder"
+    },
+    "perceuse": {
+      "label": "the drill"
+    },
+    "sachet": {
+      "label": "packet of seeds"
+    },
+    "potfull": {
+      "label": "the pot round"
+    },
+    "dvdporno": {
+      "label": "the DVD"
+    },
+
+    "prise": {
+      "label": "the broken plug",
+      "tip": "I should bare the wires before",
+      "success": "The over is on! We can now melt stuffs!",
+      "default_use": "Ouch! There is certainly juice in there!"
+    },
+    "fridge": {
+      "label": "the fridge",
+      "look_open": "It's cold in there!"
+    },
+    "cupboard": {
+      "label": "the closet"
+    },
+    "microOndes": {
+      "label": "the micro-wave",
+      "success": "Yum, we'll love this...",
+      "default_use": "Never turn the micro-wave on when empty"
+    },
+    "bowl": {
+      "label": "the bowl",
+      "dog1": "Woof!",
+      "dog2": "woof ...",
+      "dog3": "...",
+      "dog4": "zzzzzzz",
+      "dog5": "zzzzzzzzzzz",
+      "success": "Hahahaha!",
+      "use_icesteak": "I ain't no barbaric, he's going to break is teeth!",
+      "use_steak": "I think it misses chief's ingredient",
+      "look_full": "I  don't really feel like tasting this",
+      "look_empty": "I should feed the dog before he eats me"
+    },
+    "porteGarage": {
+      "label": "the door",
+      "dog": "Woof!",
+      "baby": "Sausage watches"
+      },
+    "dog": {
+      "label": "Sausage"
+    },
+    "bedroomDoor": {
+      "label": "the door",
+      "default_use": "It is locked with a locker"
+    },
+    "chain": {
+      "label": "the locker",
+      "default_use": "This is way too high!"
+    },
+    "pot": {
+      "label_empty": "the empty pot",
+      "label_full": "the pot",
+      "use_empty": "We should plant something",
+      "default_use": "Now, we have to make it grow!",
+      "use_full": "Do you think it will help making the plant grow?"
+    },
+    "four": {
+      "label": "the oven",
+      "look_off": "It looks like there's no power...",
+      "use_off": "The oven is not turning on",
+      "success": "It is burned now, congrats"
+    },
+    "bouteille": {
+      "label": "the bottle of eau de vie",
+      "father": "Don't touch this, son of a bitch!",
+      "baby": "I should deflect his attention...",
+      "success": "Remind me to taste!"
+    },
+    "father": {
+      "label": "daddy"
+    },
+    "mother": {
+      "label": "mommy",
+      "bedo": "What a surprise! Where's my lighter?",
+      "success": "Oh god, I'm high...",
+      "zippo": "A lighter, a lighter, what for?",
+      "description": "Chatroulette, maybe a website with cats"
+    },
+    "porteSortie": {
+      "label": "the exit",
+      "use_close": "Kevin, stop bothering mommy!",
+      "success_baby": "Yeeeeha!",
+      "success_father": "Get back here, son of a bitch!",
+      "success_mother": "MMm.. Kevin stoop doing shiit...."
+    },
+    "dvdplayer": {
+      "label": "the DVD player"
+    },
+
+    "default": {
+      "no_pick_up": [
+        "I can't take this!",
+        "Mmmh... No, this is not a good idea.",
+        "Are you sure about this?",
+        "Haha, you're actually really dumb",
+        "No.",
+        "Never in my whole life Michel"
+      ],
+      "no_use": [
+        "I can't do this!",
+        "I have no idea what you want to do.",
+        "Stop clicking everywhere",
+        "Yes, of course",
+        "Oh you are serious trying to use this? let me laugh even harder!"
+      ],
+      "no_look_at": [
+        "Isn't this beautiful?",
+        "Cheap on Amazon",
+        "Are you gonna make me look at the whole house?",
+        "This is actually very very interesting",
+        "You bore me, Michel",
+        "Goo-goo ga-ga"
+      ]
+    }
+  },
+
+  "inventory": {
+    "icesteak": {
+      "label": "the frozen steak",
+      "description": "a frozen steak"
+    },
+    "steak": {
+      "label": "the steak",
+      "description": "A real massive steak"
+    },
+    "lexomil": {
+      "label": "the lexomil",
+      "description": "a box of lexomil"
+    },
+    "piles": {
+      "label": "the battery",
+      "description": "\"3500mAh\""
+    },
+    "neon": {
+      "label": "The 12V UV lamp",
+      "description": "It misses the battery!"
+    },
+    "bouteille": {
+      "label": "the bottle",
+      "description": "12 years of age"
+    },
+    "zipposec": {
+      "label": "the dry zippp",
+      "description": "It is completely dry!"
+    },
+    "tabac": {
+      "label": "the tobacco",
+      "description": "To quit smoking, I play the trumpet"
+    },
+    "cannabis": {
+      "label": "some pot",
+      "description": "Smells good!"
+    },
+    "tabacbeuh": {
+      "label": "the mix",
+      "description": "Perfectly dosed out!"
+    },
+    "feuilles": {
+      "label": "the cigarette paper",
+      "description": "You exactly know the purpose!"
+    },
+    "rallonge": {
+      "label": "the extension cable",
+      "description": "a 220V extension cable"
+    },
+    "knife": {
+      "label": "the knife",
+      "description": "This is a butcher knife"
+    },
+    "bedo": {
+      "label": "the joint",
+      "description": "Ready to be smoked!"
+    },
+    "steaklexomil": {
+      "label": "the sopori-steak",
+      "description": "It could make a horse sleep"
+    },
+    "engrais": {
+      "label": "the fertilizer",
+      "description": "\"To be kept on kid's reach\". Lost!"
+    },
+    "gode": {
+      "label": "face masseur",
+      "description": "Daddy's toy, it vibrates"
+    },
+    "escabeauInventory": {
+      "label": "the stepladder",
+      "description": "I am the king of the world!"
+    },
+    "perceuse": {
+      "label": "the drill",
+      "description": "Holes, holes everywhere"
+    },
+    "sachet": {
+      "label": "the packet",
+      "description": "Looks like it contains seeds"
+    },
+    "lampePiles": {
+      "label": "The UV lamp",
+      "description": "I just lost my eyes"
+    },
+    "dvdporno": {
+      "label": "the DVD",
+      "description": "Hairy mature gays"
+    },
+    "zippo": {
+      "label": "the zippo",
+      "description": "Ouch!"
+    },
+    "rallongecoupee": {
+      "label": "electrical wires",
+      "description": "You just have to plug!"
+    }
+  },
+
+  "verbs": {
+    "walk_to": "Go to",
+    "look_at": "Look at",
+    "pick_up": "Take",
+    "use": "Use"
+  }
+}

@@ -10,7 +10,7 @@ export class Steak extends InventoryObject
 {
     constructor(play: Play)
     {
-        super(play, Steak.IDENTIFIER, 'Un bon gros steak');
+        super(play, Steak.IDENTIFIER);
     }
 
     protected mixObjects(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
@@ -24,10 +24,6 @@ export class Steak extends InventoryObject
         }
 
         return super.mixObjects(origin, pointer);
-    }
-
-    toFrench(): string {
-        return 'un steak';
     }
 
     static get IDENTIFIER()

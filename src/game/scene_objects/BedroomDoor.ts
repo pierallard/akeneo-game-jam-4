@@ -5,6 +5,7 @@ import {Action} from "../actions/Action";
 import {TalkAction} from "../actions/TalkAction";
 import {MoveAction} from "../actions/MoveAction";
 import {SimpleGame} from "../../app";
+import {Translator} from "../translations/Translator";
 
 export class BedroomDoor extends SceneObject {
     private open: boolean = false;
@@ -13,15 +14,11 @@ export class BedroomDoor extends SceneObject {
         super(play, BedroomDoor.IDENTIFIER, 441*SimpleGame.SCALE, 11*SimpleGame.SCALE, 'porteChambre');
     }
 
-    toFrench(): string {
-        return 'la porte';
-    }
-
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
         if (!this.open) {
             return [
                 new MoveAction(this.play, pointer.position.x),
-                new TalkAction(this.play, this.play.getBaby(), "C'est bloque par un verrou")
+                new TalkAction(this.play, this.play.getBaby(), Translator.t('scene.bedroomDoor.default_use'))
             ];
         }
 

@@ -11,6 +11,7 @@ import {Steak} from "../inventory_objects/Steak";
 import {Dog} from "./Dog";
 import Game = Phaser.Game;
 import {SimpleGame} from "../../app";
+import {Translator} from "../translations/Translator";
 
 export class Bowl extends SceneObject {
     private full: boolean = false;
@@ -28,26 +29,26 @@ export class Bowl extends SceneObject {
                 porteGarage.doOpen();
 
                 return [
-                    new TalkAction(this.play, this.play.getScene().getObject(Dog.IDENTIFIER), 'Ouaf!'),
+                    new TalkAction(this.play, this.play.getScene().getObject(Dog.IDENTIFIER), Translator.t('scene.bowl.dog1')),
                     new MoveAction(this.play, origin.getPosition().x - 612),
                     new RemoveInventoryAction(this.play, inventoryObject),
                     new UpdateAction(this.play, this, 'gamellePleine'),
                     new MoveAction(this.play, origin.getPosition().x - 300),
                     new MoveAction(this.play, origin.getPosition().x - 320),
-                    new TalkAction(this.play, this.play.getScene().getObject(Dog.IDENTIFIER), 'Ouaf!'),
-                    new TalkAction(this.play, this.play.getScene().getObject(Dog.IDENTIFIER), 'ouaf ...'),
-                    new TalkAction(this.play, this.play.getScene().getObject(Dog.IDENTIFIER), '...'),
-                    new TalkAction(this.play, this.play.getScene().getObject(Dog.IDENTIFIER), 'zzzzzzz'),
+                    new TalkAction(this.play, this.play.getScene().getObject(Dog.IDENTIFIER), Translator.t('scene.bowl.dog1')),
+                    new TalkAction(this.play, this.play.getScene().getObject(Dog.IDENTIFIER), Translator.t('scene.bowl.dog2')),
+                    new TalkAction(this.play, this.play.getScene().getObject(Dog.IDENTIFIER), Translator.t('scene.bowl.dog3')),
+                    new TalkAction(this.play, this.play.getScene().getObject(Dog.IDENTIFIER), Translator.t('scene.bowl.dog4')),
                     new UpdateAction(this.play, this.play.getScene().getObject(Dog.IDENTIFIER), 'dogsleep'),
-                    new TalkAction(this.play, this.play.getScene().getObject(Dog.IDENTIFIER), 'zzzzzzzzzzz'),
-                    new TalkAction(this.play, this.play.getBaby(), 'Hahahaha!')
+                    new TalkAction(this.play, this.play.getScene().getObject(Dog.IDENTIFIER), Translator.t('scene.bowl.dog5')),
+                    new TalkAction(this.play, this.play.getBaby(), Translator.t('scene.bowl.success'))
                 ];
             }
             if (inventoryObject.getIdentifier() === 'icesteak') {
-                return [new TalkAction(this.play, this.play.getBaby(), "Je suis pas un barbare il va se peter les dents")];
+                return [new TalkAction(this.play, this.play.getBaby(), Translator.t('scene.bowl.use_icesteak'))];
             }
             if (inventoryObject.getIdentifier() === Steak.IDENTIFIER) {
-                return [new TalkAction(this.play, this.play.getBaby(), "Je pense qu'il manque l'ingredient du chef")];
+                return [new TalkAction(this.play, this.play.getBaby(), Translator.t('scene.bowl.use_steak'))];
             }
         }
 
@@ -57,11 +58,11 @@ export class Bowl extends SceneObject {
     protected lookAt(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
         if (this.full) {
             return [
-                new TalkAction(this.play, this.play.getBaby(), "J'ai pas tres envie de gouter, tiens"),
+                new TalkAction(this.play, this.play.getBaby(), Translator.t('scene.bowl.look_full')),
             ];
         } else {
             return [
-                new TalkAction(this.play, this.play.getBaby(), "Je devrais donner a manger au chien avant qu'il me mange"),
+                new TalkAction(this.play, this.play.getBaby(), Translator.t('scene.bowl.look_empty')),
             ];
         }
     }
@@ -69,9 +70,5 @@ export class Bowl extends SceneObject {
     static get IDENTIFIER()
     {
         return 'bowl';
-    }
-
-    toFrench(): string {
-        return 'la gamelle';
     }
 }

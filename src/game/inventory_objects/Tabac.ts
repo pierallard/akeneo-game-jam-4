@@ -11,7 +11,7 @@ export class Tabac extends InventoryObject
 {
     constructor(play: Play)
     {
-        super(play, Tabac.IDENTIFIER, 'Je joue de la trompette');
+        super(play, Tabac.IDENTIFIER);
     }
 
     protected mixObjects(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
@@ -30,9 +30,5 @@ export class Tabac extends InventoryObject
     static get IDENTIFIER()
     {
         return 'tabac';
-    }
-
-    toFrench(): string {
-        return 'le tabac';
     }
 }

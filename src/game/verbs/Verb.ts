@@ -1,9 +1,10 @@
 
 import {VerbRepository} from "./VerbRepository";
+import {Translator} from "../translations/Translator";
 
-const WALK_TO = 'walk to';
-const LOOK_AT = 'look at';
-const PICK_UP = 'pick up';
+const WALK_TO = 'walk_to';
+const LOOK_AT = 'look_at';
+const PICK_UP = 'pick_up';
 const USE = 'use';
 
 export class Verb extends Phaser.Text
@@ -11,11 +12,22 @@ export class Verb extends Phaser.Text
     private verbRepository: VerbRepository;
     private name_: string;
 
-    constructor(verbRepository: VerbRepository, game: Phaser.Game, x: number, y: number, name: string, text: string, style?: Phaser.PhaserTextStyle)
-    {
-        super(game, x, y, text, style);
+    constructor(
+        verbRepository: VerbRepository,
+        game: Phaser.Game,
+        x: number,
+        y: number,
+        name: string,
+    ) {
+        let style = {
+            font: "28px 3dventuremedium",
+            align: "center",
+        };
+
+        super(game, x, y, '', style);
 
         this.name_ = name;
+        this.text = this.getLabel();
         this.verbRepository = verbRepository;
         this.inputEnabled = true;
         this.events.onInputDown.add(this.setCurrentVerb, this);
@@ -48,7 +60,7 @@ export class Verb extends Phaser.Text
         return USE;
     }
 
-    public toFrench(): string {
-        return this.text;
+    public getLabel(): string {
+        return Translator.t('verbs.' + this.name_);
     }
 }

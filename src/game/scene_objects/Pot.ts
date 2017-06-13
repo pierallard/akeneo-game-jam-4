@@ -10,6 +10,7 @@ import {AppearAction} from "../actions/AppearAction";
 import {DisappearAction} from "../actions/DisappearAction";
 import {TalkAction} from "../actions/TalkAction";
 import {SimpleGame} from "../../app";
+import {Translator} from "../translations/Translator";
 
 export class Pot extends SceneObject
 {
@@ -38,7 +39,7 @@ export class Pot extends SceneObject
                         new UpdateAction(this.play, this, 'potgraine'),
                     ];
                 } else {
-                    return [new TalkAction(this.play, this.play.getBaby(), "Il faudrait planter un truc")];
+                    return [new TalkAction(this.play, this.play.getBaby(), Translator.t('scene.pot.use_empty'))];
                 }
             } else {
                 if (object.getIdentifier() === 'lampePiles' || object.getIdentifier() === 'engrais') {
@@ -81,10 +82,10 @@ export class Pot extends SceneObject
                             ])
                         }
                     } else {
-                        return [new TalkAction(this.play, this.play.getBaby(), "Tu crois que ca va aider a faire grandir la plante?")]
+                        return [new TalkAction(this.play, this.play.getBaby(), Translator.t('scene.pot.use_full'))]
                     }
                 } else {
-                    return [new TalkAction(this.play, this.play.getBaby(), "Maintenant, faut la faire grandir!")]
+                    return [new TalkAction(this.play, this.play.getBaby(), Translator.t('scene.pot.default_use'))]
                 }
             }
         }
@@ -92,11 +93,11 @@ export class Pot extends SceneObject
         return super.use(origin, pointer);
     }
 
-    toFrench(): string {
+    getLabel(): string {
         if (!this.graines) {
-            return 'le pot vide';
+            return Translator.t('scene.pot.label_empty');
         } else {
-            return 'le pot'
+            return Translator.t('scene.pot.label_full');
         }
     }
 }

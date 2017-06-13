@@ -49,11 +49,11 @@ export class Sentence extends Phaser.Text {
     update() {
         let result = '';
         if (null !== this.verb) {
-            result = result + this.verb.toFrench();
+            result = result + this.verb.getLabel();
             if (null !== this.object) {
-                result = result + ' ' + this.object.toFrench();
+                result = result + ' ' + this.object.getLabel();
                 if (null !== this.secondaryObject) {
-                    result = result + ' avec ' + this.secondaryObject.toFrench();
+                    result = result + ' avec ' + this.secondaryObject.getLabel();
                 }
             }
         }

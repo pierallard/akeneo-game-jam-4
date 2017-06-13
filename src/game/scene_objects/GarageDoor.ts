@@ -6,6 +6,7 @@ import {TalkAction} from "../actions/TalkAction";
 import {MoveAction} from "../actions/MoveAction";
 import {Dog} from "./Dog";
 import {SimpleGame} from "../../app";
+import {Translator} from "../translations/Translator";
 
 export class GarageDoor extends SceneObject {
     private open: boolean = false;
@@ -18,8 +19,8 @@ export class GarageDoor extends SceneObject {
         if (!this.open) {
             return [
                 new MoveAction(this.play, pointer.position.x),
-                new TalkAction(this.play, this.play.getScene().getObject(Dog.IDENTIFIER), 'Ouaf!'),
-                new TalkAction(this.play, this.play.getBaby(), 'Saucisse monte la garde')
+                new TalkAction(this.play, this.play.getScene().getObject(Dog.IDENTIFIER), Translator.t('scene.porteGarage.dog')),
+                new TalkAction(this.play, this.play.getBaby(), Translator.t('scene.porteGarage.baby'))
             ];
         }
         return super.use(origin, pointer);
@@ -34,9 +35,5 @@ export class GarageDoor extends SceneObject {
     static get IDENTIFIER()
     {
         return 'porteGarage';
-    }
-
-    toFrench(): string {
-        return 'la porte';
     }
 }

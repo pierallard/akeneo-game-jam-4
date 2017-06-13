@@ -12,10 +12,6 @@ export class Dog extends SceneObject {
         return 'dog';
     }
 
-    toFrench(): string {
-        return 'Saucisse';
-    }
-
     getStroke(): string {
         return '#eec39a';
     }
