@@ -10,7 +10,7 @@ export class Lexomil extends InventoryObject
 {
     constructor(play: Play)
     {
-        super(play, Lexomil.IDENTIFIER, 'Une boite de Lexomil');
+        super(play, Lexomil.IDENTIFIER);
     }
 
     protected mixObjects(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
@@ -29,9 +29,5 @@ export class Lexomil extends InventoryObject
     static get IDENTIFIER()
     {
         return 'lexomil';
-    }
-
-    toFrench(): string {
-        return 'du Lexomil';
     }
 }

@@ -66,7 +66,7 @@ export class Inventory {
     }
 
     createObjects() {
-        this.addObject(new InventoryObject(this.play, 'icesteak', 'le steak surgele', 'Un steak surgele'));
+        this.addObject(new InventoryObject(this.play, 'icesteak'));
         this.addObject(new Steak(this.play));
         this.addObject(new Lexomil(this.play));
         this.addObject(new Battery(this.play));
@@ -80,17 +80,17 @@ export class Inventory {
         this.addObject(new Rallonge(this.play));
         this.addObject(new Couteau(this.play));
 
-        this.addObject(new InventoryObject(this.play, 'bedo', "le bedo", "Y'a plus qu'a allumer!"));
-        this.addObject(new InventoryObject(this.play, 'steaklexomil', 'le steaknifere', 'Voila qui pourrait endormir un cheval'));
-        this.addObject(new InventoryObject(this.play, 'engrais', "de l'engrais", '"Garder a portee des enfants". Perdu!'));
-        this.addObject(new InventoryObject(this.play, 'gode', 'le masseur de visage', "C'est le jouet de papa, ca vibre"));
-        this.addObject(new InventoryObject(this.play, 'escabeauInventory', "l'escabeau", "Je suis le roi du monde!"));
-        this.addObject(new InventoryObject(this.play, 'perceuse', 'la perceuse', "Des p'tits trous, des p'tits trous!"));
-        this.addObject(new InventoryObject(this.play, 'sachet', 'le sachet', "On dirait des graines!"));
-        this.addObject(new InventoryObject(this.play, 'lampePiles', 'la lampe UV', "J'ai perdu mes deux yeux"));
-        this.addObject(new InventoryObject(this.play, 'dvdporno', 'le DVD', '"Hairy mature gays"'));
-        this.addObject(new InventoryObject(this.play, 'zippo', 'le zippo', "Aie!"));
-        this.addObject(new InventoryObject(this.play, 'rallongecoupee', 'les fils electriques', "Y'a plus qu'a brancher!"));
+        this.addObject(new InventoryObject(this.play, 'bedo'));
+        this.addObject(new InventoryObject(this.play, 'steaklexomil'));
+        this.addObject(new InventoryObject(this.play, 'engrais'));
+        this.addObject(new InventoryObject(this.play, 'gode'));
+        this.addObject(new InventoryObject(this.play, 'escabeauInventory'));
+        this.addObject(new InventoryObject(this.play, 'perceuse'));
+        this.addObject(new InventoryObject(this.play, 'sachet'));
+        this.addObject(new InventoryObject(this.play, 'lampePiles'));
+        this.addObject(new InventoryObject(this.play, 'dvdporno'));
+        this.addObject(new InventoryObject(this.play, 'zippo'));
+        this.addObject(new InventoryObject(this.play, 'rallongecoupee'));
     }
 
     pageUp() {

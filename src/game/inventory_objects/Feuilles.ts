@@ -11,7 +11,7 @@ export class Feuilles extends InventoryObject
 {
     constructor(play: Play)
     {
-        super(play, Feuilles.IDENTIFIER, '"3500 mAh"');
+        super(play, Feuilles.IDENTIFIER);
     }
 
     protected mixObjects(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
@@ -30,9 +30,5 @@ export class Feuilles extends InventoryObject
     static get IDENTIFIER()
     {
         return 'feuilles';
-    }
-
-    toFrench(): string {
-        return 'la feuille a rouler';
     }
 }

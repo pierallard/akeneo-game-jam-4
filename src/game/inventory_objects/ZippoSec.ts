@@ -11,7 +11,7 @@ export class ZippoSec extends InventoryObject
 {
     constructor(play: Play)
     {
-        super(play, ZippoSec.IDENTIFIER, 'le zippo sec', 'Il est tout sec!');
+        super(play, ZippoSec.IDENTIFIER);
     }
 
     protected mixObjects(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
@@ -25,10 +25,6 @@ export class ZippoSec extends InventoryObject
         }
 
         return super.mixObjects(origin, pointer);
-    }
-
-    toFrench(): string {
-        return 'le zippo sec';
     }
 
     static get IDENTIFIER()

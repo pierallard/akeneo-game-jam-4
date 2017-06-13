@@ -10,7 +10,7 @@ export class Lamp extends InventoryObject
 {
     constructor(play: Play)
     {
-        super(play, Lamp.IDENTIFIER, 'Il manque les piles!');
+        super(play, Lamp.IDENTIFIER);
     }
 
     protected mixObjects(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
@@ -25,10 +25,6 @@ export class Lamp extends InventoryObject
         }
 
         return super.mixObjects(origin, pointer);
-    }
-
-    toFrench(): string {
-        return 'la lampe UV 12V';
     }
 
     static get IDENTIFIER()

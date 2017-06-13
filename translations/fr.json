@@ -155,6 +155,106 @@
       ]
     }
   },
+
+  "inventory": {
+    "icesteak": {
+      "label": "le steak surgele",
+      "description": "Un steak surgele"
+    },
+    "steak": {
+      "label": "le steak",
+      "description": "un bon gros steak"
+    },
+    "lexomil": {
+      "label": "le lexomil",
+      "description": "une boite de lexomil"
+    },
+    "piles": {
+      "label": "les piles",
+      "description": "\"3500mAh\""
+    },
+    "neon": {
+      "label": "la lampe UV 12V",
+      "description": "Il manque les piles!"
+    },
+    "bouteille": {
+      "label": "la bouteille",
+      "description": "12 ans d'age"
+    },
+    "zipposec": {
+      "label": "le zippo sec",
+      "description": "Il est tout sec!"
+    },
+    "tabac": {
+      "label": "le tabac",
+      "description": "Pour arreter, je joue de la trompette"
+    },
+    "cannabis": {
+      "label": "la weed",
+      "description": "Ca sent bon!"
+    },
+    "tabacbeuh": {
+      "label": "le melange",
+      "description": "Bien dose!"
+    },
+    "feuilles": {
+      "label": "la feuille a rouler",
+      "description": "Tu vois tres bien ce que ca veut dire!"
+    },
+    "rallonge": {
+      "label": "la rallonge",
+      "description": "une rallonge electrique 220V"
+    },
+    "knife": {
+      "label": "le couteau",
+      "description": "c'est un couteau de boucher"
+    },
+    "bedo": {
+      "label": "le bedo",
+      "description": "Y'a plus qu'a allumer!"
+    },
+    "steaklexomil": {
+      "label": "le steak-nifere",
+      "description": "Voila qui pourrait endormir un cheval"
+    },
+    "engrais": {
+      "label": "l'engrais",
+      "description": "\"Garder a la portee des enfants\". Perdu!"
+    },
+    "gode": {
+      "label": "le masseur de visage",
+      "description": "C'est le jouet de papa, ca vibre"
+    },
+    "escabeauInventory": {
+      "label": "l'escabeau",
+      "description": "je suis le roi du moooonde!"
+    },
+    "perceuse": {
+      "label": "la perceuse",
+      "description": "Des p'tits trous, des p'tits trous!"
+    },
+    "sachet": {
+      "label": "le sachet",
+      "description": "on dirait des graines"
+    },
+    "lampePiles": {
+      "label": "la lampe UV",
+      "description": "J'ai perdu mes deux zeuyes!"
+    },
+    "dvdporno": {
+      "label": "le DVD",
+      "description": "Hairy mature gays"
+    },
+    "zippo": {
+      "label": "le zippo",
+      "description": "Aie!"
+    },
+    "rallongecoupee": {
+      "label": "les files electriques",
+      "description": "Y'a plus qu'a brancher!"
+    }
+  },
+
   "verbs": {
     "walk_to": "Aller vers",
     "look_at": "Regarder",

@@ -3,22 +3,20 @@ import Play from "../state/Play";
 import {TalkAction} from "../actions/TalkAction";
 import {SceneObject} from "../scene_objects/SceneObject";
 import {Action} from "../actions/Action";
+import {Translator} from "../translations/Translator";
 
 export class InventoryObject extends SceneObject
 {
     private oldPosition: Phaser.Point;
-    private text: string = null;
-    private french: string = null;
     private active: boolean;
 
-    constructor(play: Play, texture: string, french: string = null, text:string = null) {
+    constructor(play: Play, texture: string) {
         super(play, texture, 0, 0, texture);
 
-        this.french = french;
-        this.text = text;
         this.sprite.anchor.setTo(0.5);
         this.active = false;
         this.hide();
+
         this.shouldDetach = false;
     }
 
@@ -48,11 +46,7 @@ export class InventoryObject extends SceneObject
     }
 
     protected lookAt(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        if (null !== this.text) {
-            return [new TalkAction(this.play, this.play.getBaby(), this.text)];
-        }
-
-        return super.lookAt(origin, pointer);
+        return [new TalkAction(this.play, this.play.getBaby(), this.getDescription())];
     }
 
     private attach()
@@ -77,11 +71,11 @@ export class InventoryObject extends SceneObject
     }
 
     getLabel(): string {
-        if (null !== this.french) {
-            return this.french;
-        }
+        return Translator.t('inventory.' + this.getIdentifier() + '.label');
+    }
 
-        return super.getLabel();
+    private getDescription(): string {
+        return Translator.t('inventory.' + this.getIdentifier() + '.description');
     }
 
     setPosition(x: number, y: number) {

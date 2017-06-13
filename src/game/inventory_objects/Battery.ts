@@ -10,7 +10,7 @@ export class Battery extends InventoryObject
 {
     constructor(play: Play)
     {
-        super(play, Battery.IDENTIFIER, '"3500 mAh"');
+        super(play, Battery.IDENTIFIER);
     }
 
     protected mixObjects(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
@@ -29,9 +29,5 @@ export class Battery extends InventoryObject
     static get IDENTIFIER()
     {
         return 'piles';
-    }
-
-    toFrench(): string {
-        return 'les piles';
     }
 }
