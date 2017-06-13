@@ -37,6 +37,7 @@ export class VerbRepository {
             let f = verb.style;
             f.fill = (verb === this.currentItem) ? '#639bff' : '#306082';
             verb.setStyle(f);
+            verb.text = verb.getLabel();
         }.bind(this));
     }
 

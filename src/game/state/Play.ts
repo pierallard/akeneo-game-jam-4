@@ -8,6 +8,7 @@ import {GarageDoor} from "../scene_objects/GarageDoor";
 import {BedroomDoor} from "../scene_objects/BedroomDoor";
 import {ActionManager} from "../actions/ActionManager";
 import {Cursor} from "../Cursor";
+import {LocaleSwitcher} from "../LocaleSwitcher";
 
 export default class Play extends Phaser.State
 {
@@ -18,6 +19,7 @@ export default class Play extends Phaser.State
     private cursor: Cursor;
     private sentence: Sentence;
     private actionManager: ActionManager;
+    private localeSwitcher: LocaleSwitcher;
     private debug: boolean;
 
     public constructor() {
@@ -26,6 +28,7 @@ export default class Play extends Phaser.State
         this.inventory = new Inventory(this);
         this.actionManager = new ActionManager(this);
         this.verbRepository = new VerbRepository(this);
+        this.localeSwitcher = new LocaleSwitcher(this);
         this.debug = false;
     }
 
@@ -36,6 +39,7 @@ export default class Play extends Phaser.State
         this.verbRepository.create();
         this.baby = new Baby(this);
         this.scene.createWithBaby(this.baby);
+        this.localeSwitcher.create();
         this.cursor = new Cursor(this);
 
         if (this.debug) {

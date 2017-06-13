@@ -5,6 +5,10 @@ export class Translator {
     static translations;
     static locale:string = 'fr';
 
+    static setLocale(locale: string) {
+        this.locale = locale;
+    }
+
     static initialize() {
         this.translations = [];
         getContent("translations/fr.json", data => {
