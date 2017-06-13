@@ -5,7 +5,6 @@ import {TakeAction} from "../actions/TakeAction";
 import Play from "../state/Play";
 import {SceneObject} from "./SceneObject";
 import {Action} from "../actions/Action";
-import {Translator} from "../translations/Translator";
 
 export class PickableObject extends SceneObject
 {
@@ -30,9 +29,5 @@ export class PickableObject extends SceneObject
             new MoveAction(this.play, pointer.position.x),
             new TakeAction(this.play, <PickableObject> origin),
         ];
-    }
-
-    getLabel(): string {
-        return Translator.t('scene.' + this.getIdentifier() + '.label');
     }
 }

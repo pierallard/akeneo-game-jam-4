@@ -9,16 +9,13 @@ import {Father} from "./Father";
 import {Mother} from "./Mother";
 import {RemoveInventoryAction} from "../actions/RemoveInventoryAction";
 import {SimpleGame} from "../../app";
+import {Translator} from "../translations/Translator";
 
 export class OutDoor extends SceneObject {
     private open: boolean = false;
 
     constructor(play: Play) {
         super(play, OutDoor.IDENTIFIER, 352*SimpleGame.SCALE, 16*SimpleGame.SCALE, 'porteSortie');
-    }
-
-    getLabel(): string {
-        return 'la sortie';
     }
 
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
@@ -36,7 +33,7 @@ export class OutDoor extends SceneObject {
             }
             else {
                 return [
-                    new TalkAction(this.play, mother, "Kevin, arrete d'embeter maman!")
+                    new TalkAction(this.play, mother, Translator.t('scene.porteSortie.use_close'))
                 ]
             }
         }
@@ -57,9 +54,9 @@ export class OutDoor extends SceneObject {
         }
         return [
             new MoveAction(this.play, pointer.position.x),
-            new TalkAction(this.play, this.play.getBaby(), "Yeeeeha!"),
-            new TalkAction(this.play, this.play.getScene().getObject(Father.IDENTIFIER), "Reviens ici, fils de pute!"),
-            new TalkAction(this.play, this.play.getScene().getObject(Mother.IDENTIFIER), "MMm.. Kevin arrete tes conneriiiiies....")
+            new TalkAction(this.play, this.play.getBaby(), Translator.t('scene.porteSortie.success_baby')),
+            new TalkAction(this.play, this.play.getScene().getObject(Father.IDENTIFIER), Translator.t('scene.porteSortie.success_father')),
+            new TalkAction(this.play, this.play.getScene().getObject(Mother.IDENTIFIER), Translator.t('scene.porteSortie.success_mother'))
         ];
     }
 

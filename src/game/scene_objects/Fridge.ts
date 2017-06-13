@@ -8,6 +8,7 @@ import {Action} from "../actions/Action";
 import {AppearAction} from "../actions/AppearAction";
 import {DisappearAction} from "../actions/DisappearAction";
 import {SimpleGame} from "../../app";
+import {Translator} from "../translations/Translator";
 
 export class Fridge extends SceneObject {
     private open: boolean = false;
@@ -39,7 +40,7 @@ export class Fridge extends SceneObject {
     protected lookAt(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
         if (this.open) {
             return [
-                new TalkAction(this.play, this.play.getBaby(), "Il fait froid la d'dans"),
+                new TalkAction(this.play, this.play.getBaby(), Translator.t('scene.fridge.look_open')),
             ];
         } else {
             return super.lookAt(origin, pointer);
@@ -48,10 +49,6 @@ export class Fridge extends SceneObject {
 
     static get IDENTIFIER() {
         return 'fridge';
-    }
-
-    getLabel(): string {
-        return 'le freezer';
     }
 }
 

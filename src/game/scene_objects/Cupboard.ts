@@ -38,9 +38,5 @@ export class Cupboard extends SceneObject {
     static get IDENTIFIER() {
         return 'cupboard';
     }
-
-    getLabel(): string {
-        return 'le placard';
-    }
 }
 

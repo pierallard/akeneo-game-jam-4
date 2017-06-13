@@ -45,6 +45,90 @@
     "dvdporno": {
       "label": "le DVD"
     },
+
+    "prise": {
+      "label": "la prise cassee",
+      "tip": "Faudrait que je denude les fils avant",
+      "success": "Le four marche! On va pouvoir faire fondre des trucs!",
+      "default_use": "Aie! Y'a du jus dedans, c'est sur."
+    },
+    "fridge": {
+      "label": "le freezer",
+      "look_open": "Il fait froid la d'dans"
+    },
+    "cupboard": {
+      "label": "le placard"
+    },
+    "microOndes": {
+      "label": "le micro-ondes",
+      "success": "Mmmh, on va se regaler...",
+      "default_use": "Faut jamais faire tourner un micro-ondes a vide"
+    },
+    "bowl": {
+      "label": "la gamelle",
+      "dog1": "Ouaf!",
+      "dog2": "ouaf ...",
+      "dog3": "...",
+      "dog4": "zzzzzzz",
+      "dog5": "zzzzzzzzzzz",
+      "success": "Hahahaha!",
+      "use_icesteak": "Je suis pas un barbare il va se peter les dents",
+      "use_steak": "Je pense qu'il manque l'ingredient du chef",
+      "look_full": "J'ai pas tres envie de gouter, tiens",
+      "look_empty": "Je devrais donner a manger au chien avant qu'il me mange"
+    },
+    "porteGarage": {
+      "label": "la porte",
+      "dog": "Ouaf!",
+      "baby": "Saucisse monte la garde"
+    },
+    "dog": {
+      "label": "Saucisse"
+    },
+    "bedroomDoor": {
+      "label": "la porte",
+      "default_use": "C'est bloque par un verrou"
+    },
+    "chain": {
+      "label": "le verrou",
+      "default_use": "C'est beaucoup trop haut !"
+    },
+    "pot": {
+      "label_empty": "le pot vide",
+      "label_full": "le pot",
+      "use_empty": "Il faudrait planter un truc",
+      "default_use": "Maintenant, faut la faire grandir!",
+      "use_full": "Tu crois que ca va aider a faire grandir la plante?"
+    },
+    "four": {
+      "label": "le four",
+      "look_off": "J'ai l'impression qu'il n'a pas d'electricite...",
+      "use_off": "Le four n'a pas l'air de vouloir s'allumer",
+      "success": "Ca sent le crame maintenant, bravo"
+    },
+    "bouteille": {
+      "label": "la bouteille d'eau de vie",
+      "father": "Touche pas a ca fils de pute!",
+      "baby": "Faudrait que je detourne son attention...",
+      "success": "Fais moi penser a gouter!"
+    },
+    "father": {
+      "label": "papa"
+    },
+    "mother": {
+      "label": "maman",
+      "bedo": "Quelle surprise! Ou est mon feu?",
+      "success": "Oh, putain, je suis defoncee...",
+      "zippo": "Du feu, du feu... Mais pour allumer quoi?"
+    },
+    "porteSortie": {
+      "label": "la sortie",
+      "use_close": "Kevin, arrete d'embeter maman!",
+      "success_baby": "Yeeeeha!",
+      "success_father": "Reviens ici, fils de pute!",
+      "success_mother": "MMm.. Kevin arrete tes conneriiiiies...."
+    },
+
     "default": {
       "no_pick_up": [
         "Je peux pas prendre ca!",

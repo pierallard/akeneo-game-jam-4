@@ -123,7 +123,7 @@ export class SceneObject extends InteractiveObject
     }
 
     getLabel(): string {
-        return Translator.t('scene.default.label');
+        return Translator.t('scene.' + this.getIdentifier() + '.label');
     }
 
     getSprite() {
