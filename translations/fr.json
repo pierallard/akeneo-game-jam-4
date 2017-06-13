@@ -39,7 +39,7 @@
     "sachet": {
       "label": "le sachet de graines"
     },
-    "potFull": {
+    "potfull": {
       "label": "la tournee de beuh"
     },
     "dvdporno": {
@@ -119,7 +119,8 @@
       "label": "maman",
       "bedo": "Quelle surprise! Ou est mon feu?",
       "success": "Oh, putain, je suis defoncee...",
-      "zippo": "Du feu, du feu... Mais pour allumer quoi?"
+      "zippo": "Du feu, du feu... Mais pour allumer quoi?",
+      "description": "Chatroulette, sans doute un site avec des chats"
     },
     "porteSortie": {
       "label": "la sortie",
@@ -127,6 +128,9 @@
       "success_baby": "Yeeeeha!",
       "success_father": "Reviens ici, fils de pute!",
       "success_mother": "MMm.. Kevin arrete tes conneriiiiies...."
+    },
+    "dvdplayer": {
+      "label": "le lecteur DVD"
     },
 
     "default": {

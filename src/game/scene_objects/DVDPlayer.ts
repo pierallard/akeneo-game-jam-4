@@ -12,10 +12,6 @@ export class DVDPlayer extends SceneObject {
         super(play, DVDPlayer.IDENTIFIER, 420*SimpleGame.SCALE, 44*SimpleGame.SCALE, 'dvdplayer');
     }
 
-    getLabel(): string {
-        return 'le lecteur DVD';
-    }
-
     protected use(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
         let object = this.play.getCursor().getInventoryObject();
         if (null !== object && object.getIdentifier() === 'dvdporno') {

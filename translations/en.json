@@ -39,7 +39,7 @@
     "sachet": {
       "label": "packet of seeds"
     },
-    "potFull": {
+    "potfull": {
       "label": "the pot round"
     },
     "dvdporno": {
@@ -119,7 +119,8 @@
       "label": "mommy",
       "bedo": "What a surprise! Where's my lighter?",
       "success": "Oh god, I'm high...",
-      "zippo": "A lighter, a lighter, what for?"
+      "zippo": "A lighter, a lighter, what for?",
+      "description": "Chatroulette, maybe a website with cats"
     },
     "porteSortie": {
       "label": "the exit",
@@ -127,6 +128,9 @@
       "success_baby": "Yeeeeha!",
       "success_father": "Get back here, son of a bitch!",
       "success_mother": "MMm.. Kevin stoop doing shiit...."
+    },
+    "dvdplayer": {
+      "label": "the DVD player"
     },
 
     "default": {

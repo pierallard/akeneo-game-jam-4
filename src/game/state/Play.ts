@@ -34,12 +34,12 @@ export default class Play extends Phaser.State
 
     public create() {
         this.scene = new Scene(this);
-        this.inventory.create();
         this.sentence = new Sentence(this.game);
         this.verbRepository.create();
         this.baby = new Baby(this);
         this.scene.createWithBaby(this.baby);
         this.localeSwitcher.create();
+        this.inventory.create();
         this.cursor = new Cursor(this);
 
         if (this.debug) {

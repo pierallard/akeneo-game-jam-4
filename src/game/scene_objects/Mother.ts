@@ -81,7 +81,7 @@ export class Mother extends SceneObject {
     }
 
     protected lookAt(origin: SceneObject, pointer: Phaser.Pointer): Array<Action> {
-        return [new TalkAction(this.play, this.play.getBaby(), "Chatroulette, sans doute un site avec des chats")];
+        return [new TalkAction(this.play, this.play.getBaby(), Translator.t('scene.mother.description'))];
     }
 
     getStroke(): string {
