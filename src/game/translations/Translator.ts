@@ -23,6 +23,9 @@ export class Translator {
         } catch (e) {
             console.log('Missing translation: "' + result + '"');
         }
+        if (undefined === result) {
+            return key;
+        }
 
         return result;
     }

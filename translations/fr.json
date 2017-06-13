@@ -1,7 +1,49 @@
 {
   "scene": {
-    "zippo": {
+    "zipposec": {
       "label": "le zippo sec"
+    },
+    "lexomil": {
+      "label": "le medicament"
+    },
+    "coldMeat": {
+      "label": "le steak surgele"
+    },
+    "engrais": {
+      "label": "la bouteille"
+    },
+    "feuilles": {
+      "label": "les feuilles"
+    },
+    "knife": {
+      "label": "le couteau"
+    },
+    "neon": {
+      "label": "une lampe"
+    },
+    "gode": {
+      "label": "un jouet"
+    },
+    "rallonge": {
+      "label": "une rallonge"
+    },
+    "tabac": {
+      "label": "une clope"
+    },
+    "escabeau": {
+      "label": "l'escabeau"
+    },
+    "perceuse": {
+      "label": "la perceuse"
+    },
+    "sachet": {
+      "label": "le sachet de graines"
+    },
+    "potFull": {
+      "label": "la tournee de beuh"
+    },
+    "dvdporno": {
+      "label": "le DVD"
     },
     "default": {
       "no_pick_up": [
@@ -28,5 +70,11 @@
         "Areuh areuh"
       ]
     }
+  },
+  "verbs": {
+    "walk_to": "Aller vers",
+    "look_at": "Regarder",
+    "pick_up": "Prendre",
+    "use": "Utiliser"
   }
 }

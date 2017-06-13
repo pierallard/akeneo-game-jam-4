@@ -5,19 +5,17 @@ import {TakeAction} from "../actions/TakeAction";
 import Play from "../state/Play";
 import {SceneObject} from "./SceneObject";
 import {Action} from "../actions/Action";
+import {Translator} from "../translations/Translator";
 
 export class PickableObject extends SceneObject
 {
     private generatedObjectIdentifier: string;
-    private french: string;
 
-    constructor(play: Play, identifier, french: string, x: number, y: number, key: string, generatedObjectIdentifier: string, display: boolean = true)
+    constructor(play: Play, identifier: string, x: number, y: number, key: string, generatedObjectIdentifier: string, display: boolean = true)
     {
         super(play, identifier, x, y, key);
 
-        this.french = french;
         this.generatedObjectIdentifier = generatedObjectIdentifier;
-
         if (!display) {
             this.hide();
         }
@@ -35,6 +33,6 @@ export class PickableObject extends SceneObject
     }
 
     getLabel(): string {
-        return this.french;
+        return Translator.t('scene.' + this.getIdentifier() + '.label');
     }
 }

@@ -99,21 +99,21 @@ export class Scene {
         this.addObject(new Mother(this.play));
         this.addObject(new OutDoor(this.play));
 
-        this.addObject(new PickableObject(this.play, 'lexomil', 'un medicament', 380*SimpleGame.SCALE, 55*SimpleGame.SCALE, 'lexomil', 'lexomil'));
-        this.addObject(new PickableObject(this.play, 'coldMeat', 'le steak surgele', 295*SimpleGame.SCALE, 45*SimpleGame.SCALE, 'icesteak', 'icesteak', false));
-        this.addObject(new PickableObject(this.play, 'engrais', 'la bouteille', 270*SimpleGame.SCALE, 45*SimpleGame.SCALE, 'engrais', 'engrais', false));
-        this.addObject(new PickableObject(this.play, 'feuilles', 'les feuilles', 45*SimpleGame.SCALE, 47*SimpleGame.SCALE, 'feuilles', 'feuilles'));
-        this.addObject(new PickableObject(this.play, 'knife', Translator.t('scene.knife.label'), 234*SimpleGame.SCALE, 26*SimpleGame.SCALE, 'knife', 'knife'));
-        this.addObject(new PickableObject(this.play, 'neon', 'une lampe', 42*SimpleGame.SCALE, 25*SimpleGame.SCALE, 'neon', 'neon'));
-        this.addObject(new PickableObject(this.play, 'gode', 'un jouet', 516*SimpleGame.SCALE, 29*SimpleGame.SCALE, 'gode', 'gode'));
-        this.addObject(new PickableObject(this.play, 'rallonge', 'une rallonge', 71*SimpleGame.SCALE, 46*SimpleGame.SCALE, 'rallonge', 'rallonge'));
-        this.addObject(new PickableObject(this.play, 'tabac', 'une clope', 570*SimpleGame.SCALE, 50*SimpleGame.SCALE, 'tabac', 'tabac'));
-        this.addObject(new PickableObject(this.play, 'escabeau', "l'escabeau", 5*SimpleGame.SCALE, 50*SimpleGame.SCALE, 'escabeau', 'escabeauInventory'));
-        this.addObject(new PickableObject(this.play, 'perceuse', 'la perceuse', 89*SimpleGame.SCALE, 30*SimpleGame.SCALE, 'perceuse', 'perceuse'));
-        this.addObject(new PickableObject(this.play, 'sachet', 'le sachet de graines', 395*SimpleGame.SCALE, 51*SimpleGame.SCALE, 'sachet', 'sachet'));
-        this.addObject(new PickableObject(this.play, 'potfull', 'la tournee de beuh', 218*SimpleGame.SCALE, 36*SimpleGame.SCALE, 'potfull', 'cannabis', false));
-        this.addObject(new PickableObject(this.play, 'zipposec', Translator.t('scene.zippo.label'), 254*SimpleGame.SCALE, 25*SimpleGame.SCALE, 'zipposec', 'zipposec'));
-        this.addObject(new PickableObject(this.play, 'dvdporno', 'le DVD', 500*SimpleGame.SCALE, 25*SimpleGame.SCALE, 'dvdporno', 'dvdporno'));
+        this.addObject(new PickableObject(this.play, 'lexomil', 380*SimpleGame.SCALE, 55*SimpleGame.SCALE, 'lexomil', 'lexomil'));
+        this.addObject(new PickableObject(this.play, 'coldMeat', 295*SimpleGame.SCALE, 45*SimpleGame.SCALE, 'icesteak', 'icesteak', false));
+        this.addObject(new PickableObject(this.play, 'engrais', 270*SimpleGame.SCALE, 45*SimpleGame.SCALE, 'engrais', 'engrais', false));
+        this.addObject(new PickableObject(this.play, 'feuilles', 45*SimpleGame.SCALE, 47*SimpleGame.SCALE, 'feuilles', 'feuilles'));
+        this.addObject(new PickableObject(this.play, 'knife', 234*SimpleGame.SCALE, 26*SimpleGame.SCALE, 'knife', 'knife'));
+        this.addObject(new PickableObject(this.play, 'neon', 42*SimpleGame.SCALE, 25*SimpleGame.SCALE, 'neon', 'neon'));
+        this.addObject(new PickableObject(this.play, 'gode', 516*SimpleGame.SCALE, 29*SimpleGame.SCALE, 'gode', 'gode'));
+        this.addObject(new PickableObject(this.play, 'rallonge', 71*SimpleGame.SCALE, 46*SimpleGame.SCALE, 'rallonge', 'rallonge'));
+        this.addObject(new PickableObject(this.play, 'tabac', 570*SimpleGame.SCALE, 50*SimpleGame.SCALE, 'tabac', 'tabac'));
+        this.addObject(new PickableObject(this.play, 'escabeau', 5*SimpleGame.SCALE, 50*SimpleGame.SCALE, 'escabeau', 'escabeauInventory'));
+        this.addObject(new PickableObject(this.play, 'perceuse', 89*SimpleGame.SCALE, 30*SimpleGame.SCALE, 'perceuse', 'perceuse'));
+        this.addObject(new PickableObject(this.play, 'sachet', 395*SimpleGame.SCALE, 51*SimpleGame.SCALE, 'sachet', 'sachet'));
+        this.addObject(new PickableObject(this.play, 'potfull', 218*SimpleGame.SCALE, 36*SimpleGame.SCALE, 'potfull', 'cannabis', false));
+        this.addObject(new PickableObject(this.play, 'zipposec', 254*SimpleGame.SCALE, 25*SimpleGame.SCALE, 'zipposec', 'zipposec'));
+        this.addObject(new PickableObject(this.play, 'dvdporno', 500*SimpleGame.SCALE, 25*SimpleGame.SCALE, 'dvdporno', 'dvdporno'));
     }
 
     private createObjectSecond() {
