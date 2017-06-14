@@ -1,4 +1,5 @@
 /// <reference path="../lib/phaser.d.ts"/>
+/// <reference path="../lib/beepbox_synth.d.ts"/>
 
 import Boot from "./game/state/Boot";
 import Preload from "./game/state/Preload";
