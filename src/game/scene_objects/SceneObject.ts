@@ -34,10 +34,6 @@ export class SceneObject extends InteractiveObject
         this.sprite.visible = true;
     }
 
-    hide() {
-        this.sprite.visible = false;
-    }
-
     private mouseOver() {
         if (null !== this.play.getCursor().getInventoryObject()) {
             this.play.getSentence().setSecondaryObject(this);

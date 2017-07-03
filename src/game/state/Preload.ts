@@ -14,6 +14,7 @@ export default class Preload extends Phaser.State {
         this.game.load.image('cursor', 'assets/cursor.png');
         this.game.load.image('clouds', 'assets/clouds.png');
         this.game.load.spritesheet('babyanim', 'assets/babyanim.png', 32, 32);
+        this.game.load.spritesheet('caranim', 'assets/caranim.png', 23, 50);
         this.game.load.image('fr', 'assets/fr.png');
         this.game.load.image('en', 'assets/en.png');
         this.game.load.image('sound', 'assets/sound.png');

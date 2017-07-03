@@ -24,6 +24,7 @@ import {SimpleGame} from "../../app";
 import {Baby} from "../Baby";
 import {Verb} from "../verbs/Verb";
 import {Translator} from "../translations/Translator";
+import {FinalAnim} from "../scene_objects/FinalAnim";
 
 export class Scene {
     private play: Play;
@@ -97,7 +98,8 @@ export class Scene {
         this.addObject(new Bouteille(this.play));
         this.addObject(new Father(this.play));
         this.addObject(new Mother(this.play));
-        this.addObject(new OutDoor(this.play));
+        this.addObject(new OutDoor(this.play))
+        this.addObject(new FinalAnim(this.play));
 
         this.addObject(new PickableObject(this.play, 'lexomil', 380*SimpleGame.SCALE, 55*SimpleGame.SCALE, 'lexomil', 'lexomil'));
         this.addObject(new PickableObject(this.play, 'coldMeat', 295*SimpleGame.SCALE, 45*SimpleGame.SCALE, 'icesteak', 'icesteak', false));

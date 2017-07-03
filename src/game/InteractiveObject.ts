@@ -41,4 +41,8 @@ export class InteractiveObject {
         this.sprite.loadTexture(newTexture);
         this.sprite.update();
     }
+
+    hide() {
+        this.sprite.visible = false;
+    }
 }

@@ -7,7 +7,6 @@ import {MoveAction} from "../actions/MoveAction";
 import {Father} from "./Father";
 import {AddInventoryAction} from "../actions/AddInventoryAction";
 import {BouteilleAlcool} from "../inventory_objects/BouteilleAlcool";
-import {RemoveInventoryAction} from "../actions/RemoveInventoryAction";
 import {DisappearAction} from "../actions/DisappearAction";
 import {SimpleGame} from "../../app";
 import {Translator} from "../translations/Translator";

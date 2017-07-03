@@ -10,6 +10,9 @@ import {Mother} from "./Mother";
 import {RemoveInventoryAction} from "../actions/RemoveInventoryAction";
 import {SimpleGame} from "../../app";
 import {Translator} from "../translations/Translator";
+import {AppearAction} from "../actions/AppearAction";
+import {DisappearAction} from "../actions/DisappearAction";
+import {FinalAnim} from "./FinalAnim";
 
 export class OutDoor extends SceneObject {
     private open: boolean = false;
@@ -56,7 +59,9 @@ export class OutDoor extends SceneObject {
             new MoveAction(this.play, pointer.position.x),
             new TalkAction(this.play, this.play.getBaby(), Translator.t('scene.porteSortie.success_baby')),
             new TalkAction(this.play, this.play.getScene().getObject(Father.IDENTIFIER), Translator.t('scene.porteSortie.success_father')),
-            new TalkAction(this.play, this.play.getScene().getObject(Mother.IDENTIFIER), Translator.t('scene.porteSortie.success_mother'))
+            new TalkAction(this.play, this.play.getScene().getObject(Mother.IDENTIFIER), Translator.t('scene.porteSortie.success_mother')),
+            new AppearAction(this.play, FinalAnim.IDENTIFIER),
+            new DisappearAction(this.play, null, this.play.getBaby())
         ];
     }
 
