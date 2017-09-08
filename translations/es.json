@@ -1,0 +1,273 @@
+{
+  "scene": {
+    "zipposec": {
+      "label": "el zippo seco"
+    },
+    "lexomil": {
+      "label": "la medicina"
+    },
+    "coldMeat": {
+      "label": "el filete congelado"
+    },
+    "engrais": {
+      "label": "la botella"
+    },
+    "feuilles": {
+      "label": "los papeles de liar"
+    },
+    "knife": {
+      "label": "el cuchillo"
+    },
+    "neon": {
+      "label": "una lampara"
+    },
+    "gode": {
+      "label": "un juguete"
+    },
+    "rallonge": {
+      "label": "un alargue"
+    },
+    "tabac": {
+      "label": "algo de tabaco"
+    },
+    "escabeau": {
+      "label": "la escalerilla"
+    },
+    "perceuse": {
+      "label": "el taladro"
+    },
+    "sachet": {
+      "label": "la bolsa de semillas"
+    },
+    "potfull": {
+      "label": "la peazo mata"
+    },
+    "dvdporno": {
+      "label": "el DVD"
+    },
+
+    "prise": {
+      "label": "el tomacorriente roto",
+      "tip": "Deberia pelar los cables antes",
+      "success": "El horno esta encendido! Ya podemos derretir cosas!",
+      "default_use": "Ojo! Hay chicha ahi!"
+    },
+    "fridge": {
+      "label": "el frigo",
+      "look_open": "Hace frio ahi dentro!"
+    },
+    "cupboard": {
+      "label": "el armario"
+    },
+    "microOndes": {
+      "label": "el microondas",
+      "success": "Slurp, espectacular...",
+      "default_use": "Nunca enciendas el microondas cuando esta vacio"
+    },
+    "bowl": {
+      "label": "el cuenco",
+      "dog1": "Arf!",
+      "dog2": "arf...",
+      "dog3": "...",
+      "dog4": "zzzzzzz",
+      "dog5": "zzzzzzzzzzz",
+      "success": "Jajajaja!",
+      "use_icesteak": "No soy un cabron! Se romperia los dientes!",
+      "use_steak": "Creo que le falta el ingrediente del chef",
+      "look_full": "Realmente no quiero probarlo",
+      "look_empty": "Deberia alimentar al perro antes de que me coma a mi"
+    },
+    "porteGarage": {
+      "label": "la puerta",
+      "dog": "Arf!",
+      "baby": "Salchica vigila"
+      },
+    "dog": {
+      "label": "Salchicha"
+    },
+    "bedroomDoor": {
+      "label": "la puerta",
+      "default_use": "Esta cerrada con una traba"
+    },
+    "chain": {
+      "label": "la traba",
+      "default_use": "Esta demasiado alto!"
+    },
+    "pot": {
+      "label_empty": "la maceta vacia",
+      "label_full": "la maceta",
+      "use_empty": "Deberiamos plantar algo",
+      "default_use": "Ahora deberiamos hacerla crecer!",
+      "use_full": "Te parece que eso ayudara a que crezca?"
+    },
+    "four": {
+      "label": "el horno",
+      "look_off": "Parece que no hay electricidad...",
+      "use_off": "El horno esta apagado",
+      "success": "Ahora esta quemado, felicitaciones"
+    },
+    "bouteille": {
+      "label": "la botella de Eau de Vie",
+      "father": "No toques eso, joputa!",
+      "baby": "Deberia desviar su atencion...",
+      "success": "Recuerdame probarlo!"
+    },
+    "father": {
+      "label": "papi"
+    },
+    "mother": {
+      "label": "mami",
+      "bedo": "Que sorpresa! Donde esta mi mechero?",
+      "success": "Dios, estoy colocada...",
+      "zippo": "Un mechero, un mechero, para que sera?",
+      "description": "Chatroulette, quizas un sitio con gatitos"
+    },
+    "porteSortie": {
+      "label": "la salida",
+      "is_closed": "Esta bloqueada",
+      "use_close": "Kevin, deja ya de molestar a mami!",
+      "success_baby": "Yupiiiii!",
+      "success_father": "Vuelve, joputa!",
+      "success_mother": "MMm.. Kevin kiita ya de acer el tooonto...."
+    },
+    "dvdplayer": {
+      "label": "el reproductor de DVD"
+    },
+
+    "default": {
+      "no_pick_up": [
+        "No puedo coger eso!",
+        "Hmmm... No, no es una buena idea",
+        "Estas seguro?",
+        "Jaja! eres realmente estupido",
+        "No",
+        "Nunca in the puta life, Michel"
+      ],
+      "no_use": [
+        "No puedo hacer eso!",
+        "No entiendo que quieres hacer",
+        "Deja ya de hacer clic en todos lados",
+        "Si, claro",
+        "Oh! De verdad intentas usar eso? Me parto la caja!"
+      ],
+      "no_look_at": [
+        "No es hermoso?",
+        "Baratito en Amazon",
+        "Me haras mirar en toda la casa?",
+        "Interesante, muy muy interesante",
+        "Aburres, Michel",
+        "Gu-gu ga-ga"
+      ]
+    }
+  },
+
+  "inventory": {
+    "icesteak": {
+      "label": "el filete congelado",
+      "description": "un filete congelado"
+    },
+    "steak": {
+      "label": "el filete",
+      "description": "Un gigantesco filete"
+    },
+    "lexomil": {
+      "label": "el lexomil",
+      "description": "una caja de lexomil"
+    },
+    "piles": {
+      "label": "la bateria",
+      "description": "\"3500mAh\""
+    },
+    "neon": {
+      "label": "La lampara UVA 12V",
+      "description": "Le falta la bateria!"
+    },
+    "bouteille": {
+      "label": "la botella",
+      "description": "Envejecido unos 12 abriles"
+    },
+    "zipposec": {
+      "label": "el zippo seco",
+      "description": "Esta completamente seco!"
+    },
+    "tabac": {
+      "label": "el tabaco",
+      "description": "Para dejar de fumar, toco la trompeta"
+    },
+    "cannabis": {
+      "label": "algo de maria",
+      "description": "Huele que alimenta!"
+    },
+    "tabacbeuh": {
+      "label": "la mezcla",
+      "description": "Perfectamente dosificada!"
+    },
+    "feuilles": {
+      "label": "el papel de liar",
+      "description": "Sabes perfectamente para que es!"
+    },
+    "rallonge": {
+      "label": "el alargue",
+      "description": "un alargue de 220V"
+    },
+    "knife": {
+      "label": "el cuchillo",
+      "description": "Es un cuchillo de carnicero"
+    },
+    "bedo": {
+      "label": "el peta",
+      "description": "Listo para ser fumado!"
+    },
+    "steaklexomil": {
+      "label": "el filete-mnifero",
+      "description": "Podria dormir a un caballo"
+    },
+    "engrais": {
+      "label": "el fertilizante",
+      "description": "\"Mantener fuera del alcance de las personitas\". JA!"
+    },
+    "gode": {
+      "label": "el masajeador facial",
+      "description": "El juguete de papi, vibra"
+    },
+    "escabeauInventory": {
+      "label": "la escalerilla",
+      "description": "Soy el rey del mundo!"
+    },
+    "perceuse": {
+      "label": "el taladro",
+      "description": "Agujeros, agujeros everywhere!"
+    },
+    "sachet": {
+      "label": "la bolsa",
+      "description": "Parece que contiene semillas"
+    },
+    "lampePiles": {
+      "label": "la lampara UVA",
+      "description": "Mis ojos! Mis ojos!"
+    },
+    "dvdporno": {
+      "label": "el DVD",
+      "description": "\"Hairy mature gays\""
+    },
+    "zippo": {
+      "label": "el zippo",
+      "description": "Ouch!"
+    },
+    "rallongecoupee": {
+      "label": "los cables electricos",
+      "description": "Solo tienes que enchufarlos!"
+    }
+  },
+
+  "verbs": {
+    "walk_to": "Ir a",
+    "look_at": "Mirar",
+    "pick_up": "Coger",
+    "use": "Usar"
+  },
+
+  "conjunctions": {
+    "with": "con"
+  }
+}

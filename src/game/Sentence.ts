@@ -2,11 +2,13 @@
 import {SceneObject} from "./scene_objects/SceneObject";
 import {Verb} from "./verbs/Verb";
 import {SimpleGame} from "../app";
+import {Translator} from "./translations/Translator";
 
 export class Sentence extends Phaser.Text {
     private object: SceneObject;
     private secondaryObject: SceneObject;
     private verb: Verb;
+
     
     constructor(game: Phaser.Game) {
         let style = {
@@ -53,7 +55,7 @@ export class Sentence extends Phaser.Text {
             if (null !== this.object) {
                 result = result + ' ' + this.object.getLabel();
                 if (null !== this.secondaryObject) {
-                    result = result + ' avec ' + this.secondaryObject.getLabel();
+                    result = result + ' ' + Translator.translations[Translator.locale]['conjunctions']['with'] + ' ' + this.secondaryObject.getLabel();
                 }
             }
         }

@@ -17,7 +17,7 @@ export class SoundSwitcher {
     }
 
     create() {
-        this.icon = this.play.game.add.sprite(650, 12, 'sound');
+        this.icon = this.play.game.add.sprite(600, 12, 'sound');
         this.icon.scale.setTo(SimpleGame.SCALE);
         this.icon.inputEnabled = true;
         this.icon.events.onInputDown.add(this.toggleSound, this);

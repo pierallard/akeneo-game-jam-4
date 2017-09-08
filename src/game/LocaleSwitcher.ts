@@ -14,7 +14,8 @@ export class LocaleSwitcher {
 
     create() {
         this.createFlag('en', 760, 12);
-        this.createFlag('fr', 720, 12);
+        this.createFlag('es', 710, 12);
+        this.createFlag('fr', 660, 12);
     }
 
     private createFlag(locale: string, x: number, y: number) {

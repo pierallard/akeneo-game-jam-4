@@ -124,6 +124,7 @@
     },
     "porteSortie": {
       "label": "the exit",
+      "is_closed": "It's locked",
       "use_close": "Kevin, stop bothering mommy!",
       "success_baby": "Yeeeeha!",
       "success_father": "Get back here, son of a bitch!",
@@ -264,5 +265,9 @@
     "look_at": "Look at",
     "pick_up": "Take",
     "use": "Use"
+  },
+
+  "conjunctions": {
+    "with": "with"
   }
 }

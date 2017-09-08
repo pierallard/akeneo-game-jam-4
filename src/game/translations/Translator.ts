@@ -17,6 +17,9 @@ export class Translator {
         getContent("translations/en.json", data => {
             this.translations['en'] = data;
         });
+        getContent("translations/es.json", data => {
+            this.translations['es'] = data;
+        });
     }
 
     static t(key: string) {

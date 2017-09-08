@@ -124,6 +124,7 @@
     },
     "porteSortie": {
       "label": "la sortie",
+      "is_closed": "C'est bloque",
       "use_close": "Kevin, arrete d'embeter maman!",
       "success_baby": "Yeeeeha!",
       "success_father": "Reviens ici, fils de pute!",
@@ -264,5 +265,9 @@
     "look_at": "Regarder",
     "pick_up": "Prendre",
     "use": "Utiliser"
+  },
+
+  "conjunctions": {
+    "with": "avec"
   }
 }
