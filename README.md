@@ -15,3 +15,9 @@ Other propositions:
 - @rybus and @tamarasaurus for the english translations
 - @nidup for the phaserjs starter kit
 - @grena, @yulldesign and @flonou for the beta tests!
+
+## How to run it locally?
+
+- `npm install`
+- `npm run build`
+- `npm run dev`
